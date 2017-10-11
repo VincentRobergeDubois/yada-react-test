@@ -1,0 +1,19 @@
+{
+  "name": "yada-react-test",
+  "version": "1.0.0",
+  "description": "testing react for yada.services",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VincentRobergeDubois/yada-react-test.git"
+  },
+  "author": "Vincent Roberge-Dubois",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VincentRobergeDubois/yada-react-test/issues"
+  },
+  "homepage": "https://github.com/VincentRobergeDubois/yada-react-test#readme"
+}
