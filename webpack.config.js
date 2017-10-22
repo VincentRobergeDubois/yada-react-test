@@ -9,11 +9,24 @@ module.exports = {
   },
   module: {
     loaders: [{
-      exclude: /node_modules/,
-      loader: 'babel-loader',
-      query: {
-        presets: ['react', 'es2015', 'stage-2']
-      }
+      test: /\.js[x]?$/,
+      loaders: ['babel-loader?presets[]=es2015&presets[]=react&presets[]=stage-2'],
+      exclude: /(node_modules|bower_components)/
+    }, {
+      test: /\.css$/,
+      loaders: ['style-loader', 'css-loader']
+    }, {
+      test: /\.scss$/,
+      loaders: ['style-loader', 'css-loader', 'sass-loader']
+    }, {
+      test: /\.woff$/,
+      loader: "url-loader?limit=10000&mimetype=application/font-woff&name=[path][name].[ext]"
+    }, {
+      test: /\.woff2$/,
+      loader: "url-loader?limit=10000&mimetype=application/font-woff2&name=[path][name].[ext]"
+    }, {
+      test: /\.(eot|ttf|svg|gif|png)$/,
+      loader: "file-loader"
     }]
   },
   resolve: {

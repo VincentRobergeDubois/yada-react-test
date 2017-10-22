@@ -6,10 +6,10 @@ export function loadMenuItems() {
     type: FETCH_MENU_ITEMS,
     payload: { data: [
       {id: 1, name: 'Accueil', icon: 'fi-home', link: '/'},
-      {id: 2, name: 'Services', icon: 'fi-list', link: 'services'},
-      {id: 3, name: 'Outils', icon: 'fi-wrench', link: 'tools'},
-      {id: 4, name: 'Contact', icon: 'fi-telephone', link: 'contact'},
-      {id: 5, name: 'Admin', icon: 'fi-star', link: 'admin'}
+      {id: 2, name: 'Services', icon: 'fi-list', link: '/services'},
+      {id: 3, name: 'Outils', icon: 'fi-wrench', link: '/tools'},
+      {id: 4, name: 'Contact', icon: 'fi-telephone', link: '/contact'},
+      {id: 5, name: 'Admin', icon: 'fi-star', link: '/admin'}
     ]}
   };
 }
