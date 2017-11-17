@@ -43,8 +43,7 @@ class Post extends React.Component {
 Post.propTypes = {
   side: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
-  content: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired
+  content: PropTypes.string.isRequired
 };
 
 export default Post;

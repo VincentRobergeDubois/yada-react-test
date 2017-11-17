@@ -1,12 +1,15 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { Column } from 'react-foundation';
+import axios from 'axios';
 import Post from './post';
 import { loadPosts } from '../../action';
 
 class PostList extends React.Component {
   componentWillMount() {
-    this.props.loadPosts();
+    axios.get('http://localhost:3000/posts').then((response) => {
+      this.props.loadPosts(response.data);
+    });
   }
 
   renderList() {

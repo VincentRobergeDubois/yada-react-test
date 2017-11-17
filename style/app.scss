@@ -2,6 +2,8 @@
 @import 'foundation-icons/foundation-icons.css';
 @import 'color';
 
+@import '../src/container/user-bar/style';
+
 html, body, #root, #root > div, #container, #main-content, #content {
     height: 100%;
 }
@@ -20,11 +22,10 @@ body {
     border: solid 1px $yada-red;
     margin: 30px !important;
     padding: 20px;
-}
-
-.post img {
-    max-height: 200px;
-    max-width: 280px;
+    img {
+        max-height: 200px;
+        max-width: 280px;
+    }
 }
 
 .right-post {
@@ -35,12 +36,11 @@ body {
     background-color: $yada-red;
     padding: 0px !important;
     max-height: 100%;
-}
-
-#sidebar img {
-    height: 100%;
-    width: 100%;
-}
+    img {
+        height: 100%;
+        width: 100%;
+    }
+} Alignment
 
 .cred-fail label {
     color: $yada-red;
@@ -50,42 +50,13 @@ body {
     color: $yada-white;
     font-size: 11px;
     font-weight: bold;
-}
-
-#user-bar {
-    background-color: $yada-black;
-    color: $yada-white;
-    font-weight: 600;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    font-size: 11px;
-}
-
-#user-name {
-    border-bottom: solid 1px white;
-}
+ }
 
 .small-div {
     height: 36px;
 }
 
-button > i {
-    margin-right: 5px;
-}
 
-#conn-btn, #deconn-btn {
-    color: $yada-white;
-    font-weight: 600;
-    font-size: 11px;
-    background-color: $yada-black;
-    border-color: $yada-white;
-    margin: 0px;
-}
-
-#conn-btn:hover, #deconn-btn:hover {
-    color: $yada-black;
-    background-color: $yada-white;
-}
 
 #menu-bar {
     background-color: $yada-white;
@@ -99,32 +70,27 @@ button > i {
 
 .item {
     min-width: 100px;
-}
-
-.item a {
-    font-weight: 800;
-    color: $yada-red;
-    text-align: center;
-}
-
-.item > a:hover {
-    color: $yada-white;
+    &:hover {
+        background-color: $yada-red;
+        color: $yada-white;
+    }
+    a {
+        font-weight: 800;
+        color: $yada-red;
+        text-align: center;
+        i {
+            font-size: 28px;
+        }
+        &:hover {
+            color: $yada-white;
+        }
+        &:focus {
+            color: $yada-pink;
+        }
+    }
 }
 
 .submenu a:hover, .active-item > a {
-    color: $yada-white;
-}
-
-.item > a:focus {
-    color: $yada-pink;
-}
-
-.item a i {
-    font-size: 28px;
-}
-
-.item:hover {
-    background-color: $yada-red;
     color: $yada-white;
 }
 
@@ -134,10 +100,9 @@ button > i {
 
 .logo {
     font-size: 20px;
-}
-
-.logo > i {
-    padding-right: 10px;
+    i {
+        padding-right: 10px;
+    }
 }
 
 #user-name, #user-title {

@@ -1,12 +1,13 @@
 module.exports = {
   entry: [
-    './src/index.js'
+    './src/index.tsx'
   ],
   output: {
     path: __dirname,
     publicPath: '/',
     filename: 'bundle.js'
   },
+  devtool: "source-map",
   module: {
     loaders: [{
       test: /\.js[x]?$/,
@@ -27,6 +28,13 @@ module.exports = {
     }, {
       test: /\.(eot|ttf|svg|gif|png)$/,
       loader: "file-loader"
+    }, {
+      test: /\.tsx?$/,
+      loader: "awesome-typescript-loader"
+    }, {
+      enforce: "pre",
+      test: /\.js$/,
+      loader: "source-map-loader"
     }]
   },
   resolve: {
@@ -35,5 +43,9 @@ module.exports = {
   devServer: {
     historyApiFallback: true,
     contentBase: './'
-  }
+  },
+  externals: {
+    "react": "React",
+    "react-dom": "ReactDOM"
+  },
 };

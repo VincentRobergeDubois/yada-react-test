@@ -1,0 +1,26 @@
+#user-bar {
+  background-color: $yada-black;
+  color: $yada-white;
+  font-weight: 600;
+  padding: 8px 0px;
+  font-size: 12px;
+}
+
+#user-name {
+  border-bottom: solid 1px white;
+}
+
+#conn-btn, #deconn-btn {
+  background-color: $yada-black;
+  border-color: $yada-white;
+  margin: 0px;
+  padding: 8px;
+  i {
+    margin: 5px;
+    font-size: 16px;
+  }
+  &:hover {
+    background-color: $yada-white;
+    color: $yada-black;
+  }
+}
