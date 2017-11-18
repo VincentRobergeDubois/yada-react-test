@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Row, Column } from 'react-foundation';
-import UserBar from '../../container/user-bar';
+import UserBar from 'container/user-bar';
 
 class Manager extends React.Component {
   render() {

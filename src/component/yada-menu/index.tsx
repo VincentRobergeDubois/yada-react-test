@@ -1,16 +1,17 @@
 import * as React from 'react';
 import { Menu, Alignments } from 'react-foundation';
-import YadaMenuItem, { IYadaMenuItemOwnProps } from './yada-menu-item';
+import { IMenuItem } from 'model/menu-item';
+import YadaMenuItem from './yada-menu-item';
 
-interface IYadaMenuOwnProps {
-  menuItemList: IYadaMenuItemOwnProps[]
+interface IYadaMenuProps {
+  itemList: IMenuItem[]
 }
 
-class YadaMenu extends React.Component {
+class YadaMenu extends React.Component<IYadaMenuProps, {}> {
   render() {
     return (
       <Menu alignment={Alignments.RIGHT} iconsOnTop isDropdown>
-        {this.props.menuItemList.map((menuItem: IYadaMenuItemOwnProps) => {
+        {this.props.itemList.map((menuItem: IMenuItem) => {
           return <YadaMenuItem key={menuItem.id} name={menuItem.name} icon={menuItem.icon} link={menuItem.link} />
         })}
       </Menu>

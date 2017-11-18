@@ -1,5 +1,4 @@
 import * as React from 'react';
-import * as PropTypes from 'prop-types';
 import { Row, Column } from 'react-foundation';
 
 class PostListItem extends React.Component {
@@ -11,8 +10,5 @@ class PostListItem extends React.Component {
     );
   }
 }
-
-PostListItem.propTypes = {
-};
 
 export default PostListItem;

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Guest from '../../component/guest';
+import Guest from 'component/guest';
 import PostList from './post-list';
 
 class Home extends React.Component {

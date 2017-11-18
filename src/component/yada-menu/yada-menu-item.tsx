@@ -2,19 +2,13 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { MenuItem, Icon } from 'react-foundation';
 
-export interface IYadaMenuItemOwnProps {
+export interface IYadaMenuItemProps {
   name: string,
   icon: string,
   link: string
 }
 
-interface IYadaMenuItemStateProps { }
-
-interface IYadaMenuItemDispatchProps { }
-
-type TYadaMenuItemProps = IYadaMenuItemOwnProps & IYadaMenuItemStateProps & IYadaMenuItemDispatchProps;
-
-class YadaMenuItem extends React.Component<TYadaMenuItemProps> {
+class YadaMenuItem extends React.Component<IYadaMenuItemProps> {
   render() {
     return (
       <MenuItem className="item">

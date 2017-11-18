@@ -5,9 +5,14 @@
     "noImplicitAny": true,
     "module": "commonjs",
     "target": "es2015",
-    "jsx": "react"
+    "jsx": "react",
+    "baseUrl": "./src"
   },
   "include": [
     "./src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "src/**/*.spec.*"
   ]
 }

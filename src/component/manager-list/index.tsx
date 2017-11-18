@@ -1,9 +1,15 @@
 import * as React from 'react';
 import UserListItem from './user-list-item';
+import { IUser } from 'model/user';
 
-class ManagerList extends React.Component {
-  renderUsersList() {
-    return this.props.items.map((user) => {
+interface IManagerListProps {
+  itemList: IUser[],
+  item: string
+}
+
+class ManagerList extends React.Component<IManagerListProps> {
+  renderUserList() {
+    return this.props.itemList.map((user: IUser) => {
       return (
         <UserListItem
           key={user.id}
@@ -19,7 +25,7 @@ class ManagerList extends React.Component {
 
   renderList() {
     if (this.props.item === 'user') {
-      return this.renderUsersList();
+      return this.renderUserList();
     }
 
   }

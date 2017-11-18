@@ -1,16 +1,14 @@
 import * as React from 'react';
-import Guest from '../../component/guest';
-import InfoCard from '../../component/info-card';
+import Guest from 'component/guest';
+import InfoCard from 'component/info-card';
 
-interface IContactOwnProps { }
-
-interface IContactStateProps { }
-
-interface IContactDispatchProps { }
+interface IContactOwnProps {}
+interface IContactStateProps {}
+interface IContactDispatchProps {}
 
 type TContactProps = IContactOwnProps & IContactStateProps & IContactDispatchProps;
 
-class Contact extends React.Component<TContactProps> {
+class Contact extends React.Component<TContactProps, {}> {
   render() {
     return (
       <Guest>

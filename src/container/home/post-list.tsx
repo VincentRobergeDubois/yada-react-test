@@ -1,19 +1,33 @@
 import * as React from 'react';
-import { connect } from 'react-redux';
+import { connect, Dispatch } from 'react-redux';
+import { bindActionCreators } from "redux";
 import { Column } from 'react-foundation';
 import axios from 'axios';
 import Post from './post';
-import { loadPosts } from '../../action';
+import { loadPostList, IPostAction } from 'action/post-action';
+import { IPost } from 'model/post';
 
-class PostList extends React.Component {
+interface IPostListOwnProps {}
+
+interface IPostListStateProps {
+  postList: IPost[]
+}
+
+interface IPostListDispatchProps {
+  loadPostList: (data: IPost[]) => IPostAction
+}
+
+type TPostListProps = IPostListOwnProps & IPostListStateProps & IPostListDispatchProps;
+
+class PostList extends React.Component<TPostListProps, {}> {
   componentWillMount() {
     axios.get('http://localhost:3000/posts').then((response) => {
-      this.props.loadPosts(response.data);
+      this.props.loadPostList(response.data);
     });
   }
 
   renderList() {
-    return this.props.posts.map((post, key) => {
+    return this.props.postList.map((post: IPost, key: number) => {
       return (
         <Post
           key={post.id}
@@ -35,10 +49,12 @@ class PostList extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    posts: state.posts.posts
-  };
+const mapStateToProps = (state: IPostListStateProps) => {
+  return { postList: state.postList };
 }
 
-export default connect(mapStateToProps, { loadPosts })(PostList);
+const mapDispatchToProps = (dispatch: Dispatch<IPostListStateProps>) => {
+  return { loadPostList: bindActionCreators(loadPostList, dispatch) };
+}
+
+export default connect<IPostListStateProps, IPostListDispatchProps, IPostListOwnProps>(mapStateToProps, mapDispatchToProps)(PostList);

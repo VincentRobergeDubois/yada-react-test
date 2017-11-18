@@ -1,49 +1,53 @@
 import * as React from 'react';
-import { Field, reduxForm } from 'redux-form';
+import { connect, Dispatch } from 'react-redux';
+import { bindActionCreators } from "redux";
 import axios from 'axios';
-import { loadUser } from '../../action';
 
-const validate = (values) => {
-  const errors = {};
+import { loadUser, IUserAction } from 'action';
+import { IUser } from 'model/user';
 
-  if (!values.username) {
-    errors.username = 'Champ requis';
+interface ILoginFormOwnProps {
+  onSubmit: () => void;
+}
+
+interface ILoginFormStateProps {
+  user: IUser
+}
+
+interface ILoginFormDispatchProps {
+  loadUser: (data: IUser) => IUserAction
+}
+
+type TLoginFormProps = ILoginFormOwnProps & ILoginFormStateProps & ILoginFormDispatchProps;
+
+class LoginForm extends React.Component<TLoginFormProps, {}> {
+  render() {
+    return (
+      <form onSubmit={this.props.onSubmit}>
+        <div>
+          <label>Nom d'utilisateur</label>
+          <div>
+            <input name="username" type="text" />
+          </div>
+        </div>
+        <div>
+          <label>Mot de passe</label>
+          <div>
+            <input name="password" type="password" />
+          </div>
+        </div>
+        <button type="submit" className="button expanded">Connexion</button>
+      </form>
+    );
   }
-  if (!values.password) {
-    errors.password = 'Champ requis';
-  }
-
-  return errors;
 }
 
-const warn = (values) => {
-  const warnings = {};
-
-  return warnings;
+const mapStateToProps = (state: ILoginFormStateProps) => {
+  return { user: state.user };
 }
 
-const RenderField = ({ input, label, type, meta: { touched, error, warning } }) => (
-  <div>
-    <label>{label}</label>
-    <div>
-      <input {...input} placeholder={label} type={type} />
-      {touched && ((error && <span>{error}</span>) || (warning && <span>{warning}</span>))}
-    </div>
-  </div>
-)
-
-const LoginForm = (props) => {
-  const { handleSubmit, submitting } = props;
-
-  return (
-    <form onSubmit={ handleSubmit }>
-      <Field name="username" component={RenderField} type="text" label="Nom d'utilisateur" />
-      <Field name="password" component={RenderField} type="password" label="Mot de passe" />
-      <button type="submit" className="button expanded" disabled={submitting}>Connexion</button>
-    </form>
-  );
+const mapDispatchToProps = (dispatch: Dispatch<ILoginFormStateProps>) => {
+  return { loadUser: bindActionCreators(loadUser, dispatch) };
 }
 
-export default reduxForm({
-  form: 'LoginForm', validate, warn
-}, null, { loadUser })(LoginForm);
+export default connect<ILoginFormStateProps, ILoginFormDispatchProps, ILoginFormOwnProps>(mapStateToProps, mapDispatchToProps)(LoginForm);

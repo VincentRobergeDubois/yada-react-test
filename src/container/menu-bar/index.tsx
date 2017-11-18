@@ -1,33 +1,46 @@
 import * as React from 'react';
 import { Row } from 'react-foundation';
-import { connect } from 'react-redux';
+import { connect, Dispatch } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import axios from 'axios';
-import YadaMenu from '../../component/yada-menu';
-import { loadMenuItems } from '../../action';
+import YadaMenu from 'component/yada-menu';
+import { loadMenuItemList, IMenuItemAction } from 'action';
+import { IMenuItem } from 'model/menu-item';
 
-class MenuBar extends React.Component {
+interface IMenuBarOwnProps {}
+
+interface IMenuBarStateProps {
+  menuItemList: IMenuItem[]
+}
+
+interface IMenuBarDispatchProps {
+  loadMenuItemList: (data: IMenuItem[]) => IMenuItemAction
+}
+
+type TMenuBarProps = IMenuBarOwnProps & IMenuBarStateProps & IMenuBarDispatchProps;
+
+class MenuBar extends React.Component<TMenuBarProps, {}> {
   componentWillMount() {
     axios.get('http://localhost:3000/menuItems/1/1').then((response) => {
-      this.props.loadMenuItems(response.data);
+      this.props.loadMenuItemList(response.data);
     });
   }
 
   render() {
     return (
       <Row id="menu-bar" isExpanded>
-        <YadaMenu items={this.props.menuItems} />
+        <YadaMenu itemList={this.props.menuItemList} />
       </Row>
     );
   }
 }
 
-function mapStateToProps(state) {
-  return { menuItems: state.menuItems };
+const mapStateToProps = (state: IMenuBarStateProps) => {
+  return { menuItemList: state.menuItemList };
 }
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ loadMenuItems }, dispatch);
+const mapDispatchToProps = (dispatch: Dispatch<IMenuBarStateProps>) => {
+  return { loadMenuItemList: bindActionCreators(loadMenuItemList, dispatch) };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MenuBar);
+export default connect<IMenuBarStateProps, IMenuBarDispatchProps, IMenuBarOwnProps>(mapStateToProps, mapDispatchToProps)(MenuBar);

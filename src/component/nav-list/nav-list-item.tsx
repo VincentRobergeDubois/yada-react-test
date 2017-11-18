@@ -3,19 +3,13 @@ import * as PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { MenuItem, Icon } from 'react-foundation';
 
-interface INavListItemOwnProps {
+interface INavListItemProps {
   name: string,
   icon: string,
   onClick: () => void
 }
 
-interface INavListItemStateProps { }
-
-interface INavListItemDispatchProps { }
-
-type TNavListItemProps = INavListItemOwnProps & INavListItemStateProps & INavListItemDispatchProps;
-
-class NavListItem extends React.Component<TNavListItemProps> {
+class NavListItem extends React.Component<INavListItemProps> {
   render() {
     return (
       <MenuItem className="nav-item">
@@ -28,4 +22,5 @@ class NavListItem extends React.Component<TNavListItemProps> {
   }
 }
 
+export { INavListItemProps };
 export default NavListItem;

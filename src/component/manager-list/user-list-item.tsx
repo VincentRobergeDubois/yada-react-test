@@ -1,8 +1,15 @@
 import * as React from 'react';
-import * as PropTypes from 'prop-types';
 import { Row, Column } from 'react-foundation';
 
-class UserListItem extends React.Component {
+interface IUserListItemProps {
+  username: string,
+  firstname: string,
+  lastname: string,
+  email: string,
+  phone: string
+}
+
+class UserListItem extends React.Component<IUserListItemProps> {
   render() {
     return (
       <Row isExpanded>
@@ -15,12 +22,5 @@ class UserListItem extends React.Component {
   }
 }
 
-UserListItem.propTypes = {
-  username: PropTypes.string.isRequired,
-  firstname: PropTypes.string.isRequired,
-  lastname: PropTypes.string.isRequired,
-  email: PropTypes.string.isRequired,
-  phone: PropTypes.string.isRequired
-};
-
+export { IUserListItemProps };
 export default UserListItem;

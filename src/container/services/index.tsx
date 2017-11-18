@@ -1,7 +1,13 @@
 import * as React from 'react';
 import Guest from '../../component/guest';
 
-class Services extends React.Component {
+interface IServicesOwnProps {}
+interface IServicesStateProps {}
+interface IServicesDispatchProps {}
+
+type TServicesProps = IServicesOwnProps & IServicesStateProps & IServicesDispatchProps;
+
+class Services extends React.Component<TServicesProps, {}> {
   render() {
     return (
       <Guest>

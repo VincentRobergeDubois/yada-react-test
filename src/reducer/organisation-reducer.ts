@@ -1,14 +1,8 @@
-import { OrganisationAction } from '../action';
+import { IOrganisationAction, LOAD_ORGANISATION, LOAD_ORGANISATION_LIST } from 'action';
+import { IOrganisation } from 'model/organisation';
 
-type TOrganisation = OrganisationAction.IOrganisation;
-
-interface IOrganisationAction {
-  type: string,
-  payload: TOrganisation | TOrganisation[]
-}
-
-const organisation: TOrganisation = null;
-const organisations: TOrganisation[] = [];
+const organisation: IOrganisation = null;
+const organisations: IOrganisation[] = [];
 
 const INITIAL_STATE = {
   organisation: organisation,
@@ -17,9 +11,9 @@ const INITIAL_STATE = {
 
 export default function(state = INITIAL_STATE, action: IOrganisationAction) {
   switch (action.type) {
-    case OrganisationAction.LOAD_ORGANISATION:
+    case LOAD_ORGANISATION:
       return { ...state, organisation: action.payload };
-    case OrganisationAction.LOAD_ORGANISATION_LIST:
+    case LOAD_ORGANISATION_LIST:
       return { ...state, organisations: action.payload };
     default:
       return state;

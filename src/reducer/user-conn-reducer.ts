@@ -1,22 +1,16 @@
-import { UserConnAction } from '../action';
+import { IUserConnAction, LOAD_USER_CONN, LOAD_USER_CONN_LIST } from 'action';
+import { IUserConn } from 'model/user-conn';
 
-type TUserConn = UserConnAction.IUserConn;
-
-interface IUserConnAction {
-  type: string,
-  payload: TUserConn | TUserConn[]
-}
-
-const userConn: TUserConn = null;
-const userConnList: TUserConn[] = [];
+const userConn: IUserConn = null;
+const userConnList: IUserConn[] = [];
 
 const INITIAL_USER_CONN_STATE = { user: userConn, userList: userConnList };
 
 export default function(state = INITIAL_USER_CONN_STATE, action: IUserConnAction) {
   switch (action.type) {
-    case UserConnAction.LOAD_USER_CONN:
+    case LOAD_USER_CONN:
       return { ...state, userConn: action.payload };
-    case UserConnAction.LOAD_USER_CONN_LIST:
+    case LOAD_USER_CONN_LIST:
       return { ...state, userConnList: action.payload };
     default:
       return state;

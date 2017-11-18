@@ -1,13 +1,11 @@
+import { IUser } from 'model/user';
+
 export const LOAD_USER = 'LOAD_USER';
 export const LOAD_USER_LIST = 'LOAD_USER_LIST';
 
-export interface IUser {
-  id: number,
-  username: string,
-  lastname: string,
-  firstname: string,
-  email: string,
-  phone: number
+export interface IUserAction {
+  type: string,
+  payload: IUser | IUser[]
 }
 
 export const loadUser = (user: IUser) => {

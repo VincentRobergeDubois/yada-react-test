@@ -1,24 +1,31 @@
 import * as React from 'react';
-import { connect } from 'react-redux';
+import { connect, Dispatch } from 'react-redux';
+import { bindActionCreators } from "redux";
 import { Row, Column } from 'react-foundation';
 import axios from 'axios';
-import Manager from '../../component/manager';
-import NavList from '../../component/nav-list';
-import ManagerList from '../../component/manager-list';
-import { loadUsers, loadServices, loadPosts } from '../../action';
+import Manager from 'component/manager';
+import NavList from 'component/nav-list';
+import ManagerList from 'component/manager-list';
+import UserBar from 'container/user-bar';
+import { loadMenuItemList, IMenuItemAction } from 'action';
+import { IMenuItem } from 'model/menu-item';
 
-interface IAdminOwnProps { }
+interface IAdminOwnProps {}
 
-interface IAdminStateProps { }
+interface IAdminStateProps {
+  menuItemList: IMenuItem[]
+}
 
-interface IAdminDispatchProps { }
+interface IAdminDispatchProps {
+  loadMenuItemList: (data: IMenuItem[]) => IMenuItemAction
+}
 
 type TAdminProps = IAdminOwnProps & IAdminStateProps & IAdminDispatchProps;
 
-class Admin extends React.Component<TAdminProps> {
+class Admin extends React.Component<TAdminProps, {}> {
   componentWillMount() {
     axios.get('http://localhost:3000/menuItems/4/1').then((response) => {
-      this.props.loadMenuItems(response.data);
+      this.props.loadMenuItemList(response.data);
     });
   }
 
@@ -27,10 +34,10 @@ class Admin extends React.Component<TAdminProps> {
       <Manager>
         <Row isExpanded>
           <Column large={2}>
-            <NavList items={this.state.navItems} />
+            <NavList itemList={this.props.menuItemList} />
           </Column>
           <Column>
-            {this.props.items ? <ManagerList items={this.props.items} /> : '' }
+            {this.props.menuItemList ? <ManagerList itemList={} /> : '' }
           </Column>
         </Row>
       </Manager>
@@ -38,10 +45,12 @@ class Admin extends React.Component<TAdminProps> {
   }
 }
 
-function mapStateToProps(state) {
-  return { items: state.users.users };
+const mapStateToProps = (state: IAdminStateProps) => {
+  return { menuItemList: state.menuItemList };
 }
 
-export default connect(mapStateToProps, {
-  loadUsers, loadServices, loadPosts
-})(Admin);
+const mapDispatchToProps = (dispatch: Dispatch<IAdminStateProps>) => {
+  return { loadMenuItemList: bindActionCreators(loadMenuItemList, dispatch) };
+}
+
+export default connect<IAdminStateProps, IAdminDispatchProps, IAdminOwnProps>(mapStateToProps, mapDispatchToProps)(Admin);

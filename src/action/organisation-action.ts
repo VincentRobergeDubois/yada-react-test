@@ -1,14 +1,11 @@
+import { IOrganisation } from 'model/organisation';
+
 export const LOAD_ORGANISATION = 'LOAD_ORGANISATION';
 export const LOAD_ORGANISATION_LIST = 'LOAD_ORGANISATION_LIST';
 
-export interface IOrganisation {
-  id: number,
-  name: string,
-  abreviation: string,
-  headOffice: string,
-  email: string,
-  phone: number,
-  extension: number
+export interface IOrganisationAction {
+  type: string,
+  payload: IOrganisation | IOrganisation[]
 }
 
 export const loadOrganisation = (organisation: IOrganisation) => {

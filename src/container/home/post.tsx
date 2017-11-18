@@ -1,8 +1,14 @@
 import * as React from 'react';
-import * as PropTypes from 'prop-types';
 import { MediaObject, MediaObjectSection, Thumbnail, Row } from 'react-foundation';
 
-class Post extends React.Component {
+interface IPostProps {
+  side: number,
+  title: string,
+  content: string,
+  image: string
+}
+
+class Post extends React.Component<IPostProps, {}> {
   renderRight() {
     return (
       <MediaObject>
@@ -39,11 +45,5 @@ class Post extends React.Component {
     );
   }
 }
-
-Post.propTypes = {
-  side: PropTypes.number.isRequired,
-  title: PropTypes.string.isRequired,
-  content: PropTypes.string.isRequired
-};
 
 export default Post;

@@ -1,19 +1,13 @@
 import * as React from 'react';
 import { Callout, Row, Column } from 'react-foundation';
 
-interface IInfoCardOwnProps {
+interface IInfoCardProps {
 	name: string,
 	title: string,
 	email: string
 }
 
-interface IInfoCardStateProps { }
-
-interface IInfoCardDispatchProps { }
-
-type TInfoCardProps = IInfoCardOwnProps & IInfoCardStateProps & IInfoCardDispatchProps;
-
-class InfoCard extends React.Component<TInfoCardProps> {
+class InfoCard extends React.Component<IInfoCardProps> {
 	render() {
 		return(
 			<Callout className="columns">
