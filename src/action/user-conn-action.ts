@@ -8,10 +8,10 @@ export interface IUserConnAction {
   payload: IUserConn | IUserConn[]
 }
 
-export const loadUserConn = (userConn: IUserConn) => {
+export const loadUserConn = (userConn: IUserConn): IUserConnAction => {
   return { type: LOAD_USER_CONN, payload: userConn };
 }
 
-export const loadUserConnList = (userConnList: IUserConn[]) => {
+export const loadUserConnList = (userConnList: IUserConn[]): IUserConnAction => {
   return { type: LOAD_USER_CONN_LIST, payload: userConnList };
 }

@@ -8,10 +8,10 @@ export interface IServiceAction {
   payload: IService | IService[]
 }
 
-export const loadService = (service: IService) => {
+export const loadService = (service: IService): IServiceAction => {
   return { type: LOAD_SERVICE, payload: service };
 }
 
-export const loadServices = (serviceList: IService[]) => {
+export const loadServices = (serviceList: IService[]): IServiceAction => {
   return { type: LOAD_SERVICE_LIST, payload: serviceList };
 }

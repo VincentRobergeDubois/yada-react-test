@@ -8,10 +8,10 @@ export interface IUserAction {
   payload: IUser | IUser[]
 }
 
-export const loadUser = (user: IUser) => {
+export const loadUser = (user: IUser): IUserAction => {
   return { type: LOAD_USER, payload: user };
 }
 
-export const loadUserList = (userList: IUser[]) => {
+export const loadUserList = (userList: IUser[]): IUserAction => {
   return { type: LOAD_USER_LIST, payload: userList };
 }

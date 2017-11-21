@@ -27,7 +27,7 @@ class ManagerList extends React.Component<IManagerListProps> {
     if (this.props.item === 'user') {
       return this.renderUserList();
     }
-
+    return '';
   }
 
   render() {

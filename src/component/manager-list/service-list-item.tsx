@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Row, Column } from 'react-foundation';
+import { Row } from 'react-foundation';
 
 class ServiceListItem extends React.Component {
   render() {

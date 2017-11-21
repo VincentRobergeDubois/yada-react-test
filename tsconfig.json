@@ -1,18 +1,25 @@
 {
   "compilerOptions": {
-    "outDir": "./dist/",
+    "baseUrl": "./src",
+    "outDir": "./build/",
     "sourceMap": true,
-    "noImplicitAny": true,
+
     "module": "commonjs",
-    "target": "es2015",
+    "target": "es6",
     "jsx": "react",
-    "baseUrl": "./src"
+
+    "noUnusedLocals": true,
+    "skipLibCheck": true,
+    "noFallthroughCasesInSwitch": true,
+    "suppressImplicitAnyIndexErrors": true,
+
+    "strictNullChecks": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noImplicitAny": true,
+    "strict": true
   },
-  "include": [
-    "./src/**/*"
-  ],
   "exclude": [
-    "node_modules",
-    "src/**/*.spec.*"
+    "node_modules"
   ]
 }

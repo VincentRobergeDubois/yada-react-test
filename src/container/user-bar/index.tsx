@@ -1,12 +1,9 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { Row, Column } from 'react-foundation';
-import { connect, Dispatch } from 'react-redux';
-import { bindActionCreators } from "redux";
+import { connect } from 'react-redux';
 import axios from 'axios';
-import * as Modal from 'react-modal';
-import LoginForm from './login-form';
-import { loadUserConn, loadUserConnList, IUserConnAction } from 'action';
+import { loadUserConn, IUserConnAction } from 'action';
 import { IUserConn } from 'model/user-conn';
 import { IOrganisation } from 'model/organisation';
 
@@ -97,15 +94,15 @@ class UserBar extends React.Component<TUserBarProps> {
 }
 
 
-function mapStateToProps(state: IUserBarStateProps) {
+function mapStateToProps(state: any): IUserBarStateProps {
   return {
 		userConn: state.userConn,
 	};
 }
 
-function mapDispatchToProps(dispatch: Dispatch<IUserBarStateProps>) {
+function mapDispatchToProps(dispatch: any): IUserBarDispatchProps {
 	return {
-		loadUserConn: bindActionCreators(loadUserConn, dispatch),
+		loadUserConn: dispatch(loadUserConn),
 	}
 }
 

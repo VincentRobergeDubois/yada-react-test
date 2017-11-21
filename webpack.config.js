@@ -1,51 +1,114 @@
+'use strict'
+
+var webpack = require('webpack');
+var path = require('path');
+
 module.exports = {
   entry: [
     './src/index.tsx'
   ],
   output: {
-    path: __dirname,
-    publicPath: '/',
-    filename: 'bundle.js'
+    filename: 'bundle.js',
+    path: path.resolve(process.cwd(), 'build')
   },
   devtool: "source-map",
+  resolve: {
+    extensions: ['.js', 'ts', 'tsx'],
+    modules: [
+      'node_modules',
+      'src'
+    ]
+  },
   module: {
-    loaders: [{
-      test: /\.js[x]?$/,
-      loaders: ['babel-loader?presets[]=es2015&presets[]=react&presets[]=stage-2'],
+    rules: [{
+      test: /\.ts[x]?$/,
+      use: [{
+        loader: 'awesome-typescript-loader',
+        options: {
+          useBabel: true,
+          useCache: true
+        }
+      }],
+      include: path.join(__dirname, './src'),
       exclude: /(node_modules|bower_components)/
     }, {
       test: /\.css$/,
-      loaders: ['style-loader', 'css-loader']
+      use: [{
+        loader: 'style-loader'
+      }, {
+        loader: 'css-loader'
+      }]
     }, {
       test: /\.scss$/,
-      loaders: ['style-loader', 'css-loader', 'sass-loader']
+      use: [{
+        loader: 'style-loader'
+      }, {
+        loader: 'css-loader'
+      }, {
+        loader: 'sass-loader'
+      }]
     }, {
-      test: /\.woff$/,
-      loader: "url-loader?limit=10000&mimetype=application/font-woff&name=[path][name].[ext]"
+      test: /\.png$/,
+      use: [{
+        loader: 'url-loade',
+        options: {
+          limit: 100000
+        }
+      }]
     }, {
-      test: /\.woff2$/,
-      loader: "url-loader?limit=10000&mimetype=application/font-woff2&name=[path][name].[ext]"
+      test: /\.jpg$/,
+      use: [{
+        loader: 'file-loader'
+      }]
     }, {
-      test: /\.(eot|ttf|svg|gif|png)$/,
-      loader: "file-loader"
+      test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
+      use: [{
+        loader: 'url-loader',
+        options: {
+          limit: 10000,
+          mimetype: 'application/font-woff'
+        }
+      }]
     }, {
-      test: /\.tsx?$/,
-      loader: "awesome-typescript-loader"
+      test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+      use: [{
+        loader: 'url-loader',
+        options: {
+          limit: 10000,
+          mimetype: 'application/octet-stream'
+        }
+      }]
+    }, {
+      test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
+      use: [{
+        loader: 'file-loader'
+      }]
+    }, {
+      test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+      use: [{
+        loader: 'url-loader',
+        options: {
+          limit: 10000,
+          mimetype: 'image/svg+xml'
+        }
+      }]
+    }, {
+      test: /\.(gif)$/,
+      use: [{
+        loader: 'file-loader'
+      }]
     }, {
       enforce: "pre",
       test: /\.js$/,
-      loader: "source-map-loader"
+      use: [{
+        loader: 'source-map-loader'
+      }]
+    }, {
+      test: /\.ts[x]]?$/,
+      enforce: 'pre',
+      use: [{
+        loader: 'tslint-loader'
+      }]
     }]
-  },
-  resolve: {
-    extensions: ['*', '.js', '.jsx', 'ts', 'tsx']
-  },
-  devServer: {
-    historyApiFallback: true,
-    contentBase: './'
-  },
-  externals: {
-    "react": "React",
-    "react-dom": "ReactDOM"
-  },
+  }
 };

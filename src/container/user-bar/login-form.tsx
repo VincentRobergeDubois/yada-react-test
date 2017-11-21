@@ -1,7 +1,5 @@
 import * as React from 'react';
-import { connect, Dispatch } from 'react-redux';
-import { bindActionCreators } from "redux";
-import axios from 'axios';
+import { connect } from 'react-redux';
 
 import { loadUser, IUserAction } from 'action';
 import { IUser } from 'model/user';
@@ -42,12 +40,12 @@ class LoginForm extends React.Component<TLoginFormProps, {}> {
   }
 }
 
-const mapStateToProps = (state: ILoginFormStateProps) => {
+const mapStateToProps = (state: any): ILoginFormStateProps => {
   return { user: state.user };
 }
 
-const mapDispatchToProps = (dispatch: Dispatch<ILoginFormStateProps>) => {
-  return { loadUser: bindActionCreators(loadUser, dispatch) };
+const mapDispatchToProps = (dispatch: any): ILoginFormDispatchProps => {
+  return { loadUser: dispatch(loadUser) };
 }
 
 export default connect<ILoginFormStateProps, ILoginFormDispatchProps, ILoginFormOwnProps>(mapStateToProps, mapDispatchToProps)(LoginForm);

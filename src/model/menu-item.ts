@@ -18,3 +18,7 @@ export interface IMenuItem {
   archivedAt: Date,
   archivedBy: IUser
 }
+
+export interface IMenuItemState {
+  
+}

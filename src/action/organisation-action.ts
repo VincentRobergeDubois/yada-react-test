@@ -8,10 +8,10 @@ export interface IOrganisationAction {
   payload: IOrganisation | IOrganisation[]
 }
 
-export const loadOrganisation = (organisation: IOrganisation) => {
+export const loadOrganisation = (organisation: IOrganisation): IOrganisationAction => {
   return { type: LOAD_ORGANISATION, payload: organisation };
 }
 
-export const loadOrganisationList = (organisationList: IOrganisation[]) => {
+export const loadOrganisationList = (organisationList: IOrganisation[]): IOrganisationAction => {
   return { type: LOAD_ORGANISATION_LIST, payload: organisationList };
 }

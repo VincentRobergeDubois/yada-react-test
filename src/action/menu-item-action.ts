@@ -8,10 +8,10 @@ export interface IMenuItemAction {
   payload: IMenuItem | IMenuItem[]
 }
 
-export const loadMenuItem = (menuItem: IMenuItem) => {
+export const loadMenuItem = (menuItem: IMenuItem): IMenuItemAction => {
   return { type: LOAD_MENU_ITEM, payload: menuItem };
 }
 
-export const loadMenuItemList = (menuItemList: IMenuItem[]) => {
+export const loadMenuItemList = (menuItemList: IMenuItem[]): IMenuItemAction => {
   return { type: LOAD_MENU_ITEM_LIST, payload: menuItemList };
 }

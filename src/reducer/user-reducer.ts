@@ -1,12 +1,8 @@
 import { IUserAction, LOAD_USER, LOAD_USER_LIST } from 'action';
-import { IUser } from 'model/user';
 
-const user: IUser = null;
-const userList: IUser[] = [];
+const INITIAL_USER_STATE = { user: null, userList: [] };
 
-const INITIAL_USER_STATE = { user: user, userList: userList };
-
-export default function(state = INITIAL_USER_STATE, action: IUserAction) {
+export default (state: any = INITIAL_USER_STATE, action: IUserAction) => {
   switch (action.type) {
     case LOAD_USER:
       return { ...state, user: action.payload };
