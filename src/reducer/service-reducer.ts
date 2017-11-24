@@ -1,11 +1,17 @@
 import { IServiceAction, LOAD_SERVICE, LOAD_SERVICE_LIST } from 'action';
+import { IService } from 'model/service';
+
+interface IServiceReducerState {
+  service: IService;
+  serviceList: IService[];
+}
 
 const INITIAL_STATE = {
-  service: null,
+  service: { id: 0, name: '', description: '' },
   serviceList: []
 };
 
-export default (state: any = INITIAL_STATE, action: IServiceAction) => {
+export default (state: IServiceReducerState = INITIAL_STATE, action: IServiceAction) => {
   switch (action.type) {
     case LOAD_SERVICE:
       return { ...state, service: action.payload };

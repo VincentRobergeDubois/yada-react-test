@@ -4,8 +4,8 @@ export const LOAD_POST = 'LOAD_POST';
 export const LOAD_POST_LIST = 'LOAD_POST_LIST';
 
 export interface IPostAction {
-  type: string,
-  payload: IPost | IPost[]
+  type: string;
+  payload: IPost | IPost[];
 }
 
 export const loadPost = (post: IPost): IPostAction => {

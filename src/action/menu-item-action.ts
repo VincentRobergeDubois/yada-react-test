@@ -4,8 +4,8 @@ export const LOAD_MENU_ITEM = 'LOAD_MENU_ITEM';
 export const LOAD_MENU_ITEM_LIST = 'LOAD_MENU_ITEMS';
 
 export interface IMenuItemAction {
-  type: string,
-  payload: IMenuItem | IMenuItem[]
+  type: string;
+  payload: IMenuItem | IMenuItem[];
 }
 
 export const loadMenuItem = (menuItem: IMenuItem): IMenuItemAction => {

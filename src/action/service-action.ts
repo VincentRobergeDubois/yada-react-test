@@ -4,8 +4,8 @@ export const LOAD_SERVICE = 'LOAD_SERVICE';
 export const LOAD_SERVICE_LIST = 'LOAD_SERVICE_LIST';
 
 export interface IServiceAction {
-  type: string,
-  payload: IService | IService[]
+  type: string;
+  payload: IService | IService[];
 }
 
 export const loadService = (service: IService): IServiceAction => {

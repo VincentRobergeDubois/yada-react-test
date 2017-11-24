@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import Home from 'container/home';
-import Services from 'container/services';
-import Tools from 'container/tools';
-import Contact from 'container/contact';
-import Admin from 'container/admin';
+import Admin from 'view/admin';
+import Contact from 'view/contact';
+import Home from 'view/home';
+import Services from 'view/services';
+import Tools from 'view/tools';
 
-const App = () => (
+const Router = () => (
   <BrowserRouter>
     <Switch>
       <Route exact path="/" component={Home} />
@@ -19,4 +19,4 @@ const App = () => (
   </BrowserRouter>
 );
 
-export default App;
+export default Router;

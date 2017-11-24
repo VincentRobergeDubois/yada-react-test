@@ -1,8 +1,24 @@
 import { IUserAction, LOAD_USER, LOAD_USER_LIST } from 'action';
+import { IUser } from 'model/user';
 
-const INITIAL_USER_STATE = { user: null, userList: [] };
+interface IUserReducerState {
+  user: IUser;
+  userList: IUser[];
+}
 
-export default (state: any = INITIAL_USER_STATE, action: IUserAction) => {
+const INITIAL_USER_STATE = {
+  user: {
+    id: 0,
+    username: '',
+    lastname: '',
+    firstname: '',
+    email: '',
+    phone: ''
+  },
+  userList: []
+};
+
+export default (state: IUserReducerState = INITIAL_USER_STATE, action: IUserAction) => {
   switch (action.type) {
     case LOAD_USER:
       return { ...state, user: action.payload };

@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { Row } from 'react-foundation';
 import { connect } from 'react-redux';
+import { bindActionCreators, Dispatch } from "redux";
+import { Row } from 'react-foundation';
 import axios from 'axios';
 import YadaMenu from 'component/yada-menu';
 import { loadMenuItemList, IMenuItemAction } from 'action';
@@ -38,8 +39,8 @@ const mapStateToProps = (state: any): IMenuBarStateProps => {
   return { menuItemList: state.menuItemList };
 }
 
-const mapDispatchToProps = (dispatch: any): IMenuBarDispatchProps => {
-  return { loadMenuItemList: dispatch(loadMenuItemList) };
+const mapDispatchToProps = (dispatch: Dispatch<any>): IMenuBarDispatchProps => {
+  return { loadMenuItemList: bindActionCreators(loadMenuItemList, dispatch) };
 }
 
 export default connect<IMenuBarStateProps, IMenuBarDispatchProps, IMenuBarOwnProps>(mapStateToProps, mapDispatchToProps)(MenuBar);

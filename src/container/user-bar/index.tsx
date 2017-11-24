@@ -1,7 +1,8 @@
 import * as React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators, Dispatch } from "redux";
 import { Link } from 'react-router-dom';
 import { Row, Column } from 'react-foundation';
-import { connect } from 'react-redux';
 import axios from 'axios';
 import { loadUserConn, IUserConnAction } from 'action';
 import { IUserConn } from 'model/user-conn';
@@ -100,9 +101,9 @@ function mapStateToProps(state: any): IUserBarStateProps {
 	};
 }
 
-function mapDispatchToProps(dispatch: any): IUserBarDispatchProps {
+function mapDispatchToProps(dispatch: Dispatch<any>): IUserBarDispatchProps {
 	return {
-		loadUserConn: dispatch(loadUserConn),
+		loadUserConn: bindActionCreators(loadUserConn, dispatch),
 	}
 }
 

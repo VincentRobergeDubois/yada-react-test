@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators, Dispatch } from "redux";
 import { Column } from 'react-foundation';
 import axios from 'axios';
 import Post from './post';
@@ -52,8 +53,8 @@ const mapStateToProps = (state: any): IPostListStateProps => {
   return { postList: state.postList };
 }
 
-const mapDispatchToProps = (dispatch: any): IPostListDispatchProps => {
-  return { loadPostList: dispatch(loadPostList) };
+const mapDispatchToProps = (dispatch: Dispatch<any>): IPostListDispatchProps => {
+  return { loadPostList: bindActionCreators(loadPostList, dispatch) };
 }
 
 export default connect<IPostListStateProps, IPostListDispatchProps, IPostListOwnProps>(mapStateToProps, mapDispatchToProps)(PostList);
