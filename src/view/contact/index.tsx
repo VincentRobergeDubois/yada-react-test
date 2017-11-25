@@ -2,10 +2,7 @@ import * as React from 'react';
 
 import Guest from 'component/guest';
 
-interface IContactProps {}
-interface IContactState {}
-
-class Contact extends React.PureComponent<IContactProps, IContactState> {
+class Contact extends React.PureComponent<{}, {}> {
   render() {
     return (
       <Guest>

@@ -5,13 +5,19 @@ export const LOAD_MENU_ITEM_LIST = 'LOAD_MENU_ITEMS';
 
 export interface IMenuItemAction {
   type: string;
-  payload: IMenuItem | IMenuItem[];
+  payload: IMenuItem[];
 }
 
-export const loadMenuItem = (menuItem: IMenuItem): IMenuItemAction => {
-  return { type: LOAD_MENU_ITEM, payload: menuItem };
+interface IMenuItemResponse {
+  status: number,
+  error: any,
+  data: IMenuItem[]
 }
 
-export const loadMenuItemList = (menuItemList: IMenuItem[]): IMenuItemAction => {
-  return { type: LOAD_MENU_ITEM_LIST, payload: menuItemList };
+export const loadMenuItem = (response: IMenuItemResponse): IMenuItemAction => {
+  return { type: LOAD_MENU_ITEM, payload: response.data };
+}
+
+export const loadMenuItemList = (response: IMenuItemResponse): IMenuItemAction => {
+  return { type: LOAD_MENU_ITEM_LIST, payload: response.data };
 }

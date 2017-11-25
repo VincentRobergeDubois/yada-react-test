@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Row, Column } from 'react-foundation';
 import UserBar from 'container/user-bar';
 
-class Manager extends React.Component {
+class Manager extends React.PureComponent<{}, {}> {
   render() {
    return (
     <Row id="admin-container" isExpanded>

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Menu, Alignments } from 'react-foundation';
+
 import { IMenuItem } from 'model/menu-item';
 import YadaMenuItem from './yada-menu-item';
 
@@ -7,7 +8,7 @@ interface IYadaMenuProps {
   itemList: IMenuItem[]
 }
 
-class YadaMenu extends React.Component<IYadaMenuProps, {}> {
+class YadaMenu extends React.PureComponent<IYadaMenuProps, {}> {
   render() {
     return (
       <Menu alignment={Alignments.RIGHT} iconsOnTop isDropdown>

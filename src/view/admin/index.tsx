@@ -2,10 +2,7 @@ import * as React from 'react';
 
 import Manager from 'component/manager';
 
-interface IAdminProps {}
-interface IAdminState {}
-
-class Admin extends React.PureComponent<IAdminProps, IAdminState> {
+class Admin extends React.PureComponent<{}, {}> {
   render() {
     return (
       <Manager>

@@ -18,7 +18,7 @@ interface ILoginFormDispatchProps {
 
 type TLoginFormProps = ILoginFormOwnProps & ILoginFormStateProps & ILoginFormDispatchProps;
 
-class LoginForm extends React.Component<TLoginFormProps, {}> {
+class LoginForm extends React.PureComponent<TLoginFormProps, {}> {
   render() {
     return (
       <form onSubmit={this.props.onSubmit}>

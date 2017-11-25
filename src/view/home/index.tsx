@@ -2,10 +2,7 @@ import * as React from 'react';
 
 import Guest from 'component/guest';
 
-interface IHomeProps {}
-interface IHomeState {}
-
-class Home extends React.PureComponent<IHomeProps, IHomeState> {
+class Home extends React.PureComponent<{}, {}> {
   render() {
     return (
       <Guest>

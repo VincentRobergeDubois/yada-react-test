@@ -20,7 +20,7 @@ interface IUserBarDispatchProps {
 
 type TUserBarProps = IUserBarOwnProps & IUserBarStateProps & IUserBarDispatchProps;
 
-class UserBar extends React.Component<TUserBarProps> {
+class UserBar extends React.PureComponent<TUserBarProps, {}> {
 
 	constructor(props: TUserBarProps) {
     super(props);
