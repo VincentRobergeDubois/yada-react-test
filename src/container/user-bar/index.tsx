@@ -84,7 +84,7 @@ class UserBar extends React.PureComponent<TUserBarProps, {}> {
 	render() {
 		return (
 			<Row id="user-bar" isExpanded>
-				<Column className="logo">
+				<Column>
 					<Link to='/'>
 						<img src="./images/yada-logo.png" alt="Yada" height="40" width="84" />
 					</Link>
@@ -97,7 +97,7 @@ class UserBar extends React.PureComponent<TUserBarProps, {}> {
 
 function mapStateToProps(state: any): IUserBarStateProps {
   return {
-		userConn: state.userConn,
+		userConn: state.userConn.userConn,
 	};
 }
 

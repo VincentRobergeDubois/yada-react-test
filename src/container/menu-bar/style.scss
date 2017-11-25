@@ -1,0 +1,35 @@
+#menu-bar {
+    background-color: $yada-white;
+    border-top: solid 2px $yada-red;
+    border-bottom: solid 2px $yada-red;
+    .sub-item {
+        font-size: 12px;
+    }
+    .item {
+        min-width: 100px;
+        &:hover {
+            background-color: $yada-red;
+            color: $yada-white;
+        }
+        a {
+            font-weight: 800;
+            color: $yada-red;
+            text-align: center;
+            i {
+                font-size: 28px;
+            }
+            &:hover {
+                color: $yada-white;
+            }
+            &:focus {
+                color: $yada-pink;
+            }
+        }
+    }
+    .submenu a:hover, .active-item > a {
+        color: $yada-white;
+    }
+    .menicon {
+        font-size: 42px;
+    }
+}

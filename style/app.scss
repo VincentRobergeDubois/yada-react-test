@@ -3,6 +3,7 @@
 @import 'color';
 
 @import '../src/container/user-bar/style';
+@import '../src/container/menu-bar/style';
 
 html, body, #root, #root > div, #container, #main-content, #content {
     height: 100%;
@@ -40,7 +41,7 @@ body {
         height: 100%;
         width: 100%;
     }
-} Alignment
+}
 
 .cred-fail label {
     color: $yada-red;
@@ -54,70 +55,6 @@ body {
 
 .small-div {
     height: 36px;
-}
-
-
-
-#menu-bar {
-    background-color: $yada-white;
-    border-top: solid 2px $yada-red;
-    border-bottom: solid 2px $yada-red;
-}
-
-.sub-item {
-    font-size: 12px;
-}
-
-.item {
-    min-width: 100px;
-    &:hover {
-        background-color: $yada-red;
-        color: $yada-white;
-    }
-    a {
-        font-weight: 800;
-        color: $yada-red;
-        text-align: center;
-        i {
-            font-size: 28px;
-        }
-        &:hover {
-            color: $yada-white;
-        }
-        &:focus {
-            color: $yada-pink;
-        }
-    }
-}
-
-.submenu a:hover, .active-item > a {
-    color: $yada-white;
-}
-
-.menicon {
-    font-size: 42px;
-}
-
-.logo {
-    font-size: 20px;
-    i {
-        padding-right: 10px;
-    }
-}
-
-#user-name, #user-title {
-    text-align: right;
-}
-
-#conn-submit-btn {
-    border: 1px solid $yada-red;
-    background-color: $yada-white;
-    color: $yada-red;
-}
-
-#conn-submit-btn:hover {
-    background-color: $yada-red;
-    color: $yada-white;
 }
 
 .dropdown.menu > li.is-dropdown-submenu-parent > a::after {
