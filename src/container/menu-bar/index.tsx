@@ -5,7 +5,7 @@ import { Row } from 'react-foundation';
 import axios from 'axios';
 
 import YadaMenu from 'component/yada-menu';
-import { loadMenuItemList } from 'action/menu-item';
+import { loadMenuItemList } from 'action/menu-item-action';
 import { IMenuItem } from 'model/menu-item';
 import { getUserConn } from 'selector/user-conn';
 

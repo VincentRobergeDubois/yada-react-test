@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { Row, Column, Button } from 'react-foundation';
 import axios from 'axios';
 
-import { loadUserConnList, IUserConnAction } from 'action';
+import { loadUserConnList, IUserConnAction } from 'action/user-conn-action';
 import { IUserConn } from 'model/user-conn';
 
 interface IUserBarOwnProps {}
