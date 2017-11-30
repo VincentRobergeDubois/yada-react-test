@@ -3,7 +3,7 @@ import { Row, Column } from 'react-foundation';
 import UserBar from 'container/user-bar';
 
 class Manager extends React.PureComponent<{}, {}> {
-  render() {
+  public render(): JSX.Element {
    return (
     <Row id="admin-container" isExpanded>
       <Column>

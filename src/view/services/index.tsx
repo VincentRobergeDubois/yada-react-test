@@ -3,7 +3,7 @@ import * as React from 'react';
 import Guest from 'component/guest';
 
 class Home extends React.PureComponent<{}, {}> {
-  render() {
+  public render(): JSX.Element {
     return (
       <Guest>
         Services

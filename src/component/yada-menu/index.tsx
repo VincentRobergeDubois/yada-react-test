@@ -9,7 +9,7 @@ interface IYadaMenuProps {
 }
 
 class YadaMenu extends React.PureComponent<IYadaMenuProps, {}> {
-  render() {
+  public render(): JSX.Element {
     return (
       <Menu alignment={Alignments.RIGHT} iconsOnTop isDropdown>
         {this.props.itemList.map((menuItem: IMenuItem) => {

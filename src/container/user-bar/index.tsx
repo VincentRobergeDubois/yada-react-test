@@ -4,6 +4,7 @@ import { bindActionCreators, Dispatch } from "redux";
 import { Link } from 'react-router-dom';
 import { Row, Column, Button } from 'react-foundation';
 import axios from 'axios';
+
 import { loadUserConnList, IUserConnAction } from 'action';
 import { IUserConn } from 'model/user-conn';
 
@@ -20,13 +21,13 @@ interface IUserBarDispatchProps {
 type TUserBarProps = IUserBarOwnProps & IUserBarStateProps & IUserBarDispatchProps;
 
 class UserBar extends React.PureComponent<TUserBarProps, {}> {
-	connectUser() {
+	private connectUser(): void {
 		axios.get('http://localhost:3000/user-conn/1').then((response) => {
       this.props.loadUserConnList(response.data);
     });
 	}
 
-	render() {
+	public render(): JSX.Element {
 		return (
 			<Row id="user-bar" isExpanded>
 				<Column>
@@ -41,7 +42,6 @@ class UserBar extends React.PureComponent<TUserBarProps, {}> {
 		);
 	}
 }
-
 
 const mapStateToProps = (state: any): IUserBarStateProps => {
   return {

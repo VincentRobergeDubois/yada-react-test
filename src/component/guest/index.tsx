@@ -5,7 +5,7 @@ import UserBar from 'container/user-bar';
 import MenuBar from 'container/menu-bar';
 
 class Guest extends React.PureComponent<{}, {}> {
-  render() {
+  public render(): JSX.Element {
     return (
       <Row id="home-container" isExpanded>
         <SideBar />

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 
-import { loadUser, IUserAction } from 'action';
+import { loadUser, IUserAction } from 'action/user-action';
 import { IUser } from 'model/user';
 
 interface ILoginFormOwnProps {
@@ -19,7 +19,7 @@ interface ILoginFormDispatchProps {
 type TLoginFormProps = ILoginFormOwnProps & ILoginFormStateProps & ILoginFormDispatchProps;
 
 class LoginForm extends React.PureComponent<TLoginFormProps, {}> {
-  render() {
+  public render(): JSX.Element {
     return (
       <form onSubmit={this.props.onSubmit}>
         <div>

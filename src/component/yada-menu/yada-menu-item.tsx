@@ -9,7 +9,7 @@ interface IYadaMenuItemProps {
 }
 
 class YadaMenuItem extends React.PureComponent<IYadaMenuItemProps, {}> {
-  render() {
+  public render(): JSX.Element {
     return (
       <MenuItem className="item">
         <Link to={this.props.link}>

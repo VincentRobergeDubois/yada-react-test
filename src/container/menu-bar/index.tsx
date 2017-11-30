@@ -5,7 +5,7 @@ import { Row } from 'react-foundation';
 import axios from 'axios';
 
 import YadaMenu from 'component/yada-menu';
-import { loadMenuItemList } from 'action';
+import { loadMenuItemList } from 'action/menu-item';
 import { IMenuItem } from 'model/menu-item';
 import { getUserConn } from 'selector/user-conn';
 
@@ -23,14 +23,13 @@ interface IMenuBarDispatchProps {
 type TMenuBarProps = IMenuBarOwnProps & IMenuBarStateProps & IMenuBarDispatchProps;
 
 class MenuBar extends React.PureComponent<TMenuBarProps, {}> {
-  componentWillMount() {
-		console.log(this.props);
+  public componentWillMount(): void {
     axios.get(`http://localhost:3000/menuItems/1/6`).then((response) => {
       this.props.loadMenuItemList(response.data);
     });
   }
 
-  render() {
+  public render(): JSX.Element {
     return (
       <Row id="menu-bar" isExpanded>
         <YadaMenu itemList={this.props.menuItemList} />

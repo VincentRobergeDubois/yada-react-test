@@ -7,7 +7,7 @@ import Home from 'view/home';
 import Services from 'view/services';
 import Tools from 'view/tools';
 
-const Router = () => (
+const Router = (): JSX.Element => (
   <BrowserRouter>
     <Switch>
       <Route exact path="/" component={Home} />

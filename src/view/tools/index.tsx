@@ -3,7 +3,7 @@ import * as React from 'react';
 import Manager from 'component/manager';
 
 class Tools extends React.PureComponent<{}, {}> {
-  render() {
+  public render(): JSX.Element {
     return (
       <Manager>
         Tools
