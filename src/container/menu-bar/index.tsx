@@ -7,11 +7,13 @@ import axios from 'axios';
 import YadaMenu from 'component/yada-menu';
 import { loadMenuItemList } from 'action';
 import { IMenuItem } from 'model/menu-item';
+import { getUserConn } from 'selector/user-conn';
 
 interface IMenuBarOwnProps {}
 
 interface IMenuBarStateProps {
-  menuItemList: IMenuItem[]
+  menuItemList: IMenuItem[];
+  userConn: typeof getUserConn;
 }
 
 interface IMenuBarDispatchProps {
@@ -22,7 +24,8 @@ type TMenuBarProps = IMenuBarOwnProps & IMenuBarStateProps & IMenuBarDispatchPro
 
 class MenuBar extends React.PureComponent<TMenuBarProps, {}> {
   componentWillMount() {
-    axios.get('http://localhost:3000/menuItems/1/1').then((response) => {
+		console.log(this.props);
+    axios.get(`http://localhost:3000/menuItems/1/6`).then((response) => {
       this.props.loadMenuItemList(response.data);
     });
   }
@@ -37,7 +40,10 @@ class MenuBar extends React.PureComponent<TMenuBarProps, {}> {
 }
 
 const mapStateToProps = (state: any): IMenuBarStateProps => {
-  return { menuItemList: state.menuItem.menuItemList };
+  return {
+    menuItemList: state.menuItem.menuItemList,
+    userConn: getUserConn(state)
+  };
 }
 
 const mapDispatchToProps = (dispatch: Dispatch<any>): IMenuBarDispatchProps => {

@@ -13,7 +13,14 @@ class YadaMenu extends React.PureComponent<IYadaMenuProps, {}> {
     return (
       <Menu alignment={Alignments.RIGHT} iconsOnTop isDropdown>
         {this.props.itemList.map((menuItem: IMenuItem) => {
-          return <YadaMenuItem key={menuItem.id} name={menuItem.name} icon={menuItem.icon} link={menuItem.link} />
+          return (
+            <YadaMenuItem
+              key={menuItem.id}
+              name={menuItem.name}
+              icon={menuItem.icon}
+              link={menuItem.link}
+            />
+          );
         })}
       </Menu>
     );

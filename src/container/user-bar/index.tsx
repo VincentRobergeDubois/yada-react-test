@@ -2,83 +2,28 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from "redux";
 import { Link } from 'react-router-dom';
-import { Row, Column } from 'react-foundation';
+import { Row, Column, Button } from 'react-foundation';
 import axios from 'axios';
-import { loadUserConn, IUserConnAction } from 'action';
+import { loadUserConnList, IUserConnAction } from 'action';
 import { IUserConn } from 'model/user-conn';
-import { IOrganisation } from 'model/organisation';
 
 interface IUserBarOwnProps {}
 
 interface IUserBarStateProps {
-	userConn: IUserConn
+	userConnList: IUserConn[]
 }
 
 interface IUserBarDispatchProps {
-	loadUserConn: (data: IUserConn) => IUserConnAction
+	loadUserConnList: (data: IUserConn[]) => IUserConnAction
 }
 
 type TUserBarProps = IUserBarOwnProps & IUserBarStateProps & IUserBarDispatchProps;
 
 class UserBar extends React.PureComponent<TUserBarProps, {}> {
-
-	constructor(props: TUserBarProps) {
-    super(props);
-    this.state = { modalIsOpen: false };
-    this.openModal = this.openModal.bind(this);
-    this.closeModal = this.closeModal.bind(this);
-		this.handleSubmit = this.handleSubmit.bind(this);
-	}
-
-	openModal() {
-		this.handleSubmit();
-    // this.setState({ modalIsOpen: true });
-	}
-
-  closeModal() {
-  	this.setState({ modalIsOpen: false });
-  }
-
-  handleSubmit() {
+	connectUser() {
 		axios.get('http://localhost:3000/user-conn/1').then((response) => {
-      this.props.loadUserConn(response.data);
+      this.props.loadUserConnList(response.data);
     });
-  }
-
-	renderOrganisations() {
-		if (this.props.userConn) {
-			if (this.props.userConn.organisationList.length === 1) {
-				return (
-					<Column isShrunk>
-						<span>{this.props.userConn.organisationList[0].abreviation}</span>
-					</Column>
-				);
-			} else {
-				return (
-					<Column isShrunk>
-						<select>
-							{this.props.userConn.organisationList.map((org: IOrganisation) => {
-								return <option>{org.abreviation}</option>
-							})}
-						</select>
-					</Column>
-				);
-			}
-		}
-		return '';
-	}
-
-	renderUser() {
-		if (this.props.userConn) {
-			return (
-				<Column isShrunk>
-					<span id="user-name">{this.props.userConn.firstname + ' ' + this.props.userConn.lastname}</span>
-					<br />
-					<span>{this.props.userConn.title}</span>
-				</Column>
-			);
-		}
-		return '';
 	}
 
 	render() {
@@ -89,21 +34,24 @@ class UserBar extends React.PureComponent<TUserBarProps, {}> {
 						<img src="./images/yada-logo.png" alt="Yada" height="40" width="84" />
 					</Link>
 				</Column>
+				<Column>
+					<Button onClick={this.connectUser.bind(this)}>Connect</Button>
+				</Column>
 			</Row>
 		);
 	}
 }
 
 
-function mapStateToProps(state: any): IUserBarStateProps {
+const mapStateToProps = (state: any): IUserBarStateProps => {
   return {
-		userConn: state.userConn.userConn,
+		userConnList: state.userConn.userConnList,
 	};
 }
 
-function mapDispatchToProps(dispatch: Dispatch<any>): IUserBarDispatchProps {
+const mapDispatchToProps = (dispatch: Dispatch<any>): IUserBarDispatchProps => {
 	return {
-		loadUserConn: bindActionCreators(loadUserConn, dispatch),
+		loadUserConnList: bindActionCreators(loadUserConnList, dispatch),
 	}
 }
 
