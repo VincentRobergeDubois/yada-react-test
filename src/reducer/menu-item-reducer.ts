@@ -1,5 +1,5 @@
-import { IMenuItemAction, LOAD_MENU_ITEM, LOAD_MENU_ITEM_LIST } from 'action';
-import { IMenuItem } from 'model/menu-item';
+import { IMenuItemAction, LOAD_MENU_ITEM, LOAD_MENU_ITEM_LIST } from "action/menu-item-action";
+import { IMenuItem } from "model/menu-item";
 
 interface IMenuItemReducerState {
   menuItem: IMenuItem;
@@ -7,8 +7,8 @@ interface IMenuItemReducerState {
 }
 
 const INITIAL_STATE = {
-  menuItem: { id: 0, name: '', icon: '', link: '' },
-  menuItemList: []
+  menuItem: { id: 0, name: "", icon: "", link: "" },
+  menuItemList: [],
 };
 
 export default (state: IMenuItemReducerState = INITIAL_STATE, action: IMenuItemAction) => {
@@ -20,4 +20,4 @@ export default (state: IMenuItemReducerState = INITIAL_STATE, action: IMenuItemA
     default:
       return state;
   }
-}
+};

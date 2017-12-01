@@ -1,12 +1,12 @@
-import { IUserConnAction, LOAD_USER_CONN_LIST } from 'action';
-import { IUserConn } from 'model/user-conn';
+import { IUserConnAction, LOAD_USER_CONN_LIST } from "action/user-conn-action";
+import { IUserConn } from "model/user-conn";
 
 interface IUserConnReducerState {
   userConnList: IUserConn[];
 }
 
 const INITIAL_USER_CONN_STATE = {
-  userConnList: []
+  userConnList: [],
 };
 
 export default (state: IUserConnReducerState = INITIAL_USER_CONN_STATE, action: IUserConnAction) => {
@@ -16,4 +16,4 @@ export default (state: IUserConnReducerState = INITIAL_USER_CONN_STATE, action: 
     default:
       return state;
   }
-}
+};

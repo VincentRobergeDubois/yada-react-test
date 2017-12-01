@@ -1,5 +1,5 @@
-import { IOrganisationAction, LOAD_ORGANISATION, LOAD_ORGANISATION_LIST } from 'action';
-import { IOrganisation } from 'model/organisation';
+import { IOrganisationAction, LOAD_ORGANISATION, LOAD_ORGANISATION_LIST } from "action/organisation-action";
+import { IOrganisation } from "model/organisation";
 
 interface IOrganisationReducerState {
   organisation: IOrganisation;
@@ -8,15 +8,15 @@ interface IOrganisationReducerState {
 
 const INITIAL_STATE = {
   organisation: {
+    abreviation: "",
+    email: "",
+    extension: 0,
+    headOffice: "",
     id: 0,
-    name: '',
-    abreviation: '',
-    headOffice: '',
-    email: '',
+    name: "",
     phone: 0,
-    extension: 0
   },
-  organisationList: []
+  organisationList: [],
 };
 
 export default (state: IOrganisationReducerState = INITIAL_STATE, action: IOrganisationAction) => {
@@ -28,4 +28,4 @@ export default (state: IOrganisationReducerState = INITIAL_STATE, action: IOrgan
     default:
       return state;
   }
-}
+};

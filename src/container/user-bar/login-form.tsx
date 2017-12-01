@@ -1,19 +1,19 @@
-import * as React from 'react';
-import { connect } from 'react-redux';
+import * as React from "react";
+import { connect } from "react-redux";
 
-import { loadUser, IUserAction } from 'action/user-action';
-import { IUser } from 'model/user';
+import { IUserAction, loadUser } from "action/user-action";
+import { IUser } from "model/user";
 
 interface ILoginFormOwnProps {
   onSubmit: () => void;
 }
 
 interface ILoginFormStateProps {
-  user: IUser
+  user: IUser;
 }
 
 interface ILoginFormDispatchProps {
-  loadUser: (data: IUser) => IUserAction
+  loadUser: (data: IUser) => IUserAction;
 }
 
 type TLoginFormProps = ILoginFormOwnProps & ILoginFormStateProps & ILoginFormDispatchProps;
@@ -42,10 +42,11 @@ class LoginForm extends React.PureComponent<TLoginFormProps, {}> {
 
 const mapStateToProps = (state: any): ILoginFormStateProps => {
   return { user: state.user };
-}
+};
 
 const mapDispatchToProps = (dispatch: any): ILoginFormDispatchProps => {
   return { loadUser: dispatch(loadUser) };
-}
+};
 
-export default connect<ILoginFormStateProps, ILoginFormDispatchProps, ILoginFormOwnProps>(mapStateToProps, mapDispatchToProps)(LoginForm);
+export default connect<ILoginFormStateProps, ILoginFormDispatchProps, ILoginFormOwnProps>
+(mapStateToProps, mapDispatchToProps)(LoginForm);

@@ -1,11 +1,11 @@
-import * as React from 'react';
-import { Link } from 'react-router-dom';
-import { MenuItem, Icon } from 'react-foundation';
+import * as React from "react";
+import { Icon, MenuItem } from "react-foundation";
+import { Link } from "react-router-dom";
 
 interface IYadaMenuItemProps {
-  name: string,
-  icon: string,
-  link: string
+  name: string;
+  icon: string;
+  link: string;
 }
 
 class YadaMenuItem extends React.PureComponent<IYadaMenuItemProps, {}> {

@@ -1,9 +1,9 @@
-import { IUser } from './user';
+import { IUser } from "model/user";
 
 export interface IService {
   id: number;
   name: string;
-  description:string;
+  description: string;
   createdAt?: Date;
   createdBy?: IUser;
   modifiedAt?: Date;

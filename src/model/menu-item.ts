@@ -1,6 +1,6 @@
-import { IUser } from './user';
-import { IService } from './service';
-import { IRight } from './right';
+import { IRight } from "model/right";
+import { IService } from "model/service";
+import { IUser } from "model/user";
 
 export interface IMenuItem {
   id: number;

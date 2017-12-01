@@ -1,5 +1,5 @@
-import { IPostAction, LOAD_POST, LOAD_POST_LIST } from 'action';
-import { IPost } from 'model/post';
+import { IPostAction, LOAD_POST, LOAD_POST_LIST } from "action/post-action";
+import { IPost } from "model/post";
 
 interface IPostReducerState {
   post: IPost;
@@ -7,8 +7,8 @@ interface IPostReducerState {
 }
 
 const INITIAL_STATE = {
-  post: { id: 0, title: '', content: '', image: '' },
-  postList: []
+  post: { id: 0, title: "", content: "", image: "" },
+  postList: [],
 };
 
 export default (state: IPostReducerState = INITIAL_STATE, action: IPostAction) => {
@@ -20,4 +20,4 @@ export default (state: IPostReducerState = INITIAL_STATE, action: IPostAction) =
     default:
       return state;
   }
-}
+};

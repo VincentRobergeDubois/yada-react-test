@@ -1,4 +1,4 @@
-import { IUser } from './user';
+import { IUser } from "model/user";
 
 export interface IOrganisation {
   id: number;

@@ -1,5 +1,5 @@
-import { IServiceAction, LOAD_SERVICE, LOAD_SERVICE_LIST } from 'action';
-import { IService } from 'model/service';
+import { IServiceAction, LOAD_SERVICE, LOAD_SERVICE_LIST } from "action/service-action";
+import { IService } from "model/service";
 
 interface IServiceReducerState {
   service: IService;
@@ -7,8 +7,8 @@ interface IServiceReducerState {
 }
 
 const INITIAL_STATE = {
-  service: { id: 0, name: '', description: '' },
-  serviceList: []
+  service: { id: 0, name: "", description: "" },
+  serviceList: [],
 };
 
 export default (state: IServiceReducerState = INITIAL_STATE, action: IServiceAction) => {
@@ -20,4 +20,4 @@ export default (state: IServiceReducerState = INITIAL_STATE, action: IServiceAct
     default:
       return state;
   }
-}
+};

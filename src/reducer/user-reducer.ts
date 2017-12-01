@@ -1,5 +1,5 @@
-import { IUserAction, LOAD_USER, LOAD_USER_LIST } from 'action';
-import { IUser } from 'model/user';
+import { IUserAction, LOAD_USER, LOAD_USER_LIST } from "action/user-action";
+import { IUser } from "model/user";
 
 interface IUserReducerState {
   user: IUser;
@@ -8,14 +8,14 @@ interface IUserReducerState {
 
 const INITIAL_USER_STATE = {
   user: {
+    email: "",
+    firstname: "",
     id: 0,
-    username: '',
-    lastname: '',
-    firstname: '',
-    email: '',
-    phone: ''
+    lastname: "",
+    phone: "",
+    username: "",
   },
-  userList: []
+  userList: [],
 };
 
 export default (state: IUserReducerState = INITIAL_USER_STATE, action: IUserAction) => {
@@ -27,4 +27,4 @@ export default (state: IUserReducerState = INITIAL_USER_STATE, action: IUserActi
     default:
       return state;
   }
-}
+};

@@ -1,12 +1,12 @@
-import * as React from 'react';
+import * as React from "react";
 
-import Guest from 'component/guest';
+import Guest from "component/guest";
 
 class Home extends React.PureComponent<{}, {}> {
   public render(): JSX.Element {
     return (
       <Guest>
-        Services
+        Home
       </Guest>
     );
   }

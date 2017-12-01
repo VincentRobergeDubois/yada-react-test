@@ -1,4 +1,4 @@
-import { IOrganisation } from './organisation';
+import { IOrganisation } from "model/organisation";
 
 export interface IUserConn {
   id: number;
