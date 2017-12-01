@@ -19,12 +19,6 @@ interface IUserBarDispatchProps {
 type TUserBarProps = IUserBarStateProps & IUserBarDispatchProps;
 
 class UserBar extends React.PureComponent<TUserBarProps, {}> {
-  private connectUser(): void {
-    axios.get("http://localhost:3000/user-conn/1").then((response) => {
-      this.props.loadUserConnList(response.data);
-    });
-  }
-
   public render(): JSX.Element {
     return (
       <Row id="user-bar" isExpanded={true}>
@@ -38,6 +32,12 @@ class UserBar extends React.PureComponent<TUserBarProps, {}> {
         </Column>
       </Row>
     );
+  }
+
+  private connectUser(): void {
+    axios.get("http://localhost:3000/user-conn/1").then((response) => {
+      this.props.loadUserConnList(response.data);
+    });
   }
 }
 

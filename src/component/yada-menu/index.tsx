@@ -9,6 +9,14 @@ interface IYadaMenuProps {
 }
 
 class YadaMenu extends React.PureComponent<IYadaMenuProps, {}> {
+  public render(): JSX.Element {
+    return (
+      <Menu alignment={Alignments.RIGHT} iconsOnTop={true} isDropdown={true}>
+        {this.props.itemList.map((menuItem: IMenuItem) => this.renderMenuItem(menuItem))}
+      </Menu>
+    );
+  }
+
   private renderMenuItem = (menuItem: IMenuItem): JSX.Element => {
     return (
       <YadaMenuItem
@@ -17,14 +25,6 @@ class YadaMenu extends React.PureComponent<IYadaMenuProps, {}> {
         icon={menuItem.icon}
         link={menuItem.link}
       />
-    );
-  }
-
-  public render(): JSX.Element {
-    return (
-      <Menu alignment={Alignments.RIGHT} iconsOnTop={true} isDropdown={true}>
-        {this.props.itemList.map((menuItem: IMenuItem) => this.renderMenuItem(menuItem))}
-      </Menu>
     );
   }
 }
