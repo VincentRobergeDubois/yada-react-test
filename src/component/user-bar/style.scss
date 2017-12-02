@@ -1,9 +1,16 @@
 #user-bar {
   background-color: $yada-black;
-  color: $yada-white;
-  font-weight: 600;
-  padding: 8px 0px;
-  font-size: 12px;
+  .login-btn {
+    color: $yada-white;
+    font-size: 28px;
+    min-width: 60px;
+    text-align: center;
+    padding: 0.5rem;
+    &:hover {
+      background-color: $yada-white;
+      color: $yada-red;
+    }
+  }
 }
 
 #user-name {

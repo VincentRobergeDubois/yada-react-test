@@ -1,0 +1,12 @@
+#login-container {
+  .logo {
+    background-color: $yada-black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  .form {
+    padding: 128px;
+  }
+}

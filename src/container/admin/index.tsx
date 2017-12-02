@@ -1,13 +1,17 @@
 import * as React from "react";
+import { Column, Row } from "react-foundation";
 
-import Manager from "component/manager";
+import UserBar from "component/user-bar";
 
 class Admin extends React.PureComponent<{}, {}> {
   public render(): JSX.Element {
     return (
-      <Manager>
-        Admin
-      </Manager>
+      <Row id="admin-container" isExpanded={true}>
+        <Column id="content">
+          <UserBar />
+          <span>Admin</span>
+        </Column>
+      </Row>
     );
   }
 }

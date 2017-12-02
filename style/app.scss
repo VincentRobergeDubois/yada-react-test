@@ -1,9 +1,10 @@
-@import 'foundation.min.css';
-@import 'foundation-icons/foundation-icons.css';
-@import 'color';
+@import "foundation.min.css";
+@import "foundation-icons/foundation-icons.css";
+@import "color";
 
-@import '../src/container/user-bar/style';
-@import '../src/container/menu-bar/style';
+@import "../src/component/user-bar/style";
+@import "../src/component/menu-bar/style";
+@import "../src/container/login/style";
 
 html, body, #root, #root > div, #container, #main-content, #content {
     height: 100%;
