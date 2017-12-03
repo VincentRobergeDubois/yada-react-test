@@ -27,7 +27,6 @@ class UserBar extends React.PureComponent<TUserBarProps> {
   }
 
   public render(): JSX.Element {
-    console.log(this.props);
     return (
       <Row id="user-bar" verticalAlignment={Alignments.MIDDLE} isExpanded={true}>
         <Column>
