@@ -1,5 +1,6 @@
-import axios from "axios";
 import * as React from "react";
+
+import axios from "axios";
 import { Row } from "react-foundation";
 import { connect } from "react-redux";
 import { bindActionCreators, Dispatch } from "redux";

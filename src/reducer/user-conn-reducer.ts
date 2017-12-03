@@ -1,18 +1,29 @@
-import { IUserConnAction, LOAD_USER_CONN_LIST } from "action/user-conn-action";
+import { IUserConnAction, LOAD_USER_CONN, RESET_USER_CONN } from "action/user-conn-action";
 import { IUserConn } from "model/user-conn";
 
 interface IUserConnReducerState {
-  userConnList: IUserConn[];
+  userConn: IUserConn;
 }
 
-const INITIAL_USER_CONN_STATE = {
-  userConnList: [],
+export const INITIAL_USER_CONN_STATE: IUserConnReducerState = {
+  userConn: {
+    abreviation: "",
+    email: "",
+    firstname: "",
+    id: 0,
+    lastname: "",
+    organisationList: [],
+    title: "",
+    username: "",
+  },
 };
 
 export default (state: IUserConnReducerState = INITIAL_USER_CONN_STATE, action: IUserConnAction) => {
   switch (action.type) {
-    case LOAD_USER_CONN_LIST:
-      return { ...state, userConnList: action.payload };
+    case LOAD_USER_CONN:
+      return { ...state, userConn: action.payload };
+    case RESET_USER_CONN:
+      return { ...state, userConn: action.payload };
     default:
       return state;
   }

@@ -1,4 +1,5 @@
 import * as React from "react";
+
 import { Alignments, Menu } from "react-foundation";
 
 import { IMenuItem } from "model/menu-item";
