@@ -15,5 +15,4 @@ export const loadUserConn = (userConn: IUserConn): IUserConnAction => {
 
 export const resetUserConn = (): IUserConnAction => {
   return { type: RESET_USER_CONN, payload: INITIAL_USER_CONN_STATE.userConn };
-}
-
+};
