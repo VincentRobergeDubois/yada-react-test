@@ -16,21 +16,23 @@ class MenuBar extends React.PureComponent<TMenuBarProps, {}> {
     return (
       <Row id="menu-bar" isExpanded={true}>
         <Menu alignment={Alignments.RIGHT} iconsOnTop={true} isDropdown={true}>
-          {this.props.menuItemList.map((menuItem: IMenuItem) => this.renderMenuItem(menuItem))}
+          {this.renderMenuItemList()}
         </Menu>
       </Row>
     );
   }
 
-  private renderMenuItem = (menuItem: IMenuItem): JSX.Element => {
-    return (
-      <MenuItem className="item">
-        <Link to={menuItem.link}>
-          <Icon name={menuItem.icon} />
-          <span>{menuItem.name}</span>
-        </Link>
-      </MenuItem>
-    );
+  private renderMenuItemList = (): JSX.Element[] => {
+    return this.props.menuItemList.map((item: IMenuItem, key: number) => {
+      return (
+        <MenuItem className="item" key={key}>
+          <Link to={item.link}>
+            <Icon name={item.icon} />
+            <span>{item.name}</span>
+          </Link>
+        </MenuItem>
+      );
+    });
   }
 }
 

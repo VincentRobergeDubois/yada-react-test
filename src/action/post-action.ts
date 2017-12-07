@@ -8,10 +8,16 @@ export interface IPostAction {
   payload: IPost | IPost[];
 }
 
-export const loadPost = (post: IPost): IPostAction => {
-  return { type: LOAD_POST, payload: post };
+interface IPostResponse {
+  status: number;
+  error: any;
+  data: IPost | IPost[];
+}
+
+export const loadPost = (post: IPostResponse): IPostAction => {
+  return { type: LOAD_POST, payload: post.data };
 };
 
-export const loadPostList = (postList: IPost[]): IPostAction => {
-  return { type: LOAD_POST_LIST, payload: postList };
+export const loadPostList = (postList: IPostResponse): IPostAction => {
+  return { type: LOAD_POST_LIST, payload: postList.data };
 };

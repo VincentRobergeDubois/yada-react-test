@@ -5,6 +5,8 @@ import { Column, Row } from "react-foundation";
 import SideBar from "component/side-bar";
 import TopBar from "container/top-bar";
 
+import PostList from "./component/post-list";
+
 class Home extends React.PureComponent<{}, {}> {
   public render(): JSX.Element {
     return (
@@ -12,7 +14,7 @@ class Home extends React.PureComponent<{}, {}> {
         <SideBar />
         <Column id="content">
           <TopBar isGuestPage={true} />
-          <span>Home</span>
+          <PostList />
         </Column>
       </Row>
     );
