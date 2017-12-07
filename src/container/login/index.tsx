@@ -62,7 +62,7 @@ class Login extends React.PureComponent<TLoginProps, {}> {
     event.preventDefault();
     axios.get("http://localhost:3000/user-conn/1").then((response) => {
       this.props.loadUserConn(response.data.data);
-      this.props.history.push("/");
+      this.props.history.push("/tools");
     });
   }
 }
