@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { bindActionCreators } from "redux";
 
+import { loadMenuItemList } from "action/menu-item-action";
 import { loadUserConn } from "action/user-conn-action";
 import { IUserConn } from "model/user-conn";
 
@@ -18,6 +19,7 @@ interface ILoginStateProps {
 }
 
 interface ILoginDispatchProps {
+  loadMenuItemList: typeof loadMenuItemList;
   loadUserConn: typeof loadUserConn;
 }
 
@@ -64,17 +66,21 @@ class Login extends React.PureComponent<TLoginProps, {}> {
       this.props.loadUserConn(response.data.data);
       this.props.history.push("/tools");
     });
+    axios.get("http://localhost:3000/menuItems/1/1").then((response) => {
+      this.props.loadMenuItemList(response.data);
+    });
   }
 }
 
 const mapStateToProps = (state: any): ILoginStateProps => {
   return {
-    userConn: state.userConn,
+    userConn: state.userConn.userConn,
   };
 };
 
 const mapDispatchToProps = (dispatch: any): ILoginDispatchProps => {
   return {
+    loadMenuItemList: bindActionCreators(loadMenuItemList, dispatch),
     loadUserConn: bindActionCreators(loadUserConn, dispatch),
   };
 };

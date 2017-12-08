@@ -35,8 +35,9 @@ class TopBar extends React.PureComponent<TTopBarProps, {}> {
   }
 
   public componentWillMount(): void {
-    const userRight = this.props.userConn.id !== 0 ? 1 : 6;
-    this.setMenuItemList(userRight);
+    if (this.props.userConn.id === 0) {
+      this.setMenuItemList(6);
+    }
   }
 
   public render(): JSX.Element {
@@ -71,9 +72,9 @@ class TopBar extends React.PureComponent<TTopBarProps, {}> {
   }
 }
 
-const mapStateToProps = (state: any): ITopBarStateProps => {
+const mapStateToProps = (state: any, props: ITopBarOwnProps): ITopBarStateProps => {
   return {
-    menuItemList: state.menuItem.menuItemList,
+    menuItemList: props.isGuestPage && state.menuItem.menuItemList,
     userConn: state.userConn.userConn,
   };
 };

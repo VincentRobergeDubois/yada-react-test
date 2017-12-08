@@ -21,13 +21,25 @@ class Contact extends React.PureComponent<{}, {}> {
             <div className="row expanded">
               <div className="columns large-6">
                 <div className="row">
-                  <InfoCard name="Mathieu Courreault" title="Conseiller" email="m.courreault@yada.services" />
+                  <InfoCard
+                    name="Mathieu Courreault"
+                    title="Conseiller"
+                    email="m.courreault@yada.services"
+                  />
                 </div>
                 <div className="row">
-                  <InfoCard name="Vincent Brazeau" title="Conseiller" email="vincent.brazeau@yada.services" />
+                  <InfoCard
+                    name="Vincent Brazeau"
+                    title="Conseiller"
+                    email="vincent.brazeau@yada.services"
+                  />
                 </div>
                 <div className="row">
-                  <InfoCard name="Vincent Roberge-Dubois" title="Développeur Web" email="vincent.robergedubois@yada.services" />
+                  <InfoCard
+                    name="Vincent Roberge-Dubois"
+                    title="Développeur Web"
+                    email="vincent.robergedubois@yada.services"
+                  />
                 </div>
               </div>
             </div>
