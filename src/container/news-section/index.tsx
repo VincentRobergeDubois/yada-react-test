@@ -8,28 +8,26 @@ import { bindActionCreators } from "redux";
 import { loadPostList } from "action/post-action";
 import { IPost } from "model/post";
 
-import Post from "../post";
+import Post from "./component/post";
 
-interface IPostListStateProps {
+interface INewsSectionStateProps {
   postList: IPost[];
 }
 
-interface IPostListDispatchProps {
+interface INewsSectionDispatchProps {
   loadPostList: typeof loadPostList;
 }
 
-type TPostListProps = IPostListStateProps & IPostListDispatchProps;
+type TNewsSectionProps = INewsSectionStateProps & INewsSectionDispatchProps;
 
-class PostList extends React.Component<TPostListProps, {}> {
+class NewsSection extends React.Component<TNewsSectionProps, {}> {
   public componentWillMount(): void {
-    axios.get("http://localhost:3000/posts").then((response) => {
-      this.props.loadPostList(response.data);
-    });
+    this.fetchPostList();
   }
 
   public render(): JSX.Element {
     return (
-      <Column id="post-list">
+      <Column id="news-section">
         {this.renderList()}
       </Column>
     );
@@ -48,18 +46,25 @@ class PostList extends React.Component<TPostListProps, {}> {
       );
     });
   }
+
+  private fetchPostList = () => {
+    axios.get("http://localhost:3000/posts").then((response) => {
+      this.props.loadPostList(response.data);
+    });
+  }
 }
 
-const mapStateToProps = (state: any): IPostListStateProps => {
+const mapStateToProps = (state: any): INewsSectionStateProps => {
   return {
     postList: state.post.postList,
   };
 };
 
-const mapDispatchToProps = (dispatch: any): IPostListDispatchProps => {
+const mapDispatchToProps = (dispatch: any): INewsSectionDispatchProps => {
   return {
     loadPostList: bindActionCreators(loadPostList, dispatch),
   };
 };
 
-export default connect<IPostListStateProps, IPostListDispatchProps, any>(mapStateToProps, mapDispatchToProps)(PostList);
+export default
+connect<INewsSectionStateProps, INewsSectionDispatchProps, any>(mapStateToProps, mapDispatchToProps)(NewsSection);

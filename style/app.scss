@@ -2,8 +2,11 @@
 @import "foundation-icons/foundation-icons.css";
 @import "color";
 
+@import "../src/component/side-bar/style";
 @import "../src/container/top-bar/style";
-@import "../src/container/login/style";
+
+@import "../src/view/home/style";
+@import "../src/view/login/style";
 
 html, body, #root, #root > div, #container, #main-content, #content {
     height: 100%;
@@ -12,11 +15,6 @@ html, body, #root, #root > div, #container, #main-content, #content {
 body {
     background-color: $yada-white;
     color: $yada-red;
-}
-
-#home-container {
-    overflow-y: auto;
-    height: 84%;
 }
 
 .post {
@@ -31,16 +29,6 @@ body {
 
 .right-post {
     text-align: right;
-}
-
-#sidebar {
-    background-color: $yada-red;
-    padding: 0px !important;
-    max-height: 100%;
-    img {
-        height: 100%;
-        width: 100%;
-    }
 }
 
 .cred-fail label {

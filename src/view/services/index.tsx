@@ -9,7 +9,12 @@ class Services extends React.PureComponent<{}, {}> {
   public render(): JSX.Element {
     return (
       <Row id="contact-container" isExpanded={true}>
-        <SideBar />
+        <SideBar
+          link="/"
+          image="./images/sideBarImage.jpg"
+          mediumSize={6}
+          largeSize={4}
+        />
         <Column id="content">
           <TopBar isGuestPage={true} />
           <span>Services</span>

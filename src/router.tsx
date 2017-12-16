@@ -1,12 +1,12 @@
 import * as React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
-import Admin from "container/admin";
-import Contact from "container/contact";
-import Home from "container/home";
-import Login from "container/login";
-import Services from "container/services";
-import Tools from "container/tools";
+import Admin from "view/admin";
+import Contact from "view/contact";
+import Home from "view/home";
+import Login from "view/login";
+import Services from "view/services";
+import Tools from "view/tools";
 
 const Router = (): JSX.Element => (
   <BrowserRouter>

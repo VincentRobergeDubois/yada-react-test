@@ -3,16 +3,14 @@ import * as React from "react";
 import axios from "axios";
 import { Alignments, Column, Row } from "react-foundation";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { RouteComponentProps } from "react-router-dom";
 import { bindActionCreators } from "redux";
 
 import { loadMenuItemList } from "action/menu-item-action";
 import { loadUserConn } from "action/user-conn-action";
 import { IUserConn } from "model/user-conn";
 
-interface ILoginOwnProps {
-  history: any;
-}
+import SideBar from "component/side-bar";
 
 interface ILoginStateProps {
   userConn: IUserConn;
@@ -23,24 +21,20 @@ interface ILoginDispatchProps {
   loadUserConn: typeof loadUserConn;
 }
 
-type TLoginProps = ILoginOwnProps & ILoginStateProps & ILoginDispatchProps;
+type TLoginProps = RouteComponentProps<{}> & ILoginStateProps & ILoginDispatchProps;
 
 class Login extends React.PureComponent<TLoginProps, {}> {
-  constructor(props: any) {
-    super(props);
-    this.handleLogin = this.handleLogin.bind(this);
-  }
-
   public render(): JSX.Element {
     return (
       <Row id="login-container" verticalAlignment={Alignments.MIDDLE} isExpanded={true}>
-        <Column className="logo" large={6}>
-          <Link to="/">
-            <img src="./images/yada-logo.png" alt="Yada" />
-          </Link>
-        </Column>
+        <SideBar
+          link="/"
+          image="./images/yada-logo.png"
+          mediumSize={6}
+          largeSize={6}
+        />
         <Column className="form" large={6}>
-          <form onSubmit={this.handleLogin}>
+          <form onSubmit={this.handleLogin()}>
             <Row>
               <Column large={12}>
                 <label>Nom d'utilisateur</label>
@@ -60,7 +54,7 @@ class Login extends React.PureComponent<TLoginProps, {}> {
     );
   }
 
-  private handleLogin = (event: any) => {
+  private handleLogin = () => (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
     axios.get("http://localhost:3000/user-conn/1").then((response) => {
       this.props.loadUserConn(response.data.data);
@@ -85,5 +79,4 @@ const mapDispatchToProps = (dispatch: any): ILoginDispatchProps => {
   };
 };
 
-export default
-connect<ILoginStateProps, ILoginDispatchProps, ILoginOwnProps>(mapStateToProps, mapDispatchToProps)(Login);
+export default connect<ILoginStateProps, ILoginDispatchProps, {}>(mapStateToProps, mapDispatchToProps)(Login);
