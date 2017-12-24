@@ -38,7 +38,7 @@ class TopBar extends React.PureComponent<TTopBarProps, {}> {
       <div>
         <UserBar
           user={this.props.user}
-          logout={this.logout}
+          logout={this.props.logout}
         />
         {this.props.isGuestPage && this.renderMenuBar()}
       </div>
@@ -51,11 +51,6 @@ class TopBar extends React.PureComponent<TTopBarProps, {}> {
         menuItemList={this.props.menuItemList}
       />
     );
-  }
-
-  private logout = (): void => {
-    this.props.logout();
-    this.props.loadMenuItemList(1, 6);
   }
 }
 
