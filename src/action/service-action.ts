@@ -1,6 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 import { Dispatch } from "redux";
 
+import { IError } from "model/response";
 import { IService } from "model/service";
 import { IState } from "model/state";
 
@@ -16,7 +17,7 @@ export interface IServiceAction {
 
 interface IServiceResponse {
   data: IService | IService[];
-  error: any;
+  error: IError;
   status: string;
 }
 

@@ -2,6 +2,7 @@ import axios, { AxiosResponse } from "axios";
 import { Dispatch } from "redux";
 
 import { IPost } from "model/post";
+import { IError } from "model/response";
 import { IState } from "model/state";
 
 export const LOAD_POST = "LOAD_POST";
@@ -16,7 +17,7 @@ export interface IPostAction {
 
 interface IPostResponse {
   data: IPost | IPost[];
-  error: any;
+  error: IError;
   status: string;
 }
 

@@ -1,6 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 import { Dispatch } from "redux";
 
+import { IError } from "model/response";
 import { IState } from "model/state";
 import { IUser, IUserConn } from "model/user";
 
@@ -17,7 +18,7 @@ export interface IUserAction {
 
 interface IUserResponse {
   data: IUserConn | IUser[];
-  error: any;
+  error: IError;
   status: string;
 }
 

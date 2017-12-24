@@ -2,6 +2,7 @@ import axios, { AxiosResponse } from "axios";
 import { Dispatch } from "redux";
 
 import { IMenuItem } from "model/menu-item";
+import { IError } from "model/response";
 import { IState } from "model/state";
 
 export const LOAD_MENU_ITEM = "LOAD_MENU_ITEM";
@@ -16,7 +17,7 @@ export interface IMenuItemAction {
 
 interface IMenuItemResponse {
   data: IMenuItem | IMenuItem[];
-  error: any;
+  error: IError;
   status: string;
 }
 

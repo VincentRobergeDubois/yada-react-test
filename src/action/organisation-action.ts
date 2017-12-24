@@ -2,6 +2,7 @@ import axios, { AxiosResponse } from "axios";
 import { Dispatch } from "redux";
 
 import { IOrganisation } from "model/organisation";
+import { IError } from "model/response";
 import { IState } from "model/state";
 
 export const LOAD_ORGANISATION = "LOAD_ORGANISATION";
@@ -16,7 +17,7 @@ export interface IOrganisationAction {
 
 interface IOrganisationResponse {
   data: IOrganisation | IOrganisation[];
-  error: any;
+  error: IError;
   status: string;
 }
 

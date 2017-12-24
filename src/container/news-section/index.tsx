@@ -61,4 +61,4 @@ const mapDispatchToProps = (dispatch: Dispatch<IState>): INewsSectionDispatchPro
 };
 
 export default
-connect<INewsSectionStateProps, INewsSectionDispatchProps, any>(mapStateToProps, mapDispatchToProps)(NewsSection);
+connect<INewsSectionStateProps, INewsSectionDispatchProps, {}>(mapStateToProps, mapDispatchToProps)(NewsSection);
