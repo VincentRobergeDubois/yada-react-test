@@ -10,12 +10,9 @@ class Home extends React.PureComponent<{}, {}> {
   public render(): JSX.Element {
     return (
       <Row id="home-container" isExpanded={true}>
-        <SideBar
-          link="/"
-          image="./images/sideBarImage.jpg"
-          mediumSize={6}
-          largeSize={4}
-        />
+        <Column  className="sidebar" medium={6} large={4}>
+          <SideBar link="/" image="./images/sideBarImage.jpg" />
+        </Column>
         <Column id="content">
           <TopBar isGuestPage={true} />
           <NewsSection />

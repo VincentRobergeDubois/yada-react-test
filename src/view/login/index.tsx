@@ -10,12 +10,9 @@ class Login extends React.PureComponent<RouteComponentProps<{}>, {}> {
   public render(): JSX.Element {
     return (
       <Row id="login-container" verticalAlignment={Alignments.MIDDLE} isExpanded={true}>
-        <SideBar
-          link="/"
-          image="./images/yada-logo.png"
-          mediumSize={6}
-          largeSize={6}
-        />
+        <Column className="sidebar" medium={6} large={6} >
+          <SideBar link="/" image="./images/yada-logo.png" />
+        </Column>
         <Column className="form" large={6}>
           <LoginSection history={this.props.history} />
         </Column>
