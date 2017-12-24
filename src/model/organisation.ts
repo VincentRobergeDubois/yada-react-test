@@ -15,3 +15,8 @@ export interface IOrganisation {
   archivedAt?: Date;
   archivedBy?: IUser;
 }
+
+export interface IOrganisationState {
+  current: IOrganisation;
+  list: IOrganisation[];
+}

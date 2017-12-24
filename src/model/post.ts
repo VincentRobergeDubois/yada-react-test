@@ -12,3 +12,8 @@ export interface IPost {
   archivedAt?: Date;
   archivedBy?: IUser;
 }
+
+export interface IPostState {
+  current: IPost;
+  list: IPost[];
+}

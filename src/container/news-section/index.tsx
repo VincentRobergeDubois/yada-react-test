@@ -1,12 +1,12 @@
 import * as React from "react";
 
-import axios from "axios";
 import { Column } from "react-foundation";
 import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
+import { bindActionCreators, Dispatch } from "redux";
 
 import { loadPostList } from "action/post-action";
 import { IPost } from "model/post";
+import { IState } from "model/state";
 
 import Post from "./component/post";
 
@@ -22,7 +22,7 @@ type TNewsSectionProps = INewsSectionStateProps & INewsSectionDispatchProps;
 
 class NewsSection extends React.Component<TNewsSectionProps, {}> {
   public componentWillMount(): void {
-    this.fetchPostList();
+    this.props.loadPostList();
   }
 
   public render(): JSX.Element {
@@ -46,21 +46,15 @@ class NewsSection extends React.Component<TNewsSectionProps, {}> {
       );
     });
   }
-
-  private fetchPostList = () => {
-    axios.get("http://localhost:3000/posts").then((response) => {
-      this.props.loadPostList(response.data);
-    });
-  }
 }
 
-const mapStateToProps = (state: any): INewsSectionStateProps => {
+const mapStateToProps = (state: IState): INewsSectionStateProps => {
   return {
-    postList: state.post.postList,
+    postList: state.post.list,
   };
 };
 
-const mapDispatchToProps = (dispatch: any): INewsSectionDispatchProps => {
+const mapDispatchToProps = (dispatch: Dispatch<IState>): INewsSectionDispatchProps => {
   return {
     loadPostList: bindActionCreators(loadPostList, dispatch),
   };

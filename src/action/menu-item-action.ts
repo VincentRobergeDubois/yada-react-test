@@ -1,28 +1,41 @@
+import axios, { AxiosResponse } from "axios";
+import { Dispatch } from "redux";
+
 import { IMenuItem } from "model/menu-item";
+import { IState } from "model/state";
 
 export const LOAD_MENU_ITEM = "LOAD_MENU_ITEM";
 export const LOAD_MENU_ITEM_LIST = "LOAD_MENU_ITEM_LIST";
-export const RESET_MENU_ITEM_LIST = "RESET_MENU_ITEM_LIST";
+
+const END_POINT_URL = "http://localhost:3000/menuItems/";
 
 export interface IMenuItemAction {
   type: string;
-  payload: IMenuItem[];
+  payload?: IMenuItem | IMenuItem[];
 }
 
 interface IMenuItemResponse {
-  status: number;
+  data: IMenuItem | IMenuItem[];
   error: any;
-  data: IMenuItem[];
+  status: string;
 }
 
-export const loadMenuItem = (response: IMenuItemResponse): IMenuItemAction => {
-  return { type: LOAD_MENU_ITEM, payload: response.data };
+const resolve = (type: string, data: IMenuItem | IMenuItem[]): IMenuItemAction => {
+  return { type , payload: data };
 };
 
-export const loadMenuItemList = (response: IMenuItemResponse): IMenuItemAction => {
-  return { type: LOAD_MENU_ITEM_LIST, payload: response.data };
+export const loadMenuItem = (menuItemId: number) => {
+  return (dispatch: Dispatch<IState>) => {
+    return axios.get(`${END_POINT_URL}/${menuItemId}`).then((response: AxiosResponse<IMenuItemResponse>) => {
+      dispatch(resolve(LOAD_MENU_ITEM, response.data.data));
+    });
+  };
 };
 
-export const resetMenuItemList = (response: IMenuItemResponse): IMenuItemAction => {
-  return { type: RESET_MENU_ITEM_LIST, payload: response.data };
+export const loadMenuItemList = (menuId: number, userRight: number) => {
+  return (dispatch: Dispatch<IState>) => {
+    return axios.get(`${END_POINT_URL}${menuId}/${userRight}`).then((response: AxiosResponse<IMenuItemResponse>) => {
+      dispatch(resolve(LOAD_MENU_ITEM_LIST, response.data.data));
+    });
+  };
 };

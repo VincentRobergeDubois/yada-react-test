@@ -1,13 +1,13 @@
 import * as React from "react";
 
-import axios from "axios";
 import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
+import { bindActionCreators, Dispatch } from "redux";
 
 import { loadMenuItemList } from "action/menu-item-action";
-import { resetUserConn } from "action/user-conn-action";
+import { logout } from "action/user-action";
 import { IMenuItem } from "model/menu-item";
-import { IUserConn } from "model/user-conn";
+import { IState } from "model/state";
+import { IUserConn } from "model/user";
 
 import MenuBar from "./component/menu-bar";
 import UserBar from "./component/user-bar";
@@ -18,33 +18,26 @@ interface ITopBarOwnProps {
 
 interface ITopBarStateProps {
   menuItemList: IMenuItem[];
-  userConn: IUserConn;
+  user: IUserConn;
 }
 
 interface ITopBarDispatchProps {
   loadMenuItemList: typeof loadMenuItemList;
-  resetUserConn: typeof resetUserConn;
+  logout: typeof logout;
 }
 
 type TTopBarProps = ITopBarOwnProps & ITopBarStateProps & ITopBarDispatchProps;
 
 class TopBar extends React.PureComponent<TTopBarProps, {}> {
-  constructor(props: TTopBarProps) {
-    super(props);
-    this.logout = this.logout.bind(this);
-  }
-
   public componentWillMount(): void {
-    if (this.props.userConn.id === 0) {
-      this.setMenuItemList(6);
-    }
+    this.props.loadMenuItemList(1, this.props.user.id === 0 ? 6 : 1);
   }
 
   public render(): JSX.Element {
     return (
       <div>
         <UserBar
-          user={this.props.userConn}
+          user={this.props.user}
           logout={this.logout}
         />
         {this.props.isGuestPage && this.renderMenuBar()}
@@ -61,28 +54,22 @@ class TopBar extends React.PureComponent<TTopBarProps, {}> {
   }
 
   private logout = (): void => {
-    this.props.resetUserConn();
-    this.setMenuItemList(6);
-  }
-
-  private setMenuItemList = (userRight: number): void => {
-    axios.get(`http://localhost:3000/menuItems/1/${userRight}`).then((response) => {
-      this.props.loadMenuItemList(response.data);
-    });
+    this.props.logout();
+    this.props.loadMenuItemList(1, 6);
   }
 }
 
-const mapStateToProps = (state: any, props: ITopBarOwnProps): ITopBarStateProps => {
+const mapStateToProps = (state: IState, props: ITopBarOwnProps): ITopBarStateProps => {
   return {
-    menuItemList: props.isGuestPage && state.menuItem.menuItemList,
-    userConn: state.userConn.userConn,
+    menuItemList: state.menuItem.list,
+    user: state.user.current,
   };
 };
 
-const mapDispatchToProps = (dispatch: any): ITopBarDispatchProps => {
+const mapDispatchToProps = (dispatch: Dispatch<IState>): ITopBarDispatchProps => {
   return {
     loadMenuItemList: bindActionCreators(loadMenuItemList, dispatch),
-    resetUserConn: bindActionCreators(resetUserConn, dispatch),
+    logout: bindActionCreators(logout, dispatch),
   };
 };
 

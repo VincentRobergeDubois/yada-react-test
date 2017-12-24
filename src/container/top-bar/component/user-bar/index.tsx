@@ -4,7 +4,7 @@ import { Alignments, Column, Icon, Row } from "react-foundation";
 import { Link } from "react-router-dom";
 
 import { IOrganisation } from "model/organisation";
-import { IUserConn } from "model/user-conn";
+import { IUserConn } from "model/user";
 
 interface IUserBarOwnProps {
   user: IUserConn;

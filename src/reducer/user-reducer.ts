@@ -1,29 +1,29 @@
 import { IUserAction, LOAD_USER, LOAD_USER_LIST } from "action/user-action";
-import { IUser } from "model/user";
+import { LOGOUT } from "action/user-action";
+import { IUserState } from "model/user";
 
-interface IUserReducerState {
-  user: IUser;
-  userList: IUser[];
-}
-
-const INITIAL_USER_STATE = {
-  user: {
+const INITIAL_STATE: IUserState = {
+  current: {
+    abreviation: "",
     email: "",
     firstname: "",
     id: 0,
     lastname: "",
-    phone: "",
+    organisationList: [],
+    title: "",
     username: "",
   },
-  userList: [],
+  list: [],
 };
 
-export default (state: IUserReducerState = INITIAL_USER_STATE, action: IUserAction) => {
+export default (state: IUserState = INITIAL_STATE, action: IUserAction) => {
   switch (action.type) {
     case LOAD_USER:
-      return { ...state, user: action.payload };
+      return { ...state, current: action.payload };
     case LOAD_USER_LIST:
-      return { ...state, userList: action.payload };
+      return { ...state, list: action.payload };
+    case LOGOUT:
+      return { ...state, ...INITIAL_STATE };
     default:
       return state;
   }

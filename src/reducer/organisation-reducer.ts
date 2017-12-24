@@ -1,13 +1,9 @@
 import { IOrganisationAction, LOAD_ORGANISATION, LOAD_ORGANISATION_LIST } from "action/organisation-action";
-import { IOrganisation } from "model/organisation";
+import { LOGOUT } from "action/user-action";
+import { IOrganisationState } from "model/organisation";
 
-interface IOrganisationReducerState {
-  organisation: IOrganisation;
-  organisationList: IOrganisation[];
-}
-
-const INITIAL_STATE = {
-  organisation: {
+const INITIAL_STATE: IOrganisationState = {
+  current: {
     abreviation: "",
     email: "",
     extension: 0,
@@ -16,15 +12,17 @@ const INITIAL_STATE = {
     name: "",
     phone: 0,
   },
-  organisationList: [],
+  list: [],
 };
 
-export default (state: IOrganisationReducerState = INITIAL_STATE, action: IOrganisationAction) => {
+export default (state: IOrganisationState = INITIAL_STATE, action: IOrganisationAction) => {
   switch (action.type) {
     case LOAD_ORGANISATION:
-      return { ...state, organisation: action.payload };
+      return { ...state, current: action.payload };
     case LOAD_ORGANISATION_LIST:
-      return { ...state, organisationList: action.payload };
+      return { ...state, list: action.payload };
+    case LOGOUT:
+      return { ...state, ...INITIAL_STATE};
     default:
       return state;
   }

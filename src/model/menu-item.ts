@@ -18,3 +18,8 @@ export interface IMenuItem {
   archivedAt?: Date;
   archivedBy?: IUser;
 }
+
+export interface IMenuItemState {
+  current: IMenuItem;
+  list: IMenuItem[];
+}

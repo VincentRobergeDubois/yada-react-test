@@ -1,27 +1,22 @@
 import * as React from "react";
 
-import axios from "axios";
 import { Alignments, Column, Row } from "react-foundation";
 import { connect } from "react-redux";
 import { RouteComponentProps } from "react-router-dom";
-import { bindActionCreators } from "redux";
+import { bindActionCreators, Dispatch } from "redux";
 
 import { loadMenuItemList } from "action/menu-item-action";
-import { loadUserConn } from "action/user-conn-action";
-import { IUserConn } from "model/user-conn";
+import { loadUser } from "action/user-action";
+import { IState } from "model/state";
 
 import SideBar from "component/side-bar";
 
-interface ILoginStateProps {
-  userConn: IUserConn;
-}
-
 interface ILoginDispatchProps {
   loadMenuItemList: typeof loadMenuItemList;
-  loadUserConn: typeof loadUserConn;
+  loadUser: typeof loadUser;
 }
 
-type TLoginProps = RouteComponentProps<{}> & ILoginStateProps & ILoginDispatchProps;
+type TLoginProps = RouteComponentProps<{}> & ILoginDispatchProps;
 
 class Login extends React.PureComponent<TLoginProps, {}> {
   public render(): JSX.Element {
@@ -56,27 +51,17 @@ class Login extends React.PureComponent<TLoginProps, {}> {
 
   private handleLogin = () => (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
-    axios.get("http://localhost:3000/user-conn/1").then((response) => {
-      this.props.loadUserConn(response.data.data);
-      this.props.history.push("/tools");
-    });
-    axios.get("http://localhost:3000/menuItems/1/1").then((response) => {
-      this.props.loadMenuItemList(response.data);
-    });
+    this.props.loadUser(1);
+    this.props.loadMenuItemList(1, 1);
+    this.props.history.push("/tools");
   }
 }
 
-const mapStateToProps = (state: any): ILoginStateProps => {
-  return {
-    userConn: state.userConn.userConn,
-  };
-};
-
-const mapDispatchToProps = (dispatch: any): ILoginDispatchProps => {
+const mapDispatchToProps = (dispatch: Dispatch<IState>): ILoginDispatchProps => {
   return {
     loadMenuItemList: bindActionCreators(loadMenuItemList, dispatch),
-    loadUserConn: bindActionCreators(loadUserConn, dispatch),
+    loadUser: bindActionCreators(loadUser, dispatch),
   };
 };
 
-export default connect<ILoginStateProps, ILoginDispatchProps, {}>(mapStateToProps, mapDispatchToProps)(Login);
+export default connect<{}, ILoginDispatchProps, {}>(null, mapDispatchToProps)(Login);

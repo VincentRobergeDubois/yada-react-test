@@ -1,3 +1,5 @@
+import { IOrganisation } from "model/organisation";
+
 export interface IUser {
   id: number;
   hash?: string;
@@ -12,4 +14,20 @@ export interface IUser {
   modifiedBy?: IUser;
   archivedAt?: Date;
   archivedBy?: IUser;
+}
+
+export interface IUserConn {
+  id: number;
+  title: string;
+  username: string;
+  firstname: string;
+  lastname: string;
+  email: string;
+  organisationList: IOrganisation[];
+  abreviation: string;
+}
+
+export interface IUserState {
+  current: IUserConn;
+  list: IUser[];
 }

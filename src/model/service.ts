@@ -11,3 +11,8 @@ export interface IService {
   archivedAt?: Date;
   archivedBy?: IUser;
 }
+
+export interface IServiceState {
+  current: IService;
+  list: IService[];
+}
