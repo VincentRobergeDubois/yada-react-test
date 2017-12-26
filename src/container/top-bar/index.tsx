@@ -30,7 +30,7 @@ type TTopBarProps = ITopBarOwnProps & ITopBarStateProps & ITopBarDispatchProps;
 
 class TopBar extends React.PureComponent<TTopBarProps, {}> {
   public componentWillMount(): void {
-    this.props.loadMenuItemList(1, this.props.user.id === 0 ? 6 : 1);
+    this.props.loadMenuItemList(1, this.props.user.id === 0 ? 6 : 1, this.props.user.admin);
   }
 
   public render(): JSX.Element {
@@ -54,7 +54,7 @@ class TopBar extends React.PureComponent<TTopBarProps, {}> {
   }
 }
 
-const mapStateToProps = (state: IState, props: ITopBarOwnProps): ITopBarStateProps => {
+const mapStateToProps = (state: IState): ITopBarStateProps => {
   return {
     menuItemList: state.menuItem.list,
     user: state.user.current,

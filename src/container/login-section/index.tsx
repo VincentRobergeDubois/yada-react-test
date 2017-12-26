@@ -44,7 +44,6 @@ class LoginSection extends React.PureComponent<TLoginSectionProps, {}> {
   private handleLogin = () => (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
     this.props.loadUser(1);
-    this.props.loadMenuItemList(1, 1);
     this.props.history.push("/tools");
   }
 }

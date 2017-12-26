@@ -33,10 +33,12 @@ export const loadMenuItem = (menuItemId: number) => {
   };
 };
 
-export const loadMenuItemList = (menuId: number, userRight: number) => {
+export const loadMenuItemList = (menuId: number, userRight: number, admin: number) => {
   return (dispatch: Dispatch<IState>) => {
-    return axios.get(`${END_POINT_URL}${menuId}/${userRight}`).then((response: AxiosResponse<IMenuItemResponse>) => {
-      dispatch(resolve(LOAD_MENU_ITEM_LIST, response.data.data));
+    return axios.get(`${END_POINT_URL}${menuId}/${userRight}/${admin}`).then(
+      (response: AxiosResponse<IMenuItemResponse>) => {
+        dispatch(resolve(LOAD_MENU_ITEM_LIST, response.data.data),
+      );
     });
   };
 };

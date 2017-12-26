@@ -8,6 +8,7 @@ export interface IUser {
   firstname: string;
   email: string;
   phone: string;
+  admin: number;
   createdAt?: Date;
   createdBy?: IUser;
   modifiedAt?: Date;
@@ -25,6 +26,7 @@ export interface IUserConn {
   email: string;
   organisationList: IOrganisation[];
   abreviation: string;
+  admin: number;
 }
 
 export interface IUserState {
