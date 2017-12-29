@@ -1,8 +1,7 @@
-import axios, { AxiosResponse } from "axios";
+import axios, { AxiosError, AxiosResponse } from "axios";
 import { Dispatch } from "redux";
 
 import { IOrganisation } from "model/organisation";
-import { IError } from "model/response";
 import { IState } from "model/state";
 
 export const LOAD_ORGANISATION = "LOAD_ORGANISATION";
@@ -15,28 +14,26 @@ export interface IOrganisationAction {
   payload?: IOrganisation | IOrganisation[];
 }
 
-interface IOrganisationResponse {
-  data: IOrganisation | IOrganisation[];
-  error: IError;
-  status: string;
+interface IOrganisationResponse<I> {
+  data: I;
+  error: AxiosError;
+  status: number;
 }
 
-const resolve = (type: string, data: IOrganisation | IOrganisation[]): IOrganisationAction => {
-  return { type, payload: data };
-};
-
 export const loadOrganisation = (organisationId: number) => {
-  return (dispatch: Dispatch<IState>) => {
-    return axios.get(`${END_POINT_URL}${organisationId}`).then((response: AxiosResponse<IOrganisationResponse>) => {
-      dispatch(resolve(LOAD_ORGANISATION, response.data.data));
+  return (dispatch: Dispatch<IState>): Promise<void> => {
+    return axios.get(`${END_POINT_URL}${organisationId}`).then(
+      (response: AxiosResponse<IOrganisationResponse<IOrganisation>>) => {
+        dispatch({ type: LOAD_ORGANISATION, payloda: response.data.data },
+      );
     });
   };
 };
 
 export const loadOrganisationList = () => {
-  return (dispatch: Dispatch<IState>) => {
-    return axios.get(`${END_POINT_URL}`).then((response: AxiosResponse<IOrganisationResponse>) => {
-      dispatch(resolve(LOAD_ORGANISATION_LIST, response.data.data));
+  return (dispatch: Dispatch<IState>): Promise<void> => {
+    return axios.get(`${END_POINT_URL}`).then((response: AxiosResponse<IOrganisationResponse<IOrganisation[]>>) => {
+      dispatch({ type: LOAD_ORGANISATION_LIST, payload: response.data.data });
     });
   };
 };

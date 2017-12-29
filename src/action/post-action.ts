@@ -1,8 +1,7 @@
-import axios, { AxiosResponse } from "axios";
+import axios, { AxiosError, AxiosResponse } from "axios";
 import { Dispatch } from "redux";
 
 import { IPost } from "model/post";
-import { IError } from "model/response";
 import { IState } from "model/state";
 
 export const LOAD_POST = "LOAD_POST";
@@ -15,28 +14,24 @@ export interface IPostAction {
   payload: IPost | IPost[];
 }
 
-interface IPostResponse {
-  data: IPost | IPost[];
-  error: IError;
-  status: string;
+interface IPostResponse<I> {
+  data: I;
+  error: AxiosError;
+  status: number;
 }
 
-const resolve = (type: string, data: IPost | IPost[]): IPostAction => {
-  return { type, payload: data };
-};
-
 export const loadPost = (postId: number) => {
-  return (dispatch: Dispatch<IState>) => {
-    return axios.get(`${END_POINT_URL}${postId}`).then((response: AxiosResponse<IPostResponse>) => {
-      dispatch(resolve(LOAD_POST, response.data.data));
+  return (dispatch: Dispatch<IState>): Promise<void> => {
+    return axios.get(`${END_POINT_URL}${postId}`).then((response: AxiosResponse<IPostResponse<IPost>>) => {
+      dispatch({ type: LOAD_POST, payload: response.data.data });
     });
   };
 };
 
 export const loadPostList = () => {
-  return (dispatch: Dispatch<IState>) => {
-    return axios.get(`${END_POINT_URL}`).then((response: AxiosResponse<IPostResponse>) => {
-      dispatch(resolve(LOAD_POST_LIST, response.data.data));
+  return (dispatch: Dispatch<IState>): Promise<void> => {
+    return axios.get(`${END_POINT_URL}`).then((response: AxiosResponse<IPostResponse<IPost[]>>) => {
+      dispatch({ type: LOAD_POST_LIST, payload: response.data.data });
     });
   };
 };

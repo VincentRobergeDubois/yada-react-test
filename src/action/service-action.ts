@@ -1,7 +1,6 @@
-import axios, { AxiosResponse } from "axios";
+import axios, { AxiosError, AxiosResponse } from "axios";
 import { Dispatch } from "redux";
 
-import { IError } from "model/response";
 import { IService } from "model/service";
 import { IState } from "model/state";
 
@@ -15,28 +14,24 @@ export interface IServiceAction {
   payload?: IService | IService[];
 }
 
-interface IServiceResponse {
-  data: IService | IService[];
-  error: IError;
-  status: string;
+interface IServiceResponse<I> {
+  data: I;
+  error: AxiosError;
+  status: number;
 }
 
-const resolve = (type: string, data: IService | IService[]): IServiceAction => {
-  return { type, payload: data };
-};
-
 export const loadService = (serviceId: number) => {
-  return (dispatch: Dispatch<IState>) => {
-    axios.get(`${END_POINT_URL}${serviceId}`).then((response: AxiosResponse<IServiceResponse>) => {
-      dispatch(resolve(LOAD_SERVICE, response.data.data));
+  return (dispatch: Dispatch<IState>): Promise<void> => {
+    return axios.get(`${END_POINT_URL}${serviceId}`).then((response: AxiosResponse<IServiceResponse<IService>>) => {
+      dispatch({ type: LOAD_SERVICE, payload: response.data.data });
     });
   };
 };
 
 export const loadServiceList = () => {
-  return (dispatch: Dispatch<IState>) => {
-    axios.get(`${END_POINT_URL}`).then((response: AxiosResponse<IServiceResponse>) => {
-      dispatch(resolve(LOAD_SERVICE_LIST, response.data.data));
+  return (dispatch: Dispatch<IState>): Promise<void> => {
+    return axios.get(`${END_POINT_URL}`).then((response: AxiosResponse<IServiceResponse<IService[]>>) => {
+      dispatch({ type: LOAD_SERVICE_LIST, payload: response.data.data });
     });
   };
 };

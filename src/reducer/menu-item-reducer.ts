@@ -1,5 +1,4 @@
-import { IMenuItemAction, LOAD_MENU_ITEM, LOAD_MENU_ITEM_LIST } from "action/menu-item-action";
-import { LOGOUT } from "action/user-action";
+import { IMenuItemAction, LOAD_MENU_ITEM, LOAD_MENU_ITEM_LIST, LOGOUT } from "action/menu-item-action";
 import { IMenuItemState } from "model/menu-item";
 
 const INITIAL_STATE: IMenuItemState = {
@@ -14,7 +13,7 @@ export default (state: IMenuItemState = INITIAL_STATE, action: IMenuItemAction) 
     case LOAD_MENU_ITEM_LIST:
       return { ...state, list: action.payload };
     case LOGOUT:
-      return { ...state, ...INITIAL_STATE };
+      return { ...state, list: action.payload };
     default:
       return state;
   }

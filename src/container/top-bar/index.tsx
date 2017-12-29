@@ -3,8 +3,7 @@ import * as React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators, Dispatch } from "redux";
 
-import { loadMenuItemList } from "action/menu-item-action";
-import { logout } from "action/user-action";
+import { loadMenuItemList, logout } from "action/menu-item-action";
 import { IMenuItem } from "model/menu-item";
 import { IState } from "model/state";
 import { IUserConn } from "model/user";

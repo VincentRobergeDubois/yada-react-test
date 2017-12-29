@@ -26,6 +26,7 @@
     "@types/react-modal": "^2.2.2",
     "@types/react-redux": "^5.0.12",
     "@types/react-router-dom": "^4.2.1",
+    "@types/redux-form": "^7.0.10",
     "awesome-typescript-loader": "^3.4.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
@@ -59,6 +60,7 @@
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
+    "redux-form": "^7.2.0",
     "redux-thunk": "^2.2.0",
     "reselect": "^3.0.1",
     "sass": "^1.0.0-beta.2"

@@ -1,5 +1,5 @@
+import { LOGOUT } from "action/menu-item-action";
 import { IServiceAction, LOAD_SERVICE, LOAD_SERVICE_LIST } from "action/service-action";
-import { LOGOUT } from "action/user-action";
 import { IServiceState } from "model/service";
 
 const INITIAL_STATE: IServiceState = {

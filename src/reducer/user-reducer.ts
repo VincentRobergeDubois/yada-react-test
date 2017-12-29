@@ -1,5 +1,5 @@
+import { LOGOUT } from "action/menu-item-action";
 import { IUserAction, LOAD_USER, LOAD_USER_LIST } from "action/user-action";
-import { LOGOUT } from "action/user-action";
 import { IUserState } from "model/user";
 
 const INITIAL_STATE: IUserState = {

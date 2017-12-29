@@ -1,5 +1,5 @@
+import { LOGOUT } from "action/menu-item-action";
 import { IOrganisationAction, LOAD_ORGANISATION, LOAD_ORGANISATION_LIST } from "action/organisation-action";
-import { LOGOUT } from "action/user-action";
 import { IOrganisationState } from "model/organisation";
 
 const INITIAL_STATE: IOrganisationState = {
