@@ -20,6 +20,7 @@ export interface IMenuItem {
 }
 
 export interface IMenuItemState {
+  adminMenuList: IMenuItem[];
   current: IMenuItem;
-  list: IMenuItem[];
+  mainMenuList: IMenuItem[];
 }

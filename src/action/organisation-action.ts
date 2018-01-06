@@ -21,11 +21,11 @@ interface IOrganisationResponse<I> {
 }
 
 export const parseOrganisation = (organisation: IOrganisation) => {
-  return ({ type: ORGANISATION_PARSE, payloda: organisation });
+  return { type: ORGANISATION_PARSE, payloda: organisation };
 };
 
 export const parseOrganisationList = (list: IOrganisation[]) => {
-  return ({ type: ORGANISATION_LIST_PARSE, payload: list });
+  return { type: ORGANISATION_LIST_PARSE, payload: list };
 };
 
 export const loadOrganisation = (organisationId: number) => {

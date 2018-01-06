@@ -1,16 +1,16 @@
 import { FieldState, RegisteredFieldState } from "redux-form";
 
-export interface ILoginSectionForm {
+export interface ILoginForm {
   username: RegisteredFieldState;
   password: RegisteredFieldState;
 }
 
-export interface ILoginSectionFields {
+export interface ILoginFormFields {
   username: FieldState;
   password: FieldState;
 }
 
-export interface ILoginSectionValues {
+export interface ILoginFormValues {
   username: string;
   password: string;
 }

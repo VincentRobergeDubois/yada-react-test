@@ -4,33 +4,29 @@ import { Row } from "react-foundation";
 import { connect } from "react-redux";
 import { bindActionCreators, Dispatch } from "redux";
 
-import { loadMenuItemList, parseMenuItem } from "action/menu-item-action";
+import { loadAdminMenuItemList, parseMenuItem } from "action/menu-item-action";
 import { IMenuItem } from "model/menu-item";
 import { IState } from "model/state";
 
 import SideMenu from "component/side-menu";
 
 interface IAdminSectionStateProps {
-  menuItemList: IMenuItem[];
+  adminMenuItemList: IMenuItem[];
 }
 
 interface IAdminSectionDispatchProps {
-  loadMenuItemList: typeof loadMenuItemList;
+  loadAdminMenuItemList: typeof loadAdminMenuItemList;
   parseSelectedItem: typeof parseMenuItem;
 }
 
 type TAdminSectionProps = IAdminSectionStateProps & IAdminSectionDispatchProps;
 
 class AdminSection extends React.PureComponent<TAdminSectionProps, {}> {
-  public componentWillMount(): void {
-    this.props.loadMenuItemList(4, 1, 1);
-  }
-
   public render(): JSX.Element {
     return (
       <Row id="admin-section">
         <SideMenu
-          menuItemList={this.props.menuItemList}
+          menuItemList={this.props.adminMenuItemList}
           handleSelectItem={this.handleSelectItem}
         />
         <div>Admin</div>
@@ -45,13 +41,13 @@ class AdminSection extends React.PureComponent<TAdminSectionProps, {}> {
 
 const mapStateToProps = (state: IState): IAdminSectionStateProps => {
   return {
-    menuItemList: state.menuItem.list,
+    adminMenuItemList: state.menuItem.adminMenuList,
   };
 };
 
 const mapDispatchToProps = (dispatch: Dispatch<IState>): IAdminSectionDispatchProps => {
   return {
-    loadMenuItemList: bindActionCreators(loadMenuItemList, dispatch),
+    loadAdminMenuItemList: bindActionCreators(loadAdminMenuItemList, dispatch),
     parseSelectedItem: bindActionCreators(parseMenuItem, dispatch),
   };
 };

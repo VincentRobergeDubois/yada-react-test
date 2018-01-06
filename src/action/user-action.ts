@@ -2,9 +2,9 @@ import axios, { AxiosError, AxiosResponse } from "axios";
 // import credential = require("credential");
 import { Dispatch } from "redux";
 
+import { loadAdminMenuItemList, loadMainMenuItemList } from "action/menu-item-action";
 import { IState } from "model/state";
 import { IUser, IUserConn } from "model/user";
-import { loadMenuItemList } from "action/menu-item-action";
 
 export const LOGOUT = "LOGOUT";
 
@@ -52,13 +52,17 @@ export const login = (username: string, password: string) => {
   return (dispatch: Dispatch<IState>): Promise<void> => {
     return axios.get(`${END_POINT_URL}username/${username}`).then((response: AxiosResponse<IUserResponse<IUser>>) => {
       dispatch(loadUser(response.data.data.id));
-      dispatch(loadMenuItemList(1, 1, 1));
+      dispatch(loadMainMenuItemList(1, 1, 1));
+      dispatch(loadAdminMenuItemList(4, 1, 1));
     });
   };
 };
 
 export const logout = () => {
-  return { type: LOGOUT };
+  return (dispatch: Dispatch<IState>): void => {
+    dispatch({ type: LOGOUT });
+    dispatch(loadMainMenuItemList(1, 6, 1));
+  };
 };
 
 export const createUser = (user: IUser) => {

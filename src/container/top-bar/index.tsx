@@ -3,7 +3,7 @@ import * as React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators, Dispatch } from "redux";
 
-import { loadMenuItemList } from "action/menu-item-action";
+import { loadMainMenuItemList } from "action/menu-item-action";
 import { logout } from "action/user-action";
 import { IMenuItem } from "model/menu-item";
 import { IState } from "model/state";
@@ -17,12 +17,12 @@ interface ITopBarOwnProps {
 }
 
 interface ITopBarStateProps {
-  menuItemList: IMenuItem[];
+  mainMenuItemList: IMenuItem[];
   user: IUserConn;
 }
 
 interface ITopBarDispatchProps {
-  loadMenuItemList: typeof loadMenuItemList;
+  loadMainMenuItemList: typeof loadMainMenuItemList;
   logout: typeof logout;
 }
 
@@ -30,8 +30,8 @@ type TTopBarProps = ITopBarOwnProps & ITopBarStateProps & ITopBarDispatchProps;
 
 class TopBar extends React.PureComponent<TTopBarProps, {}> {
   public componentWillMount(): void {
-    if ( this.props.menuItemList.length === 0 ) {
-      this.props.loadMenuItemList(1, this.props.user.id === 0 ? 6 : 1, this.props.user.admin);
+    if ( this.props.mainMenuItemList.length === 0 ) {
+      this.props.loadMainMenuItemList(1, this.props.user.id === 0 ? 6 : 1, this.props.user.admin);
     }
   }
 
@@ -50,7 +50,7 @@ class TopBar extends React.PureComponent<TTopBarProps, {}> {
   private renderMenuBar = (): JSX.Element => {
     return (
       <MenuBar
-        menuItemList={this.props.menuItemList}
+        menuItemList={this.props.mainMenuItemList}
       />
     );
   }
@@ -58,14 +58,14 @@ class TopBar extends React.PureComponent<TTopBarProps, {}> {
 
 const mapStateToProps = (state: IState): ITopBarStateProps => {
   return {
-    menuItemList: state.menuItem.list,
+    mainMenuItemList: state.menuItem.mainMenuList,
     user: state.user.current,
   };
 };
 
 const mapDispatchToProps = (dispatch: Dispatch<IState>): ITopBarDispatchProps => {
   return {
-    loadMenuItemList: bindActionCreators(loadMenuItemList, dispatch),
+    loadMainMenuItemList: bindActionCreators(loadMainMenuItemList, dispatch),
     logout: bindActionCreators(logout, dispatch),
   };
 };

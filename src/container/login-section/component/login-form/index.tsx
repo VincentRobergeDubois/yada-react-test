@@ -5,16 +5,16 @@ import { Field, InjectedFormProps, reduxForm } from "redux-form";
 
 import { required } from "service/form-validator";
 import { LOGIN_SECTION_FORM_NAME } from "../../constant";
-import { ILoginSectionValues } from "../../model";
+import { ILoginFormValues } from "../../model";
 
 import Input from "component/input";
 
 interface ILoginFormOwnProps {
-  handleLogin: () => (formData: ILoginSectionValues) => void;
+  handleLogin: () => (formData: ILoginFormValues) => void;
 }
 
 type TLoginFormProps = ILoginFormOwnProps;
-type InjectedProps = InjectedFormProps<ILoginSectionValues, TLoginFormProps>;
+type InjectedProps = InjectedFormProps<ILoginFormValues, TLoginFormProps>;
 
 class LoginForm extends React.PureComponent<TLoginFormProps & InjectedProps, {}> {
   public render(): JSX.Element {
@@ -44,6 +44,6 @@ class LoginForm extends React.PureComponent<TLoginFormProps & InjectedProps, {}>
   }
 }
 
-export default reduxForm<ILoginSectionValues, TLoginFormProps>({
+export default reduxForm<ILoginFormValues, TLoginFormProps>({
   form: LOGIN_SECTION_FORM_NAME,
 })(LoginForm);

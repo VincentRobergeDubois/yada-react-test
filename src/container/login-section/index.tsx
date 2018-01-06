@@ -4,10 +4,10 @@ import * as H from "history";
 import { connect } from "react-redux";
 import { bindActionCreators, Dispatch } from "redux";
 
-import { loadMenuItemList } from "action/menu-item-action";
+import { loadMainMenuItemList } from "action/menu-item-action";
 import { loadUser, login } from "action/user-action";
 import { IState } from "model/state";
-import { ILoginSectionValues } from "./model";
+import { ILoginFormValues } from "./model";
 
 import LoginForm from "./component/login-form";
 
@@ -16,7 +16,7 @@ interface ILoginSectionOwnProps {
 }
 
 interface ILoginSectionDispatchProps {
-  loadMenuItemList: typeof loadMenuItemList;
+  loadMainMenuItemList: typeof loadMainMenuItemList;
   loadUser: typeof loadUser;
   login: typeof login;
 }
@@ -32,7 +32,7 @@ class LoginSection extends React.PureComponent<TLoginSectionProps, {}> {
     );
   }
 
-  private handleLogin = () => (formData: ILoginSectionValues): void => {
+  private handleLogin = () => (formData: ILoginFormValues): void => {
     this.props.login(formData.username, formData.password);
     this.props.history.push("/tools");
   }
@@ -40,7 +40,7 @@ class LoginSection extends React.PureComponent<TLoginSectionProps, {}> {
 
 const mapDispatchToProps = (dispatch: Dispatch<IState>): ILoginSectionDispatchProps => {
   return {
-    loadMenuItemList: bindActionCreators(loadMenuItemList, dispatch),
+    loadMainMenuItemList: bindActionCreators(loadMainMenuItemList, dispatch),
     loadUser: bindActionCreators(loadUser, dispatch),
     login: bindActionCreators(login, dispatch),
   };

@@ -22,7 +22,9 @@ type TNewsSectionProps = INewsSectionStateProps & INewsSectionDispatchProps;
 
 class NewsSection extends React.Component<TNewsSectionProps, {}> {
   public componentWillMount(): void {
-    this.props.loadPostList();
+    if ( this.props.postList.length === 0 ) {
+      this.props.loadPostList();
+    }
   }
 
   public render(): JSX.Element {
