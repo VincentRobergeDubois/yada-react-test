@@ -1,0 +1,13 @@
+.post {
+  border: solid 1px $yada-red;
+  margin: 30px !important;
+  padding: 20px;
+  img {
+      max-height: 200px;
+      max-width: 280px;
+  }
+}
+
+.right-post {
+  text-align: right;
+}

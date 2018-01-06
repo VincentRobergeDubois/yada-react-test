@@ -1,4 +1,4 @@
-import { IPostAction, LOAD_POST, LOAD_POST_LIST } from "action/post-action";
+import { IPostAction, POST_LIST_PARSE, POST_PARSE } from "action/post-action";
 import { IPostState } from "model/post";
 
 const INITIAL_STATE: IPostState = {
@@ -8,9 +8,9 @@ const INITIAL_STATE: IPostState = {
 
 export default (state: IPostState = INITIAL_STATE, action: IPostAction) => {
   switch (action.type) {
-    case LOAD_POST:
+    case POST_PARSE:
       return { ...state, current: action.payload };
-    case LOAD_POST_LIST:
+    case POST_LIST_PARSE:
       return { ...state, list: action.payload };
     default:
       return state;

@@ -2,6 +2,7 @@ import * as React from "react";
 
 import { Column, Row } from "react-foundation";
 
+import AdminSection from "container/admin-section";
 import TopBar from "container/top-bar";
 
 class Admin extends React.PureComponent<{}, {}> {
@@ -10,7 +11,7 @@ class Admin extends React.PureComponent<{}, {}> {
       <Row id="admin-container" isExpanded={true}>
         <Column id="content">
           <TopBar />
-          <span>Admin</span>
+          <AdminSection />
         </Column>
       </Row>
     );

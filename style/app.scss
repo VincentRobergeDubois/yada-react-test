@@ -3,6 +3,10 @@
 @import "color";
 
 @import "../src/component/side-bar/style";
+@import "../src/component/side-menu/style";
+@import "../src/container/admin-section/style";
+@import "../src/container/login-section/style";
+@import "../src/container/news-section/style";
 @import "../src/container/top-bar/style";
 
 @import "../src/view/home/style";
@@ -14,24 +18,6 @@ html, body, #root, #root > div, #container, #main-content, #content {
 
 body {
     background-color: $yada-white;
-    color: $yada-red;
-}
-
-.post {
-    border: solid 1px $yada-red;
-    margin: 30px !important;
-    padding: 20px;
-    img {
-        max-height: 200px;
-        max-width: 280px;
-    }
-}
-
-.right-post {
-    text-align: right;
-}
-
-.cred-fail label {
     color: $yada-red;
 }
 

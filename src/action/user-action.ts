@@ -1,11 +1,15 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
+// import credential = require("credential");
 import { Dispatch } from "redux";
 
 import { IState } from "model/state";
 import { IUser, IUserConn } from "model/user";
+import { loadMenuItemList } from "action/menu-item-action";
 
-export const LOAD_USER = "LOAD_USER";
-export const LOAD_USER_LIST = "LOAD_USER_LIST";
+export const LOGOUT = "LOGOUT";
+
+export const USER_PARSE = "USER_PARSE";
+export const USER_LIST_PARSE = "USER_LIST_PARSE";
 
 const END_POINT_URL = "http://localhost:3000/users/";
 
@@ -20,10 +24,18 @@ interface IUserResponse<I> {
   status: number;
 }
 
+export const parseUser = (user: IUserConn) => {
+  return { type: USER_PARSE, payload: user };
+};
+
+export const parseUserList = (list: IUser[]) => {
+  return { type: USER_LIST_PARSE, payload: list };
+};
+
 export const loadUser = (userId: number) => {
   return (dispatch: Dispatch<IState>): Promise<void> => {
     return axios.get(`${END_POINT_URL}${userId}`).then((response: AxiosResponse<IUserResponse<IUserConn>>) => {
-      dispatch({ type: LOAD_USER, payload: response.data.data });
+      dispatch(parseUser(response.data.data));
     });
   };
 };
@@ -31,15 +43,28 @@ export const loadUser = (userId: number) => {
 export const loadUserList = () => {
   return (dispatch: Dispatch<IState>): Promise<void> => {
     return axios.get(`${END_POINT_URL}`).then((response: AxiosResponse<IUserResponse<IUser[]>>) => {
-      dispatch({ type: LOAD_USER_LIST, payload: response.data.data });
+      dispatch(parseUserList(response.data.data));
     });
   };
 };
 
-export const connection = (username: string, password: string) => {
+export const login = (username: string, password: string) => {
   return (dispatch: Dispatch<IState>): Promise<void> => {
     return axios.get(`${END_POINT_URL}username/${username}`).then((response: AxiosResponse<IUserResponse<IUser>>) => {
       dispatch(loadUser(response.data.data.id));
+      dispatch(loadMenuItemList(1, 1, 1));
+    });
+  };
+};
+
+export const logout = () => {
+  return { type: LOGOUT };
+};
+
+export const createUser = (user: IUser) => {
+  return (dispatch: Dispatch<IState>): Promise<void> => {
+    return axios.post(`${END_POINT_URL}`, user).then((response: AxiosResponse<any>) => {
+      dispatch(loadUserList());
     });
   };
 };

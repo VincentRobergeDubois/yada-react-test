@@ -3,7 +3,8 @@ import * as React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators, Dispatch } from "redux";
 
-import { loadMenuItemList, logout } from "action/menu-item-action";
+import { loadMenuItemList } from "action/menu-item-action";
+import { logout } from "action/user-action";
 import { IMenuItem } from "model/menu-item";
 import { IState } from "model/state";
 import { IUserConn } from "model/user";
@@ -29,7 +30,9 @@ type TTopBarProps = ITopBarOwnProps & ITopBarStateProps & ITopBarDispatchProps;
 
 class TopBar extends React.PureComponent<TTopBarProps, {}> {
   public componentWillMount(): void {
-    this.props.loadMenuItemList(1, this.props.user.id === 0 ? 6 : 1, this.props.user.admin);
+    if ( this.props.menuItemList.length === 0 ) {
+      this.props.loadMenuItemList(1, this.props.user.id === 0 ? 6 : 1, this.props.user.admin);
+    }
   }
 
   public render(): JSX.Element {

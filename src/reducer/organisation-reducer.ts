@@ -1,5 +1,5 @@
-import { LOGOUT } from "action/menu-item-action";
-import { IOrganisationAction, LOAD_ORGANISATION, LOAD_ORGANISATION_LIST } from "action/organisation-action";
+import { IOrganisationAction, ORGANISATION_LIST_PARSE, ORGANISATION_PARSE } from "action/organisation-action";
+import { LOGOUT } from "action/user-action";
 import { IOrganisationState } from "model/organisation";
 
 const INITIAL_STATE: IOrganisationState = {
@@ -17,9 +17,9 @@ const INITIAL_STATE: IOrganisationState = {
 
 export default (state: IOrganisationState = INITIAL_STATE, action: IOrganisationAction) => {
   switch (action.type) {
-    case LOAD_ORGANISATION:
+    case ORGANISATION_PARSE:
       return { ...state, current: action.payload };
-    case LOAD_ORGANISATION_LIST:
+    case ORGANISATION_LIST_PARSE:
       return { ...state, list: action.payload };
     case LOGOUT:
       return { ...state, ...INITIAL_STATE};

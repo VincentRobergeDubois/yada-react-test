@@ -4,9 +4,8 @@ import { Dispatch } from "redux";
 import { IMenuItem } from "model/menu-item";
 import { IState } from "model/state";
 
-export const LOAD_MENU_ITEM = "LOAD_MENU_ITEM";
-export const LOAD_MENU_ITEM_LIST = "LOAD_MENU_ITEM_LIST";
-export const LOGOUT = "LOGOUT";
+export const MENU_ITEM_PARSE = "MENU_ITEM_PARSE";
+export const MENU_ITEM_LIST_PARSE = "MENU_ITEM_LIST_PARSE";
 
 const END_POINT_URL = "http://localhost:3000/menuItems/";
 
@@ -21,10 +20,18 @@ interface IMenuItemResponse<I> {
   state: number;
 }
 
+export const parseMenuItem = (item: IMenuItem) => {
+  return ({ type: MENU_ITEM_PARSE, payload: item });
+};
+
+export const parseMenuItemList = (list: IMenuItem[]) => {
+  return ({ type: MENU_ITEM_LIST_PARSE, payload: list });
+};
+
 export const loadMenuItem = (menuItemId: number) => {
   return (dispatch: Dispatch<IState>): Promise<void> => {
     return axios.get(`${END_POINT_URL}/${menuItemId}`).then((response: AxiosResponse<IMenuItemResponse<IMenuItem>>) => {
-      dispatch({ type: LOAD_MENU_ITEM, payload: response.data.data });
+      dispatch(parseMenuItem(response.data.data));
     });
   };
 };
@@ -33,16 +40,8 @@ export const loadMenuItemList = (menuId: number, userRight: number, admin: numbe
   return (dispatch: Dispatch<IState>): Promise<void> => {
     return axios.get(`${END_POINT_URL}${menuId}/${userRight}/${admin}`).then(
       (response: AxiosResponse<IMenuItemResponse<IMenuItem[]>>) => {
-        dispatch({ type: LOAD_MENU_ITEM_LIST, payload: response.data.data },
-      );
-    });
-  };
-};
-
-export const logout = () => {
-  return (dispatch: Dispatch<IState>): Promise<void> => {
-    return axios.get(`${END_POINT_URL}1/6/0`).then((response: AxiosResponse<IMenuItemResponse<IMenuItem[]>>) => {
-      dispatch({ type: LOGOUT, payload: response.data.data });
-    });
+        dispatch(parseMenuItemList(response.data.data));
+      },
+    );
   };
 };

@@ -2,13 +2,17 @@ import { IOrganisation } from "model/organisation";
 
 export interface IUser {
   id: number;
-  hash?: string;
   username: string;
   lastname: string;
   firstname: string;
   email: string;
   phone: string;
   admin: number;
+  hash?: string;
+  salt?: string;
+  keyLength: number;
+  hashMethod: string;
+  iterations: number;
   createdAt?: Date;
   createdBy?: IUser;
   modifiedAt?: Date;

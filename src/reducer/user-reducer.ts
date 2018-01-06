@@ -1,5 +1,4 @@
-import { LOGOUT } from "action/menu-item-action";
-import { IUserAction, LOAD_USER, LOAD_USER_LIST } from "action/user-action";
+import { IUserAction, LOGOUT, USER_LIST_PARSE, USER_PARSE } from "action/user-action";
 import { IUserState } from "model/user";
 
 const INITIAL_STATE: IUserState = {
@@ -19,9 +18,9 @@ const INITIAL_STATE: IUserState = {
 
 export default (state: IUserState = INITIAL_STATE, action: IUserAction) => {
   switch (action.type) {
-    case LOAD_USER:
+    case USER_PARSE:
       return { ...state, current: action.payload };
-    case LOAD_USER_LIST:
+    case USER_LIST_PARSE:
       return { ...state, list: action.payload };
     case LOGOUT:
       return { ...state, ...INITIAL_STATE };

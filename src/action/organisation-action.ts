@@ -4,8 +4,8 @@ import { Dispatch } from "redux";
 import { IOrganisation } from "model/organisation";
 import { IState } from "model/state";
 
-export const LOAD_ORGANISATION = "LOAD_ORGANISATION";
-export const LOAD_ORGANISATION_LIST = "LOAD_ORGANISATION_LIST";
+export const ORGANISATION_PARSE = "ORGANISATION_PARSE";
+export const ORGANISATION_LIST_PARSE = "ORGANISATION_LIST_PARSE";
 
 const END_POINT_URL = "http://localhost:3000/organisations/";
 
@@ -20,20 +20,30 @@ interface IOrganisationResponse<I> {
   status: number;
 }
 
+export const parseOrganisation = (organisation: IOrganisation) => {
+  return ({ type: ORGANISATION_PARSE, payloda: organisation });
+};
+
+export const parseOrganisationList = (list: IOrganisation[]) => {
+  return ({ type: ORGANISATION_LIST_PARSE, payload: list });
+};
+
 export const loadOrganisation = (organisationId: number) => {
   return (dispatch: Dispatch<IState>): Promise<void> => {
     return axios.get(`${END_POINT_URL}${organisationId}`).then(
       (response: AxiosResponse<IOrganisationResponse<IOrganisation>>) => {
-        dispatch({ type: LOAD_ORGANISATION, payloda: response.data.data },
-      );
-    });
+        dispatch(parseOrganisation(response.data.data));
+      },
+    );
   };
 };
 
 export const loadOrganisationList = () => {
   return (dispatch: Dispatch<IState>): Promise<void> => {
-    return axios.get(`${END_POINT_URL}`).then((response: AxiosResponse<IOrganisationResponse<IOrganisation[]>>) => {
-      dispatch({ type: LOAD_ORGANISATION_LIST, payload: response.data.data });
-    });
+    return axios.get(`${END_POINT_URL}`).then(
+      (response: AxiosResponse<IOrganisationResponse<IOrganisation[]>>) => {
+        dispatch(parseOrganisationList(response.data.data));
+      },
+    );
   };
 };
