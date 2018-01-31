@@ -8,6 +8,8 @@ import { logout } from "action/user-action";
 import { IMenuItem } from "model/menu-item";
 import { IState } from "model/state";
 import { IUserConn } from "model/user";
+import { getMainMenuItemList } from "selector/menu-item";
+import { getCurrentUser } from "selector/user";
 
 import MenuBar from "./component/menu-bar";
 import UserBar from "./component/user-bar";
@@ -58,8 +60,8 @@ class TopBar extends React.PureComponent<TTopBarProps, {}> {
 
 const mapStateToProps = (state: IState): ITopBarStateProps => {
   return {
-    mainMenuItemList: state.menuItem.mainMenuList,
-    user: state.user.current,
+    mainMenuItemList: getMainMenuItemList(state),
+    user: getCurrentUser(state),
   };
 };
 

@@ -7,6 +7,7 @@ import { bindActionCreators, Dispatch } from "redux";
 import { loadPostList } from "action/post-action";
 import { IPost } from "model/post";
 import { IState } from "model/state";
+import { getPostList } from "selector/post";
 
 import Post from "./component/post";
 
@@ -52,7 +53,7 @@ class NewsSection extends React.Component<TNewsSectionProps, {}> {
 
 const mapStateToProps = (state: IState): INewsSectionStateProps => {
   return {
-    postList: state.post.list,
+    postList: getPostList(state),
   };
 };
 
