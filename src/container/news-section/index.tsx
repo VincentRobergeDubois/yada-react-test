@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { Column } from "react-foundation";
+import { Cell } from "react-foundation";
 import { connect } from "react-redux";
 import { bindActionCreators, Dispatch } from "redux";
 
@@ -29,9 +29,9 @@ class NewsSection extends React.Component<TNewsSectionProps, {}> {
 
   public render(): JSX.Element {
     return (
-      <Column id="news-section">
+      <Cell id="news-section">
         {this.renderList()}
-      </Column>
+      </Cell>
     );
   }
 
@@ -62,5 +62,7 @@ const mapDispatchToProps = (dispatch: Dispatch<IState>): INewsSectionDispatchPro
   };
 };
 
-export default
-connect<INewsSectionStateProps, INewsSectionDispatchProps, {}>(mapStateToProps, mapDispatchToProps)(NewsSection);
+export default connect<INewsSectionStateProps, INewsSectionDispatchProps, {}>(
+  mapStateToProps,
+  mapDispatchToProps,
+)(NewsSection);

@@ -1,6 +1,10 @@
-@import "foundation.min.css";
+@import "../node_modules/foundation-sites/scss/settings/settings";
+@import "../node_modules/foundation-sites/scss/foundation";
+@import "../node_modules/foundation-sites/dist/css/foundation.min";
 @import "foundation-icons/foundation-icons.css";
 @import "color";
+@import "default";
+@import "mixin";
 
 @import "../src/component/side-bar/style";
 @import "../src/component/side-menu/style";
@@ -9,32 +13,17 @@
 @import "../src/container/news-section/style";
 @import "../src/container/top-bar/style";
 
+@import "../src/view/contact/style";
 @import "../src/view/home/style";
 @import "../src/view/login/style";
+@import "../src/view/services/style";
 
-html, body, #root, #root > div, #container, #main-content, #content {
+html, body, #root {
     height: 100%;
+    width: 100%;
 }
 
 body {
     background-color: $yada-white;
-    color: $yada-red;
-}
-
-.user-info label {
-    color: $yada-white;
-    font-size: 11px;
-    font-weight: bold;
- }
-
-.small-div {
-    height: 36px;
-}
-
-.dropdown.menu > li.is-dropdown-submenu-parent > a::after {
-    border-color: $yada-red transparent transparent !important;
-}
-
-.dropdown.menu > li.is-dropdown-submenu-parent > a:hover::after {
-    border-color: $yada-white transparent transparent !important;
+    color: $yada-black;
 }

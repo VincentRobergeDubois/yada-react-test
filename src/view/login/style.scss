@@ -1,10 +1,16 @@
 #login-container {
+  height: 100%;
+  @include xy-grid();
   .sidebar {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include xy-cell();
+    @include breakpoint(large) {
+      @include xy-cell(50%);
+    }
   }
-  .form {
-    padding: 128px;
+  .content {
+    @include xy-cell();
+    @include breakpoint(large) {
+      @include xy-cell(50%);
+    }
   }
 }

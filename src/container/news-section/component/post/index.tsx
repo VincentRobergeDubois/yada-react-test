@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { MediaObject, MediaObjectSection, Row, Thumbnail } from "react-foundation";
+import { Grid, MediaObject, MediaObjectSection, Thumbnail } from "react-foundation";
 
 interface IPostProps {
   side: number;
@@ -12,9 +12,9 @@ interface IPostProps {
 class Post extends React.Component<IPostProps, {}> {
   public render(): JSX.Element {
     return (
-      <Row className="post" isExpanded={true}>
+      <Grid className="post">
         {(this.props.side % 2) ? this.renderLeft() : this.renderRight()}
-      </Row>
+      </Grid>
     );
   }
 

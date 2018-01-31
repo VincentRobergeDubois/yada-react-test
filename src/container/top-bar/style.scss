@@ -1,84 +1,74 @@
-#menu-bar {
-  background-color: $yada-white;
-  border-top: solid 2px $yada-red;
-  border-bottom: solid 2px $yada-red;
-  .sub-item {
-      font-size: 12px;
-  }
-  .item {
-      min-width: 100px;
+#top-bar {
+  .main-menu {
+    background-color: $yada-white;
+    border-top: solid 0.125rem $yada-red;
+    border-bottom: solid 0.125rem $yada-red;
+    .item {
+      min-width: 6rem;
       &:hover {
-          background-color: $yada-red;
-          color: $yada-white;
+        background-color: $yada-red;
+        color: $yada-white;
       }
       a {
-          font-weight: 800;
-          color: $yada-red;
-          text-align: center;
-          i {
-              font-size: 28px;
-          }
-          &:hover {
-              color: $yada-white;
-          }
-          &:focus {
-              color: $yada-pink;
-          }
+        font-weight: 800;
+        color: $yada-red;
+        text-align: center;
+        i {
+          font-size: 1.75rem;
+        }
+        &:hover {
+          color: $yada-white;
+        }
+        &:focus {
+          color: $yada-pink;
+        }
       }
-  }
-  .submenu a:hover, .active-item > a {
+    }
+    .sub-item {
+      font-size: 0.75rem;
+    }
+    .submenu a:hover, .active-item > a {
       color: $yada-white;
-  }
-  .menicon {
-      font-size: 42px;
-  }
-}
-
-#user-bar {
-  background-color: $yada-black;
-  color: $yada-white;
-  font-size: 12px;
-  .login-btn {
-    color: $yada-white;
-    font-size: 28px;
-    min-width: 60px;
-    text-align: center;
-    padding: 0.5rem;
-    &:hover {
-      background-color: $yada-white;
-      color: $yada-red;
+    }
+    .menicon {
+      font-size: 2.375rem;
     }
   }
-  #user-name {
-    border-bottom: solid 1px white;
-  }
-  #user-name, #user-title {
-    text-align: right;
-  }
-}
 
-#conn-btn, #deconn-btn {
-  background-color: $yada-black;
-  border-color: $yada-white;
-  margin: 0px;
-  padding: 8px;
-  i {
-    margin: 5px;
-    font-size: 16px;
+  .user-bar {
+    @include xy-grid();
+    background-color: $yada-black;
+    color: $yada-white;
+    font-size: 12px;
+    .logo-link {
+      @include xy-cell(auto);
+    }
+    .conn-btn {
+      @include xy-cell(3%);
+      color: $yada-white;
+      font-size: 24px;
+      text-align: center;
+      cursor: pointer;
+      &:hover {
+        background-color: $yada-white;
+        color: $yada-red;
+      }
+    }
+    #user-name {
+      border-bottom: solid 1px white;
+    }
+    #user-name, #user-title {
+      text-align: right;
+    }
   }
-  &:hover {
-    background-color: $yada-white;
-    color: $yada-black;
-  }
-}
 
-#conn-submit-btn {
+  .conn-submit-btn {
     border: 1px solid $yada-red;
     background-color: $yada-white;
     color: $yada-red;
-}
-
-#conn-submit-btn:hover {
-    background-color: $yada-red;
-    color: $yada-white;
+    &:hover {
+      background-color: $yada-red;
+      color: $yada-white;
+    }
+  }
 }

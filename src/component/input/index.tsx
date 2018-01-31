@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { Column } from "react-foundation";
+import { Cell } from "react-foundation";
 import { WrappedFieldProps } from "redux-form";
 
 interface IInputOwnProps {
@@ -15,13 +15,13 @@ class Input extends React.PureComponent<TInputProps, {}> {
   public render() {
     const { name, label, type, input, meta } = this.props;
     return (
-      <Column>
+      <Cell>
         <label>{label}</label>
         <div>
           <input name={name} type={type} {...input} />
           {meta.touched && ((meta.error && <span>{meta.error}</span>) || (meta.warning && <span>{meta.warning}</span>))}
         </div>
-      </Column>
+      </Cell>
     );
   }
 }

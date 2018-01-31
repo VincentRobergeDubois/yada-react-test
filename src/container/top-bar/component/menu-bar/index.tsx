@@ -1,6 +1,7 @@
 import * as React from "react";
 
-import { Alignments, Icon, Menu, MenuItem, Row } from "react-foundation";
+import { Icon } from "react-fa";
+import { Alignments, Menu, MenuItem } from "react-foundation";
 import { Link } from "react-router-dom";
 
 import { IMenuItem } from "model/menu-item";
@@ -14,11 +15,11 @@ type TMenuBarProps = IMenuBarOwnProps;
 class MenuBar extends React.PureComponent<TMenuBarProps, {}> {
   public render(): JSX.Element {
     return (
-      <Row id="menu-bar" isExpanded={true}>
+      <div className="main-menu">
         <Menu alignment={Alignments.RIGHT} iconsOnTop={true} isDropdown={true}>
           {this.renderMenuItemList()}
         </Menu>
-      </Row>
+      </div>
     );
   }
 

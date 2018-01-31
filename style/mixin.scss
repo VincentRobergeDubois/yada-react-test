@@ -1,0 +1,21 @@
+@mixin guest-container {
+  height: 100%;
+  @include xy-grid();
+  .sidebar {
+    @include show-for(large);
+    @include breakpoint(large) {
+      @include xy-cell(35%);
+    }
+    height: 100%;
+    img {
+      height: 100%;
+      width: 100%;
+    }
+  }
+  .content {
+    @include xy-cell();
+    @include breakpoint(large) {
+      @include xy-cell(65%);
+    }
+  }
+}

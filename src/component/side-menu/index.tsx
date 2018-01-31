@@ -1,6 +1,7 @@
 import * as React from "react";
 
-import { Column, Icon, Menu, MenuItem } from "react-foundation";
+import { Icon } from "react-fa";
+import { Menu, MenuItem } from "react-foundation";
 
 import { IMenuItem } from "model/menu-item";
 
@@ -14,11 +15,9 @@ type TSideMenuProps = ISideMenuOwnProps;
 class SideMenu extends React.PureComponent<TSideMenuProps, {}> {
   public render(): JSX.Element {
     return (
-      <Column id="side-menu" large={3} flexChild="auto">
-        <Menu isVertical={true}>
-          {this.renderMenuItemList()}
-        </Menu>
-      </Column>
+      <Menu isVertical={true}>
+        {this.renderMenuItemList()}
+      </Menu>
     );
   }
 

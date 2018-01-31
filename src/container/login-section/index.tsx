@@ -26,9 +26,11 @@ type TLoginSectionProps = ILoginSectionOwnProps & ILoginSectionDispatchProps;
 class LoginSection extends React.PureComponent<TLoginSectionProps, {}> {
   public render() {
     return (
-      <LoginForm
-        handleLogin={this.handleLogin}
-      />
+      <div>
+        <LoginForm
+          handleLogin={this.handleLogin}
+        />
+      </div>
     );
   }
 
@@ -46,4 +48,7 @@ const mapDispatchToProps = (dispatch: Dispatch<IState>): ILoginSectionDispatchPr
   };
 };
 
-export default connect<{}, ILoginSectionDispatchProps, ILoginSectionOwnProps>(null, mapDispatchToProps)(LoginSection);
+export default connect<{}, ILoginSectionDispatchProps, ILoginSectionOwnProps>(
+  null,
+  mapDispatchToProps,
+)(LoginSection);

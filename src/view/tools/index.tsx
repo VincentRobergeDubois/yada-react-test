@@ -1,18 +1,19 @@
 import * as React from "react";
 
-import { Column, Row } from "react-foundation";
+import { Cell, Grid } from "react-foundation";
 
+import ToolsSection from "container/tools-section";
 import TopBar from "container/top-bar";
 
 class Tools extends React.PureComponent<{}, {}> {
   public render(): JSX.Element {
     return (
-      <Row id="admin-container" isExpanded={true}>
-        <Column id="content">
+      <Grid id="admin-container">
+        <Cell id="content">
           <TopBar />
-          <span>Tools</span>
-        </Column>
-      </Row>
+          <ToolsSection />
+        </Cell>
+      </Grid>
     );
   }
 }

@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { Alignments, Column, Icon, Row } from "react-foundation";
+import { Icon } from "react-fa";
 import { Link } from "react-router-dom";
 
 import { IOrganisation } from "model/organisation";
@@ -16,31 +16,31 @@ type TUserBarProps = IUserBarOwnProps;
 class UserBar extends React.PureComponent<TUserBarProps, {}> {
   public render(): JSX.Element {
     return (
-      <Row id="user-bar" verticalAlignment={Alignments.MIDDLE} isExpanded={true}>
-        <Column>
-          <Link to="/">
-            <img src="./images/yada-logo.png" alt="Yada" height="40" width="84" />
-          </Link>
-        </Column>
+      <div className="user-bar">
+        <Link to="/" className="logo-link">
+          <img src="./images/yada-logo.png" alt="Yada" height="40" width="84" />
+        </Link>
         {this.props.user.id !== 0 && this.renderOrganisation()}
         {this.props.user.id !== 0 && this.renderUserInfos()}
         {this.props.user.id !== 0 ? this.renderLogoutLink() : this.renderLoginLink()}
-      </Row>
+      </div>
     );
   }
 
   private renderOrganisation = (): JSX.Element => {
     if (this.props.user.organisationList.length > 1) {
       return (
-        <Column large={3}>
+        <div>
           <select>
             {this.renderOrganisationListOptions()}
           </select>
-        </Column>
+        </div>
       );
     }
     return (
-      <Column large={2}>{this.props.user.organisationList[0].abreviation}</Column>
+      <div>
+        {this.props.user.organisationList[0].abreviation}
+      </div>
     );
   }
 
@@ -54,22 +54,26 @@ class UserBar extends React.PureComponent<TUserBarProps, {}> {
 
   private renderUserInfos = (): JSX.Element => {
     return (
-      <Column large={2}>
-        <Row id="user-name">{this.props.user.firstname} {this.props.user.lastname}</Row>
-        <Row>{this.props.user.title}</Row>
-      </Column>
+      <div>
+        <div id="user-name">{this.props.user.firstname} {this.props.user.lastname}</div>
+        <div>{this.props.user.title}</div>
+      </div>
     );
   }
 
   private renderLogoutLink = (): JSX.Element => {
     return (
-      <Link to="/" onClick={this.props.logout} className="login-btn"><Icon name="fi-power" /></Link>
+      <Link to="/" className="conn-btn" onClick={this.props.logout} >
+        <Icon name="sign-out" />
+      </Link>
     );
   }
 
   private renderLoginLink = (): JSX.Element => {
     return (
-      <Link className="login-btn" to="/login"><Icon name="fi-torso" /></Link>
+      <Link to="/login" className="conn-btn">
+        <Icon name="sign-in" />
+      </Link>
     );
   }
 }

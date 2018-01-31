@@ -12,7 +12,7 @@ type TSideBarProps = ISideBarOwnProps;
 class SideBar extends React.PureComponent<TSideBarProps, {}> {
   public render(): JSX.Element {
     return (
-      <Link to={this.props.link}>
+      <Link className="sidebar" to={this.props.link}>
         <img src={this.props.image} alt="Yada" />
       </Link>
     );

@@ -37,7 +37,7 @@ class TopBar extends React.PureComponent<TTopBarProps, {}> {
 
   public render(): JSX.Element {
     return (
-      <div>
+      <div id="top-bar">
         <UserBar
           user={this.props.user}
           logout={this.props.logout}
@@ -70,5 +70,7 @@ const mapDispatchToProps = (dispatch: Dispatch<IState>): ITopBarDispatchProps =>
   };
 };
 
-export default
-connect<ITopBarStateProps, ITopBarDispatchProps, ITopBarOwnProps>(mapStateToProps, mapDispatchToProps)(TopBar);
+export default connect<ITopBarStateProps, ITopBarDispatchProps, ITopBarOwnProps>(
+  mapStateToProps,
+  mapDispatchToProps,
+)(TopBar);

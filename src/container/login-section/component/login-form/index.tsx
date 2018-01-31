@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { Row } from "react-foundation";
+import { Grid } from "react-foundation";
 import { Field, InjectedFormProps, reduxForm } from "redux-form";
 
 import { required } from "service/form-validator";
@@ -20,7 +20,7 @@ class LoginForm extends React.PureComponent<TLoginFormProps & InjectedProps, {}>
   public render(): JSX.Element {
     return (
       <form onSubmit={this.props.handleSubmit(this.props.handleLogin())}>
-        <Row>
+        <Grid>
           <Field
             name="username"
             label="Nom d'utilisateur"
@@ -28,8 +28,8 @@ class LoginForm extends React.PureComponent<TLoginFormProps & InjectedProps, {}>
             component={Input}
             validate={[ required ]}
           />
-        </Row>
-        <Row>
+        </Grid>
+        <Grid>
           <Field
             name="password"
             label="Mot de passe"
@@ -37,7 +37,7 @@ class LoginForm extends React.PureComponent<TLoginFormProps & InjectedProps, {}>
             component={Input}
             validate={[ required ]}
           />
-        </Row>
+        </Grid>
         <button type="submit" className="button expanded" disabled={this.props.submitting}>Connexion</button>
       </form>
     );
