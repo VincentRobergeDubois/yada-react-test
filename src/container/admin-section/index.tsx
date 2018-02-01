@@ -5,32 +5,29 @@ import { connect } from "react-redux";
 import { bindActionCreators, Dispatch } from "redux";
 
 import { loadAdminMenuItemList, parseMenuItem } from "action/menu-item-action";
-import { IMenuItem } from "model/menu-item";
-import { IOrganisation } from "model/organisation";
-import { IPost } from "model/post";
-import { IService } from "model/service";
-import { IState } from "model/state";
-import { IUser } from "model/user";
-import { getAdminMenuItemList, getCurrentMenuItem } from "selector/menu-item";
-import { getOrganisationList } from "selector/organisation";
-import { getPostList } from "selector/post";
-import { getServiceList } from "selector/service";
-import { getUserList } from "selector/user";
-
 import SideMenu from "component/side-menu";
+import { IIsFormStruct, ISelectedItemStruct, ISelectedListStruct } from "container/admin-section/model";
+import { getIsFormStruct, getSelectedItemStruct, getSelectedListStruct } from "container/admin-section/selector";
+import { IMenuItem } from "model/menu-item";
+import { IState } from "model/state";
+import { getAdminMenuItemList, getCurrentMenuItem } from "selector/menu-item";
+
 import OrganisationDetail from "./component/organisation-detail";
+import OrganisationForm from "./component/organisation-form";
 import PostDetail from "./component/post-detail";
+import PostForm from "./component/post-form";
 import ServiceDetail from "./component/service-detail";
+import ServiceForm from "./component/service-form";
 import UserDetail from "./component/user-detail";
+import UserForm from "./component/user-form";
 import { ORGANISATION_ID, POST_ID, SERVICE_ID } from "./constant";
 
 export interface IAdminSectionStateProps {
   adminMenuItemList: IMenuItem[];
-  organisationList: IOrganisation[];
-  postList: IPost[];
+  isFormStruct: IIsFormStruct;
   selectedItem: IMenuItem;
-  serviceList: IService[];
-  userList: IUser[];
+  selectedItemStruct: ISelectedItemStruct;
+  selectedListStruct: ISelectedListStruct;
 }
 
 export interface IAdminSectionDispatchProps {
@@ -60,13 +57,25 @@ export class AdminSection extends React.PureComponent<TAdminSectionProps, {}> {
   private renderAdminDetail = (): JSX.Element => {
     switch (this.props.selectedItem.id) {
       case ORGANISATION_ID:
-        return <OrganisationDetail organisationList={this.props.organisationList} />;
+        if (this.props.isFormStruct.organisation) {
+          return <OrganisationForm organisation={this.props.selectedItemStruct.organisation} />;
+        }
+        return <OrganisationDetail organisationList={this.props.selectedListStruct.organisation} />;
       case SERVICE_ID:
-        return <ServiceDetail serviceList={this.props.serviceList} />;
+        if (this.props.isFormStruct.service) {
+          return <ServiceForm service={this.props.selectedItemStruct.service} />;
+        }
+        return <ServiceDetail serviceList={this.props.selectedListStruct.service} />;
       case POST_ID:
-        return <PostDetail postList={this.props.postList} />;
+        if (this.props.isFormStruct.post) {
+          return <PostForm post={this.props.selectedItemStruct.post} />;
+        }
+        return <PostDetail postList={this.props.selectedListStruct.post} />;
       default:
-        return <UserDetail userList={this.props.userList} />;
+        if (this.props.isFormStruct.user) {
+          return <UserForm user={this.props.selectedItemStruct.user} />;
+        }
+        return <UserDetail userList={this.props.selectedListStruct.user} />;
     }
   }
 
@@ -78,11 +87,10 @@ export class AdminSection extends React.PureComponent<TAdminSectionProps, {}> {
 const mapStateToProps = (state: IState): IAdminSectionStateProps => {
   return {
     adminMenuItemList: getAdminMenuItemList(state),
-    organisationList: getOrganisationList(state),
-    postList: getPostList(state),
+    isFormStruct: getIsFormStruct(state),
     selectedItem: getCurrentMenuItem(state),
-    serviceList: getServiceList(state),
-    userList: getUserList(state),
+    selectedItemStruct: getSelectedItemStruct(state),
+    selectedListStruct: getSelectedListStruct(state),
   };
 };
 

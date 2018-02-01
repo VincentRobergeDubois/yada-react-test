@@ -2,11 +2,13 @@ import * as React from "react";
 
 import { InjectedFormProps, reduxForm } from "redux-form";
 
+import { IUserConn } from "model/user";
+
 import { USER_FORM_NAME } from "../../constant";
 import { IUserFormValues } from "../../model";
 
 interface IUserFormOwnProps {
-  prop: string;
+  user: IUserConn;
 }
 
 type TUserFormProps = IUserFormOwnProps;

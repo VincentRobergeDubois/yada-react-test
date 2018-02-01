@@ -35,5 +35,6 @@ export interface IUserConn {
 
 export interface IUserState {
   current: IUserConn;
+  isForm: boolean;
   list: IUser[];
 }

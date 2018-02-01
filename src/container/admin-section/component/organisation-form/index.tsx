@@ -2,11 +2,13 @@ import * as React from "react";
 
 import { InjectedFormProps, reduxForm } from "redux-form";
 
+import { IOrganisation } from "model/organisation";
+
 import { ORGANISATION_FORM_NAME } from "../../constant";
 import { IOrganisationFormValues } from "../../model";
 
 interface IOrganisationFormOwnProps {
-  prop: string;
+  organisation: IOrganisation;
 }
 
 type TOrganisationFormProps = IOrganisationFormOwnProps;

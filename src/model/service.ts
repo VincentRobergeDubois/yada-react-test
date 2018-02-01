@@ -14,5 +14,6 @@ export interface IService {
 
 export interface IServiceState {
   current: IService;
+  isForm: boolean;
   list: IService[];
 }

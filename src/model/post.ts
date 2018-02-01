@@ -15,5 +15,6 @@ export interface IPost {
 
 export interface IPostState {
   current: IPost;
+  isForm: boolean;
   list: IPost[];
 }

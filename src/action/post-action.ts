@@ -4,7 +4,8 @@ import { Dispatch } from "redux";
 import { IPost } from "model/post";
 import { IState } from "model/state";
 
-export const POST_PARSE = "POST_PARSE";
+export const CURRENT_POST_PARSE = "CURRENT_POST_PARSE";
+export const IS_POST_FORM_PARSE = "IS_POST_FORM_PARSE";
 export const POST_LIST_PARSE = "POST_LIST_PARSE";
 
 const END_POINT_URL = "http://localhost:3000/posts/";
@@ -20,8 +21,12 @@ interface IPostResponse<I> {
   status: number;
 }
 
-export const parsePost = (post: IPost) => {
-  return { type: POST_PARSE, payload: post };
+export const parseCurrentPost = (post: IPost) => {
+  return { type: CURRENT_POST_PARSE, payload: post };
+};
+
+export const parseIsPostForm = (isForm: boolean) => {
+  return { type: IS_POST_FORM_PARSE, payload: isForm };
 };
 
 export const parsePostList = (list: IPost[]) => {
@@ -32,7 +37,7 @@ export const loadPost = (postId: number) => {
   return (dispatch: Dispatch<IState>): Promise<void> => {
     return axios.get(`${END_POINT_URL}${postId}`).then(
       (response: AxiosResponse<IPostResponse<IPost>>) => {
-        dispatch(parsePost(response.data.data));
+        dispatch(parseCurrentPost(response.data.data));
       },
     );
   };

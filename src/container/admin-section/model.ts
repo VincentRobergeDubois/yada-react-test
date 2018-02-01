@@ -1,14 +1,31 @@
 import { FieldState, RegisteredFieldState } from "redux-form";
 
-export interface IUserForm {
+import { IOrganisation } from "model/organisation";
+import { IPost } from "model/post";
+import { IService } from "model/service";
+import { IUser, IUserConn } from "model/user";
+
+export interface IOrganisationForm {
   field: RegisteredFieldState;
 }
 
-export interface IUserFormFields {
+export interface IOrganisationFormFields {
   field: FieldState;
 }
 
-export interface IUserFormValues {
+export interface IOrganisationFormValues {
+  field: string;
+}
+
+export interface IPostForm {
+  field: RegisteredFieldState;
+}
+
+export interface IPostFormFields {
+  field: FieldState;
+}
+
+export interface IPostFormValues {
   field: string;
 }
 
@@ -24,14 +41,35 @@ export interface IServiceFormValues {
   field: string;
 }
 
-export interface IOrganisationForm {
+export interface IUserForm {
   field: RegisteredFieldState;
 }
 
-export interface IOrganisationFormFields {
+export interface IUserFormFields {
   field: FieldState;
 }
 
-export interface IOrganisationFormValues {
+export interface IUserFormValues {
   field: string;
+}
+
+export interface ISelectedItemStruct {
+  organisation: IOrganisation;
+  post: IPost;
+  service: IService;
+  user: IUserConn;
+}
+
+export interface ISelectedListStruct {
+  organisation: IOrganisation[];
+  post: IPost[];
+  service: IService[];
+  user: IUser[];
+}
+
+export interface IIsFormStruct {
+  organisation: boolean;
+  post: boolean;
+  service: boolean;
+  user: boolean;
 }

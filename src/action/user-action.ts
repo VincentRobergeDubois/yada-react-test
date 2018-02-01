@@ -8,7 +8,8 @@ import { IUser, IUserConn } from "model/user";
 
 export const LOGOUT = "LOGOUT";
 
-export const USER_PARSE = "USER_PARSE";
+export const CURRENT_USER_PARSE = "CURRENT_USER_PARSE";
+export const IS_USER_FORM_PARSE = "IS_USER_FORM_PARSE";
 export const USER_LIST_PARSE = "USER_LIST_PARSE";
 
 const END_POINT_URL = "http://localhost:3000/users/";
@@ -24,8 +25,12 @@ interface IUserResponse<I> {
   status: number;
 }
 
-export const parseUser = (user: IUserConn) => {
-  return { type: USER_PARSE, payload: user };
+export const parseCurrentUser = (user: IUserConn) => {
+  return { type: CURRENT_USER_PARSE, payload: user };
+};
+
+export const parseIsUserForm = (isForm: boolean) => {
+  return { type: IS_USER_FORM_PARSE, payload: isForm };
 };
 
 export const parseUserList = (list: IUser[]) => {
@@ -35,7 +40,7 @@ export const parseUserList = (list: IUser[]) => {
 export const loadUser = (userId: number) => {
   return (dispatch: Dispatch<IState>): Promise<void> => {
     return axios.get(`${END_POINT_URL}${userId}`).then((response: AxiosResponse<IUserResponse<IUserConn>>) => {
-      dispatch(parseUser(response.data.data));
+      dispatch(parseCurrentUser(response.data.data));
     });
   };
 };

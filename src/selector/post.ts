@@ -18,3 +18,10 @@ export const getPostList = createSelector(
     return post.list;
   },
 );
+
+export const getIsPostForm = createSelector(
+  getPost,
+  (post: IPostState): boolean => {
+    return post.isForm;
+  },
+);

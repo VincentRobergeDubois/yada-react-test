@@ -1,4 +1,9 @@
-import { IOrganisationAction, ORGANISATION_LIST_PARSE, ORGANISATION_PARSE } from "action/organisation-action";
+import {
+  CURRENT_ORGANISATION_PARSE,
+  IOrganisationAction,
+  IS_ORGANISATION_FORM_PARSE,
+  ORGANISATION_LIST_PARSE,
+} from "action/organisation-action";
 import { LOGOUT } from "action/user-action";
 import { IOrganisationState } from "model/organisation";
 
@@ -12,13 +17,16 @@ const INITIAL_STATE: IOrganisationState = {
     name: "",
     phone: 0,
   },
+  isForm: false,
   list: [],
 };
 
 export default (state: IOrganisationState = INITIAL_STATE, action: IOrganisationAction) => {
   switch (action.type) {
-    case ORGANISATION_PARSE:
+    case CURRENT_ORGANISATION_PARSE:
       return { ...state, current: action.payload };
+    case IS_ORGANISATION_FORM_PARSE:
+      return { ...state, isForm: action.payload };
     case ORGANISATION_LIST_PARSE:
       return { ...state, list: action.payload };
     case LOGOUT:

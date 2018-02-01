@@ -4,7 +4,8 @@ import { Dispatch } from "redux";
 import { IOrganisation } from "model/organisation";
 import { IState } from "model/state";
 
-export const ORGANISATION_PARSE = "ORGANISATION_PARSE";
+export const CURRENT_ORGANISATION_PARSE = "CURRENT_ORGANISATION_PARSE";
+export const IS_ORGANISATION_FORM_PARSE = "IS_ORGANISATION_FORM_PARSE";
 export const ORGANISATION_LIST_PARSE = "ORGANISATION_LIST_PARSE";
 
 const END_POINT_URL = "http://localhost:3000/organisations/";
@@ -20,8 +21,12 @@ interface IOrganisationResponse<I> {
   status: number;
 }
 
-export const parseOrganisation = (organisation: IOrganisation) => {
-  return { type: ORGANISATION_PARSE, payloda: organisation };
+export const parseCurrentOrganisation = (organisation: IOrganisation) => {
+  return { type: CURRENT_ORGANISATION_PARSE, payload: organisation };
+};
+
+export const parseIsOrganisationForm = (isForm: boolean) => {
+  return { type: IS_ORGANISATION_FORM_PARSE, payload: isForm};
 };
 
 export const parseOrganisationList = (list: IOrganisation[]) => {
@@ -32,7 +37,7 @@ export const loadOrganisation = (organisationId: number) => {
   return (dispatch: Dispatch<IState>): Promise<void> => {
     return axios.get(`${END_POINT_URL}${organisationId}`).then(
       (response: AxiosResponse<IOrganisationResponse<IOrganisation>>) => {
-        dispatch(parseOrganisation(response.data.data));
+        dispatch(parseCurrentOrganisation(response.data.data));
       },
     );
   };

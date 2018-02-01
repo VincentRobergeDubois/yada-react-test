@@ -18,3 +18,10 @@ export const getServiceList = createSelector(
     return service.list;
   },
 );
+
+export const getIsServiceForm = createSelector(
+  getService,
+  (service: IServiceState): boolean => {
+    return service.isForm;
+  },
+);

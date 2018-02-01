@@ -18,3 +18,10 @@ export const getOrganisationList = createSelector(
     return organisation.list;
   },
 );
+
+export const getIsOrganisationForm = createSelector(
+  getOrganisation,
+  (organisation: IOrganisationState): boolean => {
+    return organisation.isForm;
+  },
+);

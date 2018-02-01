@@ -18,3 +18,10 @@ export const getUserList = createSelector(
     return user.list;
   },
 );
+
+export const getIsUserForm = createSelector(
+  getUser,
+  (user: IUserState): boolean => {
+    return user.isForm;
+  },
+);
