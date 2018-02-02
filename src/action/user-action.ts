@@ -3,6 +3,7 @@ import axios, { AxiosError, AxiosResponse } from "axios";
 import { Dispatch } from "redux";
 
 import { loadAdminMenuItemList, loadMainMenuItemList } from "action/menu-item-action";
+import { loadStructureAdmin } from "action/structure-admin";
 import { IState } from "model/state";
 import { IUser, IUserConn } from "model/user";
 
@@ -16,7 +17,7 @@ const END_POINT_URL = "http://localhost:3000/users/";
 
 export interface IUserAction {
   type: string;
-  payload?: IUserConn | IUser | IUser[];
+  payload?: boolean | IUserConn | IUser | IUser[];
 }
 
 interface IUserResponse<I> {
@@ -25,15 +26,15 @@ interface IUserResponse<I> {
   status: number;
 }
 
-export const parseCurrentUser = (user: IUserConn) => {
+export const parseCurrentUser = (user: IUserConn): IUserAction => {
   return { type: CURRENT_USER_PARSE, payload: user };
 };
 
-export const parseIsUserForm = (isForm: boolean) => {
+export const parseIsUserForm = (isForm: boolean): IUserAction => {
   return { type: IS_USER_FORM_PARSE, payload: isForm };
 };
 
-export const parseUserList = (list: IUser[]) => {
+export const parseUserList = (list: IUser[]): IUserAction => {
   return { type: USER_LIST_PARSE, payload: list };
 };
 
@@ -41,6 +42,9 @@ export const loadUser = (userId: number) => {
   return (dispatch: Dispatch<IState>): Promise<void> => {
     return axios.get(`${END_POINT_URL}${userId}`).then((response: AxiosResponse<IUserResponse<IUserConn>>) => {
       dispatch(parseCurrentUser(response.data.data));
+      if (response.data.data.admin === 1) {
+        dispatch(loadStructureAdmin());
+      }
     });
   };
 };
