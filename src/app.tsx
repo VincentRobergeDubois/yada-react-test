@@ -9,7 +9,12 @@ import Router from "router";
 
 import "../style/app.scss";
 
-const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
+// tslint:disable
+const risi = require("redux-immutable-state-invariant");
+// tsling:enable
+
+const middleware = process.env.NODE_ENV !== "production" ? [risi.default(), ReduxThunk] : [ReduxThunk];
+const store = createStore(rootReducer, applyMiddleware(...middleware));
 
 ReactDom.render(
   <Provider store={store}>

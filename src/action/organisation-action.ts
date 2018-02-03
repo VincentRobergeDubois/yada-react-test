@@ -1,6 +1,7 @@
-import axios, { AxiosError, AxiosResponse } from "axios";
+import axios, { AxiosResponse } from "axios";
 import { Dispatch } from "redux";
 
+import { IAction, IResponse } from "model/action";
 import { IOrganisation } from "model/organisation";
 import { IState } from "model/state";
 
@@ -10,33 +11,22 @@ export const ORGANISATION_LIST_PARSE = "ORGANISATION_LIST_PARSE";
 
 const END_POINT_URL = "http://localhost:3000/organisations/";
 
-export interface IOrganisationAction {
-  type: string;
-  payload?: IOrganisation | IOrganisation[];
-}
-
-interface IOrganisationResponse<I> {
-  data: I;
-  error: AxiosError;
-  status: number;
-}
-
-export const parseCurrentOrganisation = (organisation: IOrganisation) => {
+export const parseCurrentOrganisation = (organisation: IOrganisation): IAction<IOrganisation> => {
   return { type: CURRENT_ORGANISATION_PARSE, payload: organisation };
 };
 
-export const parseIsOrganisationForm = (isForm: boolean) => {
+export const parseIsOrganisationForm = (isForm: boolean): IAction<boolean> => {
   return { type: IS_ORGANISATION_FORM_PARSE, payload: isForm};
 };
 
-export const parseOrganisationList = (list: IOrganisation[]) => {
+export const parseOrganisationList = (list: IOrganisation[]): IAction<IOrganisation[]> => {
   return { type: ORGANISATION_LIST_PARSE, payload: list };
 };
 
 export const loadOrganisation = (organisationId: number) => {
   return (dispatch: Dispatch<IState>): Promise<void> => {
     return axios.get(`${END_POINT_URL}${organisationId}`).then(
-      (response: AxiosResponse<IOrganisationResponse<IOrganisation>>) => {
+      (response: AxiosResponse<IResponse<IOrganisation>>) => {
         dispatch(parseCurrentOrganisation(response.data.data));
       },
     );
@@ -46,7 +36,7 @@ export const loadOrganisation = (organisationId: number) => {
 export const loadOrganisationList = () => {
   return (dispatch: Dispatch<IState>): Promise<void> => {
     return axios.get(`${END_POINT_URL}`).then(
-      (response: AxiosResponse<IOrganisationResponse<IOrganisation[]>>) => {
+      (response: AxiosResponse<IResponse<IOrganisation[]>>) => {
         dispatch(parseOrganisationList(response.data.data));
       },
     );

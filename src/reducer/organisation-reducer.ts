@@ -1,10 +1,10 @@
 import {
   CURRENT_ORGANISATION_PARSE,
-  IOrganisationAction,
   IS_ORGANISATION_FORM_PARSE,
   ORGANISATION_LIST_PARSE,
 } from "action/organisation-action";
 import { LOGOUT } from "action/user-action";
+import { IAction, TOrganisationAction } from "model/action";
 import { IOrganisationState } from "model/organisation";
 
 const INITIAL_STATE: IOrganisationState = {
@@ -21,7 +21,7 @@ const INITIAL_STATE: IOrganisationState = {
   list: [],
 };
 
-export default (state: IOrganisationState = INITIAL_STATE, action: IOrganisationAction) => {
+export default (state: IOrganisationState = INITIAL_STATE, action: IAction<TOrganisationAction>) => {
   switch (action.type) {
     case CURRENT_ORGANISATION_PARSE:
       return { ...state, current: action.payload };

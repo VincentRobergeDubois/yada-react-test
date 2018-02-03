@@ -1,9 +1,9 @@
 import {
   CURRENT_POST_PARSE,
-  IPostAction,
   IS_POST_FORM_PARSE,
   POST_LIST_PARSE,
 } from "action/post-action";
+import { IAction, TPostAction } from "model/action";
 import { IPostState } from "model/post";
 
 const INITIAL_STATE: IPostState = {
@@ -12,7 +12,7 @@ const INITIAL_STATE: IPostState = {
   list: [],
 };
 
-export default (state: IPostState = INITIAL_STATE, action: IPostAction) => {
+export default (state: IPostState = INITIAL_STATE, action: IAction<TPostAction>) => {
   switch (action.type) {
     case CURRENT_POST_PARSE:
       return { ...state, current: action.payload };

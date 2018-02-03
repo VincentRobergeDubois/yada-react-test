@@ -1,10 +1,10 @@
 import {
   ADMIN_MENU_ITEM_LIST_PARSE,
-  IMenuItemAction,
   MAIN_MENU_ITEM_LIST_PARSE,
   MENU_ITEM_PARSE,
 } from "action/menu-item-action";
 import { LOGOUT } from "action/user-action";
+import { IAction, TMenuItemAction } from "model/action";
 import { IMenuItemState } from "model/menu-item";
 
 const INITIAL_STATE: IMenuItemState = {
@@ -13,7 +13,7 @@ const INITIAL_STATE: IMenuItemState = {
   mainMenuList: [],
 };
 
-export default (state: IMenuItemState = INITIAL_STATE, action: IMenuItemAction) => {
+export default (state: IMenuItemState = INITIAL_STATE, action: IAction<TMenuItemAction>) => {
   switch (action.type) {
     case MENU_ITEM_PARSE:
       return { ...state, current: action.payload };

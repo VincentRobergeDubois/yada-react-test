@@ -1,10 +1,10 @@
 import {
   CURRENT_SERVICE_PARSE,
   IS_SERVICE_FORM_PARSE,
-  IServiceAction,
   SERVICE_LIST_PARSE,
 } from "action/service-action";
 import { LOGOUT } from "action/user-action";
+import { IAction, TServiceAction } from "model/action";
 import { IServiceState } from "model/service";
 
 const INITIAL_STATE: IServiceState = {
@@ -13,7 +13,7 @@ const INITIAL_STATE: IServiceState = {
   list: [],
 };
 
-export default (state: IServiceState = INITIAL_STATE, action: IServiceAction) => {
+export default (state: IServiceState = INITIAL_STATE, action: IAction<TServiceAction>) => {
   switch (action.type) {
     case CURRENT_SERVICE_PARSE:
       return { ...state, current: action.payload };
