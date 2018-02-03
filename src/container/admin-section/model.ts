@@ -5,6 +5,18 @@ import { IPost } from "model/post";
 import { IService } from "model/service";
 import { IUser, IUserConn } from "model/user";
 
+export interface IMenuItemForm {
+  field: RegisteredFieldState;
+}
+
+export interface IMenuItemFormFields {
+  field: FieldState;
+}
+
+export interface IMenuItemFormValues {
+  field: string;
+}
+
 export interface IOrganisationForm {
   field: RegisteredFieldState;
 }

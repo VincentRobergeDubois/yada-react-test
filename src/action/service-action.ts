@@ -1,6 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 import { Dispatch } from "redux";
 
+import { IServiceFormValues } from "container/admin-section/model";
 import { IAction, IResponse } from "model/action";
 import { IService } from "model/service";
 import { IState } from "model/state";
@@ -36,6 +37,26 @@ export const loadService = (serviceId: number) => {
 export const loadServiceList = () => {
   return (dispatch: Dispatch<IState>): Promise<void> => {
     return axios.get(`${END_POINT_URL}`).then(
+      (response: AxiosResponse<IResponse<IService[]>>) => {
+        dispatch(parseServiceList(response.data.data));
+      },
+    );
+  };
+};
+
+export const createService = (formData: IServiceFormValues) => {
+  return (dispatch: Dispatch<IState>): Promise<void> => {
+    return axios.post(`${END_POINT_URL}`, formData).then(
+      (response: AxiosResponse<IResponse<IService[]>>) => {
+        dispatch(parseServiceList(response.data.data));
+      },
+    );
+  };
+};
+
+export const updateService = (formData: IServiceFormValues, id: number) => {
+  return (dispatch: Dispatch<IState>): Promise<void> => {
+    return axios.patch(`${END_POINT_URL}${id}`, formData).then(
       (response: AxiosResponse<IResponse<IService[]>>) => {
         dispatch(parseServiceList(response.data.data));
       },

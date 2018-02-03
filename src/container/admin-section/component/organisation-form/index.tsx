@@ -8,6 +8,7 @@ import { ORGANISATION_FORM_NAME } from "../../constant";
 import { IOrganisationFormValues } from "../../model";
 
 interface IOrganisationFormOwnProps {
+  handleFormSubmit: () => void;
   organisation: IOrganisation;
 }
 
@@ -17,7 +18,7 @@ type InjectedProps = InjectedFormProps<IOrganisationFormValues, TOrganisationFor
 class OrganisationForm extends React.PureComponent<TOrganisationFormProps & InjectedProps, {}> {
   public render(): JSX.Element {
     return (
-      <form>
+      <form onSubmit={this.props.handleSubmit(this.props.handleFormSubmit)}>
         myForm
       </form>
     );

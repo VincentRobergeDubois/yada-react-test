@@ -4,6 +4,7 @@ import { Dispatch } from "redux";
 
 import { loadAdminMenuItemList, loadMainMenuItemList } from "action/menu-item-action";
 import { loadStructureAdmin } from "action/structure-admin";
+import { IUserFormValues } from "container/admin-section/model";
 import { IAction, IResponse } from "model/action";
 import { IState } from "model/state";
 import { IUser, IUserConn } from "model/user";
@@ -47,6 +48,26 @@ export const loadUserList = () => {
   };
 };
 
+export const createUser = (formData: IUserFormValues) => {
+  return (dispatch: Dispatch<IState>): Promise<void> => {
+    return axios.post(`${END_POINT_URL}`, formData).then(
+      (response: AxiosResponse<IResponse<IUser[]>>) => {
+        dispatch(parseUserList(response.data.data));
+      },
+    );
+  };
+};
+
+export const updateUser = (formData: IUserFormValues, id: number) => {
+  return (dispatch: Dispatch<IState>): Promise<void> => {
+    return axios.patch(`${END_POINT_URL}${id}`, formData).then(
+      (response: AxiosResponse<IResponse<IUser[]>>) => {
+        dispatch(parseUserList(response.data.data));
+      },
+    );
+  };
+};
+
 export const login = (username: string, password: string) => {
   return (dispatch: Dispatch<IState>): Promise<void> => {
     return axios.get(`${END_POINT_URL}username/${username}`).then((response: AxiosResponse<IResponse<IUser>>) => {
@@ -61,13 +82,5 @@ export const logout = () => {
   return (dispatch: Dispatch<IState>): void => {
     dispatch({ type: LOGOUT });
     dispatch(loadMainMenuItemList(1, 6, 1));
-  };
-};
-
-export const createUser = (user: IUser) => {
-  return (dispatch: Dispatch<IState>): Promise<void> => {
-    return axios.post(`${END_POINT_URL}`, user).then((response: AxiosResponse<IResponse<IUser>>) => {
-      dispatch(loadUserList());
-    });
   };
 };

@@ -1,6 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 import { Dispatch } from "redux";
 
+import { IPostFormValues } from "container/admin-section/model";
 import { IAction, IResponse } from "model/action";
 import { IPost } from "model/post";
 import { IState } from "model/state";
@@ -36,6 +37,26 @@ export const loadPost = (postId: number) => {
 export const loadPostList = () => {
   return (dispatch: Dispatch<IState>): Promise<void> => {
     return axios.get(`${END_POINT_URL}`).then(
+      (response: AxiosResponse<IResponse<IPost[]>>) => {
+        dispatch(parsePostList(response.data.data));
+      },
+    );
+  };
+};
+
+export const createPost = (formData: IPostFormValues) => {
+  return (dispatch: Dispatch<IState>): Promise<void> => {
+    return axios.post(`${END_POINT_URL}`, formData).then(
+      (response: AxiosResponse<IResponse<IPost[]>>) => {
+        dispatch(parsePostList(response.data.data));
+      },
+    );
+  };
+};
+
+export const updatePost = (formData: IPostFormValues, id: number) => {
+  return (dispatch: Dispatch<IState>): Promise<void> => {
+    return axios.patch(`${END_POINT_URL}${id}`, formData).then(
       (response: AxiosResponse<IResponse<IPost[]>>) => {
         dispatch(parsePostList(response.data.data));
       },

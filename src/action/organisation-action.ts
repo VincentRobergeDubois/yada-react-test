@@ -1,6 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 import { Dispatch } from "redux";
 
+import { IOrganisationFormValues } from "container/admin-section/model";
 import { IAction, IResponse } from "model/action";
 import { IOrganisation } from "model/organisation";
 import { IState } from "model/state";
@@ -36,6 +37,26 @@ export const loadOrganisation = (organisationId: number) => {
 export const loadOrganisationList = () => {
   return (dispatch: Dispatch<IState>): Promise<void> => {
     return axios.get(`${END_POINT_URL}`).then(
+      (response: AxiosResponse<IResponse<IOrganisation[]>>) => {
+        dispatch(parseOrganisationList(response.data.data));
+      },
+    );
+  };
+};
+
+export const createOrganisation = (formData: IOrganisationFormValues) => {
+  return (dispatch: Dispatch<IState>): Promise<void> => {
+    return axios.post(`${END_POINT_URL}`, formData).then(
+      (response: AxiosResponse<IResponse<IOrganisation[]>>) => {
+        dispatch(parseOrganisationList(response.data.data));
+      },
+    );
+  };
+};
+
+export const updateOrganisation = (formData: IOrganisationFormValues, id: number) => {
+  return (dispatch: Dispatch<IState>): Promise<void> => {
+    return axios.patch(`${END_POINT_URL}${id}`, formData).then(
       (response: AxiosResponse<IResponse<IOrganisation[]>>) => {
         dispatch(parseOrganisationList(response.data.data));
       },

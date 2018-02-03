@@ -6,7 +6,12 @@ import { bindActionCreators, Dispatch } from "redux";
 
 import { loadAdminMenuItemList, parseMenuItem } from "action/menu-item-action";
 import SideMenu from "component/side-menu";
-import { IIsFormStruct, ISelectedItemStruct, ISelectedListStruct } from "container/admin-section/model";
+import {
+  IIsFormStruct,
+  IOrganisationFormValues,
+  ISelectedItemStruct,
+  ISelectedListStruct,
+} from "container/admin-section/model";
 import { getIsFormStruct, getSelectedItemStruct, getSelectedListStruct } from "container/admin-section/selector";
 import { IMenuItem } from "model/menu-item";
 import { IState } from "model/state";
@@ -58,7 +63,12 @@ export class AdminSection extends React.PureComponent<TAdminSectionProps, {}> {
     switch (this.props.selectedItem.id) {
       case ORGANISATION_ID:
         if (this.props.isFormStruct.organisation) {
-          return <OrganisationForm organisation={this.props.selectedItemStruct.organisation} />;
+          return (
+            <OrganisationForm
+              organisation={this.props.selectedItemStruct.organisation}
+              handleFormSubmit={this.handleOrganisationSubmit}
+            />
+          );
         }
         return <OrganisationDetail organisationList={this.props.selectedListStruct.organisation} />;
       case SERVICE_ID:
@@ -81,6 +91,10 @@ export class AdminSection extends React.PureComponent<TAdminSectionProps, {}> {
 
   private handleSelectItem = (item: IMenuItem) => (): void => {
     this.props.parseSelectedItem(item);
+  }
+
+  private handleOrganisationSubmit = () => (formData: IOrganisationFormValues) => {
+    this.props.createOrganisation();
   }
 }
 
