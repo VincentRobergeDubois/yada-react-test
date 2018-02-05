@@ -4,10 +4,12 @@ import { InjectedFormProps, reduxForm } from "redux-form";
 
 import { IService } from "model/service";
 
-import { SERVICE_FORM_NAME } from "../../constant";
-import { IServiceFormValues } from "../../model";
+import { SERVICE_FORM_NAME } from "./constant";
+import { IServiceFormValues } from "./model";
 
 interface IServiceFormOwnProps {
+  handleCreateSubmit: () => void;
+  handleUpdateSubmit: () => void;
   service: IService;
 }
 

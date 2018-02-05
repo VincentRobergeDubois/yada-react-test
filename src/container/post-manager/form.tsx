@@ -4,10 +4,12 @@ import { InjectedFormProps, reduxForm } from "redux-form";
 
 import { IPost } from "model/post";
 
-import { POST_FORM_NAME } from "../../constant";
-import { IPostFormValues } from "../../model";
+import { POST_FORM_NAME } from "./constant";
+import { IPostFormValues } from "./model";
 
 interface IPostFormOwnProps {
+  handleCreateSubmit: () => void;
+  handleUpdateSubmit: () => void;
   post: IPost;
 }
 

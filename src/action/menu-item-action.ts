@@ -3,7 +3,7 @@ import { Dispatch } from "redux";
 
 import { IMenuItemFormValues } from "container/admin-section/model";
 import { IAction, IResponse } from "model/action";
-import { IMenuItem } from "model/menu-item";
+import { IMenuItem, TMenuItemListParse } from "model/menu-item";
 import { IState } from "model/state";
 
 export const ADMIN_MENU_ITEM_LIST_PARSE = "ADMIN_MENU_ITEM_LIST_PARSE";
@@ -34,21 +34,11 @@ export const loadMenuItem = (menuItemId: number) => {
   };
 };
 
-export const loadMainMenuItemList = (menuId: number, userRight: number, admin: number) => {
+export const loadMenuItemList = (menuId: number, userRight: number, admin: number, parse: TMenuItemListParse) => {
   return (dispatch: Dispatch<IState>): Promise<void> => {
     return axios.get(`${END_POINT_URL}${menuId}/${userRight}/${admin}`).then(
       (response: AxiosResponse<IResponse<IMenuItem[]>>) => {
-        dispatch(parseMainMenuItemList(response.data.data));
-      },
-    );
-  };
-};
-
-export const loadAdminMenuItemList = (menuId: number, userRight: number, admin: number) => {
-  return (dispatch: Dispatch<IState>): Promise<void> => {
-    return axios.get(`${END_POINT_URL}${menuId}/${userRight}/${admin}`).then(
-      (response: AxiosResponse<IResponse<IMenuItem[]>>) => {
-        dispatch(parseAdminMenuItemList(response.data.data));
+        dispatch(parse(response.data.data));
       },
     );
   };

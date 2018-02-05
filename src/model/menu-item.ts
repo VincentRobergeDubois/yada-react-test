@@ -1,6 +1,9 @@
+import { IAction } from "model/action";
 import { IRight } from "model/right";
 import { IService } from "model/service";
 import { IUser } from "model/user";
+
+export type TMenuItemListParse = (list: IMenuItem[]) => IAction<IMenuItem[]>;
 
 export interface IMenuItem {
   id: number;

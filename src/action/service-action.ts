@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 import { Dispatch } from "redux";
 
-import { IServiceFormValues } from "container/admin-section/model";
+import { IServiceFormValues } from "container/service-manager/model";
 import { IAction, IResponse } from "model/action";
 import { IService } from "model/service";
 import { IState } from "model/state";

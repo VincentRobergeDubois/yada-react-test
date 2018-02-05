@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 import { Dispatch } from "redux";
 
-import { IPostFormValues } from "container/admin-section/model";
+import { IPostFormValues } from "container/post-manager/model";
 import { IAction, IResponse } from "model/action";
 import { IPost } from "model/post";
 import { IState } from "model/state";

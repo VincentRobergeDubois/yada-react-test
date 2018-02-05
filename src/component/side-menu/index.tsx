@@ -2,12 +2,12 @@ import * as React from "react";
 
 import { Icon } from "react-fa";
 import { Menu, MenuItem } from "react-foundation";
+import { Link } from "react-router-dom";
 
 import { IMenuItem } from "model/menu-item";
 
 interface ISideMenuOwnProps {
   menuItemList: IMenuItem[];
-  handleSelectItem: (item: IMenuItem) => () => void;
 }
 
 type TSideMenuProps = ISideMenuOwnProps;
@@ -25,10 +25,10 @@ class SideMenu extends React.PureComponent<TSideMenuProps, {}> {
     return this.props.menuItemList.map((item: IMenuItem, key: number) => {
       return (
         <MenuItem className="item" key={key}>
-          <a id={`${item.id}`} onClick={this.props.handleSelectItem(item)}>
+          <Link to={item.link}>
             <Icon name={item.icon} />
             <span>{item.name}</span>
-          </a>
+          </Link>
         </MenuItem>
       );
     });

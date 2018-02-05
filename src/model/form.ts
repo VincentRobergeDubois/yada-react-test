@@ -1,9 +1,23 @@
 import {
-  IOrganisationForm, IOrganisationFormFields, IOrganisationFormValues,
-  IServiceForm, IServiceFormFields, IServiceFormValues,
-  IUserForm, IUserFormFields, IUserFormValues,
-} from "container/admin-section/model";
-import { ILoginForm, ILoginFormFields, ILoginFormValues } from "container/login-section/model";
+  ILoginForm,
+  ILoginFormFields,
+  ILoginFormValues,
+} from "container/login-section/model";
+import {
+  IOrganisationForm,
+  IOrganisationFormFields,
+  IOrganisationFormValues,
+} from "container/organisation-manager/model";
+import {
+  IServiceForm,
+  IServiceFormFields,
+  IServiceFormValues,
+} from "container/service-manager/model";
+import {
+  IUserForm,
+  IUserFormFields,
+  IUserFormValues,
+} from "container/user-manager/model";
 
 interface IForm<Fo, Fi, Va> {
   registeredFields: Fo;

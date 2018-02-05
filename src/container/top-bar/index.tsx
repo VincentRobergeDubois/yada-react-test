@@ -3,7 +3,7 @@ import * as React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators, Dispatch } from "redux";
 
-import { loadMainMenuItemList } from "action/menu-item-action";
+import { loadMenuItemList, parseMainMenuItemList } from "action/menu-item-action";
 import { logout } from "action/user-action";
 import { IMenuItem } from "model/menu-item";
 import { IState } from "model/state";
@@ -24,7 +24,7 @@ interface ITopBarStateProps {
 }
 
 interface ITopBarDispatchProps {
-  loadMainMenuItemList: typeof loadMainMenuItemList;
+  loadMenuItemList: typeof loadMenuItemList;
   logout: typeof logout;
 }
 
@@ -33,7 +33,8 @@ type TTopBarProps = ITopBarOwnProps & ITopBarStateProps & ITopBarDispatchProps;
 class TopBar extends React.PureComponent<TTopBarProps, {}> {
   public componentWillMount(): void {
     if ( this.props.mainMenuItemList.length === 0 ) {
-      this.props.loadMainMenuItemList(1, this.props.user.id === 0 ? 6 : 1, this.props.user.admin);
+      const userRight = this.props.user.id === 0 ? 6 : 1;
+      this.props.loadMenuItemList(1, userRight, this.props.user.admin, parseMainMenuItemList);
     }
   }
 
@@ -67,7 +68,7 @@ const mapStateToProps = (state: IState): ITopBarStateProps => {
 
 const mapDispatchToProps = (dispatch: Dispatch<IState>): ITopBarDispatchProps => {
   return {
-    loadMainMenuItemList: bindActionCreators(loadMainMenuItemList, dispatch),
+    loadMenuItemList: bindActionCreators(loadMenuItemList, dispatch),
     logout: bindActionCreators(logout, dispatch),
   };
 };

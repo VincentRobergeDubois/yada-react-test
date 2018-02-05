@@ -2,9 +2,9 @@ import axios, { AxiosResponse } from "axios";
 // import credential = require("credential");
 import { Dispatch } from "redux";
 
-import { loadAdminMenuItemList, loadMainMenuItemList } from "action/menu-item-action";
+import { loadMenuItemList, parseAdminMenuItemList, parseMainMenuItemList } from "action/menu-item-action";
 import { loadStructureAdmin } from "action/structure-admin";
-import { IUserFormValues } from "container/admin-section/model";
+import { IUserFormValues } from "container/user-manager/model";
 import { IAction, IResponse } from "model/action";
 import { IState } from "model/state";
 import { IUser, IUserConn } from "model/user";
@@ -72,8 +72,8 @@ export const login = (username: string, password: string) => {
   return (dispatch: Dispatch<IState>): Promise<void> => {
     return axios.get(`${END_POINT_URL}username/${username}`).then((response: AxiosResponse<IResponse<IUser>>) => {
       dispatch(loadUser(response.data.data.id));
-      dispatch(loadMainMenuItemList(1, 1, 1));
-      dispatch(loadAdminMenuItemList(4, 1, 1));
+      dispatch(loadMenuItemList(1, 1, 1, parseMainMenuItemList));
+      dispatch(loadMenuItemList(4, 1, 1, parseAdminMenuItemList));
     });
   };
 };
@@ -81,6 +81,6 @@ export const login = (username: string, password: string) => {
 export const logout = () => {
   return (dispatch: Dispatch<IState>): void => {
     dispatch({ type: LOGOUT });
-    dispatch(loadMainMenuItemList(1, 6, 1));
+    dispatch(loadMenuItemList(1, 6, 1, parseMainMenuItemList));
   };
 };
