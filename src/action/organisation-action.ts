@@ -1,9 +1,8 @@
 import axios, { AxiosResponse } from "axios";
 import { Dispatch } from "redux";
 
-import { IOrganisationFormValues } from "container/organisation-manager/model";
 import { IAction, IResponse } from "model/action";
-import { IOrganisation } from "model/organisation";
+import { IOrganisation, IOrganisationFormValues } from "model/organisation";
 import { IState } from "model/state";
 
 export const CURRENT_ORGANISATION_PARSE = "CURRENT_ORGANISATION_PARSE";

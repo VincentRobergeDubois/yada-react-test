@@ -15,7 +15,7 @@ type TSideMenuProps = ISideMenuOwnProps;
 class SideMenu extends React.PureComponent<TSideMenuProps, {}> {
   public render(): JSX.Element {
     return (
-      <Menu isVertical={true}>
+      <Menu className="side-menu" isVertical={true}>
         {this.renderMenuItemList()}
       </Menu>
     );

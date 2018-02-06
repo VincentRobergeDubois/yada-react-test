@@ -1,3 +1,5 @@
+import { FieldState, RegisteredFieldState } from "redux-form";
+
 import { IAction } from "model/action";
 import { IRight } from "model/right";
 import { IService } from "model/service";
@@ -26,4 +28,22 @@ export interface IMenuItemState {
   adminMenuList: IMenuItem[];
   current: IMenuItem;
   mainMenuList: IMenuItem[];
+}
+
+export interface IMenuItemForm {
+  name: RegisteredFieldState;
+  icon: RegisteredFieldState;
+  link: RegisteredFieldState;
+}
+
+export interface IMenuItemFormFields {
+  name: FieldState;
+  icon: FieldState;
+  link: FieldState;
+}
+
+export interface IMenuItemFormValues {
+  name: string;
+  icon: string;
+  link: string;
 }

@@ -1,3 +1,5 @@
+import { FieldState, RegisteredFieldState } from "redux-form";
+
 import { IUser } from "model/user";
 
 export interface IPost {
@@ -18,3 +20,16 @@ export interface IPostState {
   isForm: boolean;
   list: IPost[];
 }
+
+export interface IPostForm {
+  field: RegisteredFieldState;
+}
+
+export interface IPostFormFields {
+  field: FieldState;
+}
+
+export interface IPostFormValues {
+  field: string;
+}
+

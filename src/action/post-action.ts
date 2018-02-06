@@ -1,9 +1,8 @@
 import axios, { AxiosResponse } from "axios";
 import { Dispatch } from "redux";
 
-import { IPostFormValues } from "container/post-manager/model";
 import { IAction, IResponse } from "model/action";
-import { IPost } from "model/post";
+import { IPost, IPostFormValues } from "model/post";
 import { IState } from "model/state";
 
 export const CURRENT_POST_PARSE = "CURRENT_POST_PARSE";

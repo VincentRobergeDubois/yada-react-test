@@ -1,23 +1,8 @@
-import {
-  ILoginForm,
-  ILoginFormFields,
-  ILoginFormValues,
-} from "container/login-section/model";
-import {
-  IOrganisationForm,
-  IOrganisationFormFields,
-  IOrganisationFormValues,
-} from "container/organisation-manager/model";
-import {
-  IServiceForm,
-  IServiceFormFields,
-  IServiceFormValues,
-} from "container/service-manager/model";
-import {
-  IUserForm,
-  IUserFormFields,
-  IUserFormValues,
-} from "container/user-manager/model";
+import { ILoginForm, ILoginFormFields, ILoginFormValues } from "container/login-section/model";
+import { IOrganisationForm, IOrganisationFormFields, IOrganisationFormValues } from "model/organisation";
+import { IPostForm, IPostFormFields, IPostFormValues } from "model/post";
+import { IServiceForm, IServiceFormFields, IServiceFormValues } from "model/service";
+import { IUserForm, IUserFormFields, IUserFormValues } from "model/user";
 
 interface IForm<Fo, Fi, Va> {
   registeredFields: Fo;
@@ -33,6 +18,7 @@ interface IForm<Fo, Fi, Va> {
 export interface IFormState {
   loginForm: IForm<ILoginForm, ILoginFormFields, ILoginFormValues>;
   organisationForm: IForm<IOrganisationForm, IOrganisationFormFields, IOrganisationFormValues>;
+  postForm: IForm<IPostForm, IPostFormFields, IPostFormValues>;
   serviceForm: IForm<IServiceForm, IServiceFormFields, IServiceFormValues>;
   userForm: IForm<IUserForm, IUserFormFields, IUserFormValues>;
 }

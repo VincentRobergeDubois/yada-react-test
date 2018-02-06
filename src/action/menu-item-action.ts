@@ -1,9 +1,8 @@
 import axios, { AxiosResponse } from "axios";
 import { Dispatch } from "redux";
 
-import { IMenuItemFormValues } from "container/admin-section/model";
 import { IAction, IResponse } from "model/action";
-import { IMenuItem, TMenuItemListParse } from "model/menu-item";
+import { IMenuItem, IMenuItemFormValues, TMenuItemListParse } from "model/menu-item";
 import { IState } from "model/state";
 
 export const ADMIN_MENU_ITEM_LIST_PARSE = "ADMIN_MENU_ITEM_LIST_PARSE";

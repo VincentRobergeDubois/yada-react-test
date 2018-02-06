@@ -26,7 +26,7 @@ interface IAdminDispatchProps {
 
 type TAdminProps = IAdminStateProps & IAdminDispatchProps;
 
-class Admin extends React.PureComponent<TAdminProps & RouteComponentProps<{}>, {}> {
+class Admin extends React.PureComponent<TAdminProps & RouteComponentProps<TAdminProps>, {}> {
   public componentWillMount(): void {
     this.props.loadMenuItemList(4, 1, 1, parseAdminMenuItemList);
   }
@@ -38,13 +38,15 @@ class Admin extends React.PureComponent<TAdminProps & RouteComponentProps<{}>, {
           <TopBar />
           <div className="admin">
             <SideMenu menuItemList={this.props.adminMenuList} />
-            <Switch>
-              <Route exact={true} path={this.props.match.path} component={AdminSection} />
-              <Route path={this.props.match.path + "users"} component={UserManager} />
-              <Route path={this.props.match.path + "organisations"} component={OrganisationManager} />
-              <Route path={this.props.match.path + "services"} component={ServiceManager} />
-              <Route path={this.props.match.path + "posts"} component={PostManager} />
-            </Switch>
+            <div className="admin-manager">
+              <Switch>
+                <Route exact={true} path={this.props.match.path} component={AdminSection} />
+                <Route path={this.props.match.path + "users"} component={UserManager} />
+                <Route path={this.props.match.path + "organisations"} component={OrganisationManager} />
+                <Route path={this.props.match.path + "services"} component={ServiceManager} />
+                <Route path={this.props.match.path + "posts"} component={PostManager} />
+              </Switch>
+            </div>
           </div>
         </div>
       </div>

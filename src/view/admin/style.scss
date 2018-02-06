@@ -1,0 +1,13 @@
+#admin-container {
+  .content {
+    .admin {
+      @include xy-grid();
+      .side-menu {
+        @include xy-cell(20%);
+      }
+      .admin-manager {
+        @include xy-cell(80%);
+      }
+    }
+  }
+}

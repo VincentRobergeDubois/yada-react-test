@@ -1,9 +1,8 @@
 import axios, { AxiosResponse } from "axios";
 import { Dispatch } from "redux";
 
-import { IServiceFormValues } from "container/service-manager/model";
 import { IAction, IResponse } from "model/action";
-import { IService } from "model/service";
+import { IService, IServiceFormValues } from "model/service";
 import { IState } from "model/state";
 
 export const CURRENT_SERVICE_PARSE = "CURRENT_SERVICE_PARSE";

@@ -1,3 +1,5 @@
+import { FieldState, RegisteredFieldState } from "redux-form";
+
 import { IOrganisation } from "model/organisation";
 
 export interface IUser {
@@ -37,4 +39,16 @@ export interface IUserState {
   current: IUserConn;
   isForm: boolean;
   list: IUser[];
+}
+
+export interface IUserForm {
+  field: RegisteredFieldState;
+}
+
+export interface IUserFormFields {
+  field: FieldState;
+}
+
+export interface IUserFormValues {
+  field: string;
 }

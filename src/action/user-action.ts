@@ -4,10 +4,9 @@ import { Dispatch } from "redux";
 
 import { loadMenuItemList, parseAdminMenuItemList, parseMainMenuItemList } from "action/menu-item-action";
 import { loadStructureAdmin } from "action/structure-admin";
-import { IUserFormValues } from "container/user-manager/model";
 import { IAction, IResponse } from "model/action";
 import { IState } from "model/state";
-import { IUser, IUserConn } from "model/user";
+import { IUser, IUserConn, IUserFormValues } from "model/user";
 
 export const LOGOUT = "LOGOUT";
 
