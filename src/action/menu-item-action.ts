@@ -43,41 +43,21 @@ export const loadMenuItemList = (menuId: number, userRight: number, admin: numbe
   };
 };
 
-export const createAdminMenuItem = (formData: IMenuItemFormValues) => {
+export const createMenuItem = (formData: IMenuItemFormValues, parse: TMenuItemListParse) => {
   return (dispatch: Dispatch<IState>): Promise<void> => {
     return axios.post(`${END_POINT_URL}`, formData).then(
       (response: AxiosResponse<IResponse<IMenuItem[]>>) => {
-        dispatch(parseAdminMenuItemList(response.data.data));
+        dispatch(parse(response.data.data));
       },
     );
   };
 };
 
-export const updateAdminMenuItem = (formData: IMenuItemFormValues, id: number) => {
+export const updateMenuItem = (formData: IMenuItemFormValues, id: number, parse: TMenuItemListParse) => {
   return (dispatch: Dispatch<IState>): Promise<void> => {
     return axios.patch(`${END_POINT_URL}${id}`, formData).then(
       (response: AxiosResponse<IResponse<IMenuItem[]>>) => {
-        dispatch(parseAdminMenuItemList(response.data.data));
-      },
-    );
-  };
-};
-
-export const createMainMenuItem = (formData: IMenuItemFormValues) => {
-  return (dispatch: Dispatch<IState>): Promise<void> => {
-    return axios.post(`${END_POINT_URL}`, formData).then(
-      (response: AxiosResponse<IResponse<IMenuItem[]>>) => {
-        dispatch(parseMainMenuItemList(response.data.data));
-      },
-    );
-  };
-};
-
-export const updateMainMenuItem = (formData: IMenuItemFormValues, id: number) => {
-  return (dispatch: Dispatch<IState>): Promise<void> => {
-    return axios.patch(`${END_POINT_URL}${id}`, formData).then(
-      (response: AxiosResponse<IResponse<IMenuItem[]>>) => {
-        dispatch(parseMainMenuItemList(response.data.data));
+        dispatch(parse(response.data.data));
       },
     );
   };
