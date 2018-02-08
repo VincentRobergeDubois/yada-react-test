@@ -1,12 +1,16 @@
 import * as React from "react";
 
-import { IUser } from "model/user";
+import { connect } from "react-redux";
 
-interface IUserDetailOwnProps {
+import { IState } from "model/state";
+import { IUser } from "model/user";
+import { getUserList } from "selector/user";
+
+interface IUserManagerStateProps {
   userList: IUser[];
 }
 
-type TUserDetailProps = IUserDetailOwnProps;
+type TUserDetailProps = IUserManagerStateProps;
 
 class UserDetail extends React.PureComponent<TUserDetailProps, {}> {
   public render(): JSX.Element {
@@ -41,4 +45,13 @@ class UserDetail extends React.PureComponent<TUserDetailProps, {}> {
   }
 }
 
-export default UserDetail;
+const mapStateToProps = (state: IState): IUserManagerStateProps => {
+  return {
+    userList: getUserList(state),
+  };
+};
+
+export default connect<IUserManagerStateProps, {}, {}>(
+  mapStateToProps,
+  {},
+)(UserDetail);

@@ -1,12 +1,16 @@
 import * as React from "react";
 
-import { IPost } from "model/post";
+import { connect } from "react-redux";
 
-interface IPostDetailOwnProps {
+import { IPost } from "model/post";
+import { IState } from "model/state";
+import { getPostList } from "selector/post";
+
+interface IPostManagerStateProps {
   postList: IPost[];
 }
 
-type TPostDetailProps = IPostDetailOwnProps;
+type TPostDetailProps = IPostManagerStateProps;
 
 class PostDetail extends React.PureComponent<TPostDetailProps, {}> {
   public render(): JSX.Element {
@@ -38,4 +42,12 @@ class PostDetail extends React.PureComponent<TPostDetailProps, {}> {
   }
 }
 
-export default PostDetail;
+const mapStateToProps = (state: IState): IPostManagerStateProps => {
+  return {
+    postList: getPostList(state),
+  };
+};
+
+export default connect<IPostManagerStateProps, {}, {}>(
+  mapStateToProps,
+)(PostDetail);

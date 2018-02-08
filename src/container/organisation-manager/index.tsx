@@ -1,14 +1,17 @@
 import * as React from "react";
 
 import { Button } from "react-foundation";
+import { connect } from "react-redux";
 
 import { IOrganisation } from "model/organisation";
+import { IState } from "model/state";
+import { getOrganisationList } from "selector/organisation";
 
-interface IOrganisationDetailOwnProps {
+interface IOrganisationManagerStateProps {
   organisationList: IOrganisation[];
 }
 
-type TOrganisationDetailProps = IOrganisationDetailOwnProps;
+type TOrganisationDetailProps = IOrganisationManagerStateProps;
 
 class OrganisationDetail extends React.PureComponent<TOrganisationDetailProps, {}> {
   public render(): JSX.Element {
@@ -44,4 +47,12 @@ class OrganisationDetail extends React.PureComponent<TOrganisationDetailProps, {
   }
 }
 
-export default OrganisationDetail;
+const mapStateToProps = (state: IState): IOrganisationManagerStateProps => {
+  return {
+    organisationList: getOrganisationList(state),
+  };
+};
+
+export default connect<IOrganisationManagerStateProps, {}, {}>(
+  mapStateToProps,
+)(OrganisationDetail);

@@ -1,12 +1,16 @@
 import * as React from "react";
 
-import { IService } from "model/service";
+import { connect } from "react-redux";
 
-interface IServiceDetailOwnProps {
+import { IService } from "model/service";
+import { IState } from "model/state";
+import { getServiceList } from "selector/service";
+
+interface IServiceManagerStateProps {
   serviceList: IService[];
 }
 
-type TServiceDetailProps = IServiceDetailOwnProps;
+type TServiceDetailProps = IServiceManagerStateProps;
 
 class ServiceDetail extends React.PureComponent<TServiceDetailProps, {}> {
   public render(): JSX.Element {
@@ -38,4 +42,12 @@ class ServiceDetail extends React.PureComponent<TServiceDetailProps, {}> {
   }
 }
 
-export default ServiceDetail;
+const mapStateToProps = (state: IState): IServiceManagerStateProps => {
+  return {
+    serviceList: getServiceList(state),
+  };
+};
+
+export default connect<IServiceManagerStateProps, {}, {}>(
+  mapStateToProps,
+)(ServiceDetail);

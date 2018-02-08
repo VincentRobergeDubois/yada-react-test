@@ -41,10 +41,10 @@ class Admin extends React.PureComponent<TAdminProps & RouteComponentProps<TAdmin
             <div className="admin-manager">
               <Switch>
                 <Route exact={true} path={this.props.match.path} component={AdminSection} />
-                <Route path={this.props.match.path + "users"} component={UserManager} />
-                <Route path={this.props.match.path + "organisations"} component={OrganisationManager} />
-                <Route path={this.props.match.path + "services"} component={ServiceManager} />
-                <Route path={this.props.match.path + "posts"} component={PostManager} />
+                <Route path={this.props.match.path + "/users"} component={UserManager} />
+                <Route path={this.props.match.path + "/organisations"} component={OrganisationManager} />
+                <Route path={this.props.match.path + "/services"} component={ServiceManager} />
+                <Route path={this.props.match.path + "/posts"} component={PostManager} />
               </Switch>
             </div>
           </div>
