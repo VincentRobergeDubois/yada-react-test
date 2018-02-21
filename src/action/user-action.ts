@@ -67,6 +67,16 @@ export const updateUser = (formData: IUserFormValues, id: number) => {
   };
 };
 
+export const deleteUser = (id: number) => {
+  return (dispatch: Dispatch<IState>): Promise<void> => {
+    return axios.delete(`${END_POINT_URL}${id}`).then(
+      (response: AxiosResponse<IResponse<IUser[]>>) => {
+        dispatch(parseUserList(response.data.data));
+      },
+    );
+  };
+};
+
 export const login = (username: string, password: string) => {
   return (dispatch: Dispatch<IState>): Promise<void> => {
     return axios.get(`${END_POINT_URL}username/${username}`).then((response: AxiosResponse<IResponse<IUser>>) => {

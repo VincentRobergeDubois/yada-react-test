@@ -1,47 +1,48 @@
 import * as React from "react";
 
-import { connect } from "react-redux";
+import { connect, Dispatch } from "react-redux";
+import { bindActionCreators } from "redux";
 
+import { createUser, deleteUser, updateUser } from "action/user-action";
+import ManagerList from "component/manager-list";
 import { IState } from "model/state";
 import { IUser } from "model/user";
 import { getUserList } from "selector/user";
+
+import UserManagerDetail from "./component/user-manager-detail";
+import UserManagerDisplay from "./component/user-manager-display";
+import UserManagerForm from "./component/user-manager-form";
 
 interface IUserManagerStateProps {
   userList: IUser[];
 }
 
-type TUserDetailProps = IUserManagerStateProps;
+interface IUserManagerDispatchProps {
+  createUser: typeof createUser;
+  deleteUser: typeof deleteUser;
+  updateUser: typeof updateUser;
+}
+
+type TUserDetailProps = IUserManagerStateProps & IUserManagerDispatchProps;
 
 class UserDetail extends React.PureComponent<TUserDetailProps, {}> {
   public render(): JSX.Element {
     return (
-      <div>
-        {this.renderHeader()}
-        {this.renderList()}
+      <div className="user-manager">
+        <ManagerList
+          detail={UserManagerDetail}
+          display={UserManagerDisplay}
+          form={UserManagerForm}
+          itemList={this.props.userList}
+          title="Liste des utilisateurs"
+          delete={this.handleDelete}
+        />
       </div>
     );
   }
 
-  private renderHeader = (): JSX.Element => (
-    <div>
-      <h1>Liste des utilisateurs</h1>
-      <button>Ajouter</button>
-      <button>Modifier</button>
-      <button>Supprimer</button>
-    </div>
-  )
-
-  private renderList = (): JSX.Element[] => {
-    return this.props.userList.map((user: IUser, key: number) => (
-      <div key={key}>
-        <div>{user.id}</div>
-        <div>{user.username}</div>
-        <div>{user.firstname}</div>
-        <div>{user.lastname}</div>
-        <div>{user.email}</div>
-        <div>{user.phone}</div>
-      </div>
-    ));
+  private handleDelete = (id: number) => {
+    this.props.deleteUser(id);
   }
 }
 
@@ -51,7 +52,15 @@ const mapStateToProps = (state: IState): IUserManagerStateProps => {
   };
 };
 
-export default connect<IUserManagerStateProps, {}, {}>(
+const mapDispatchToProps = (dispatch: Dispatch<IState>): IUserManagerDispatchProps => {
+  return {
+    createUser: bindActionCreators(createUser, dispatch),
+    deleteUser: bindActionCreators(deleteUser, dispatch),
+    updateUser: bindActionCreators(updateUser, dispatch),
+  };
+};
+
+export default connect<IUserManagerStateProps, IUserManagerDispatchProps, {}>(
   mapStateToProps,
-  {},
+  mapDispatchToProps,
 )(UserDetail);
