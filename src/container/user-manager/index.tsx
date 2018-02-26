@@ -30,19 +30,17 @@ class UserDetail extends React.PureComponent<TUserDetailProps, {}> {
     return (
       <div className="user-manager">
         <ManagerList
+          create={this.props.createUser}
+          delete={this.props.deleteUser}
           detail={UserManagerDetail}
           display={UserManagerDisplay}
           form={UserManagerForm}
           itemList={this.props.userList}
           title="Liste des utilisateurs"
-          delete={this.handleDelete}
+          update={this.props.updateUser}
         />
       </div>
     );
-  }
-
-  private handleDelete = (id: number) => {
-    this.props.deleteUser(id);
   }
 }
 

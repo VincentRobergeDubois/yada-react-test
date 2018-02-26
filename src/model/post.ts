@@ -32,4 +32,3 @@ export interface IPostFormFields {
 export interface IPostFormValues {
   field: string;
 }
-

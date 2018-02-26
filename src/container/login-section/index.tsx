@@ -34,8 +34,8 @@ class LoginSection extends React.PureComponent<TLoginSectionProps, {}> {
     );
   }
 
-  private handleLogin = () => (formData: ILoginFormValues): void => {
-    this.props.login(formData.username, formData.password);
+  private handleLogin = () => (formValues: ILoginFormValues): void => {
+    this.props.login(formValues.username, formValues.password);
     this.props.history.push("/tools");
   }
 }

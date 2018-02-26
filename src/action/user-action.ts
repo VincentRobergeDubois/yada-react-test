@@ -47,9 +47,9 @@ export const loadUserList = () => {
   };
 };
 
-export const createUser = (formData: IUserFormValues) => {
+export const createUser = (formValues: IUserFormValues) => {
   return (dispatch: Dispatch<IState>): Promise<void> => {
-    return axios.post(`${END_POINT_URL}`, formData).then(
+    return axios.post(`${END_POINT_URL}`, formValues).then(
       (response: AxiosResponse<IResponse<IUser[]>>) => {
         dispatch(parseUserList(response.data.data));
       },
@@ -57,9 +57,9 @@ export const createUser = (formData: IUserFormValues) => {
   };
 };
 
-export const updateUser = (formData: IUserFormValues, id: number) => {
+export const updateUser = (formValues: IUserFormValues, id: number) => {
   return (dispatch: Dispatch<IState>): Promise<void> => {
-    return axios.patch(`${END_POINT_URL}${id}`, formData).then(
+    return axios.patch(`${END_POINT_URL}${id}`, formValues).then(
       (response: AxiosResponse<IResponse<IUser[]>>) => {
         dispatch(parseUserList(response.data.data));
       },

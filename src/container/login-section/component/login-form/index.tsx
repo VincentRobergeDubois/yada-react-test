@@ -9,7 +9,7 @@ import { LOGIN_SECTION_FORM_NAME } from "../../constant";
 import { ILoginFormValues } from "../../model";
 
 interface ILoginFormOwnProps {
-  handleLogin: () => (formData: ILoginFormValues) => void;
+  handleLogin: () => (formValues: ILoginFormValues) => void;
 }
 
 type TLoginFormProps = ILoginFormOwnProps;

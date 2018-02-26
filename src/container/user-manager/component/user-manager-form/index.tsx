@@ -10,7 +10,7 @@ import { required } from "service/form-validator";
 
 import { USER_FORM_NAME } from "../../constant";
 
-interface IUserManagerFormOwnProps extends IManagerForm<IUser> { }
+interface IUserManagerFormOwnProps extends IManagerForm<IUser, IUserFormValues> { }
 
 type TUserManagerFormProps = IUserManagerFormOwnProps;
 type InjectedProps = InjectedFormProps<IUserFormValues, TUserManagerFormProps>;
@@ -18,7 +18,7 @@ type InjectedProps = InjectedFormProps<IUserFormValues, TUserManagerFormProps>;
 class UserManagerForm extends React.PureComponent<TUserManagerFormProps & InjectedProps, {}> {
   public render(): JSX.Element {
     return (
-      <form>
+      <form onSubmit={this.props.handleSubmit(this.props.handleForm())}>
         <div>
           <Field
             name="username"
@@ -72,11 +72,12 @@ class UserManagerForm extends React.PureComponent<TUserManagerFormProps & Inject
             validate={[ required ]}
           />
         </div>
+        <button type="submit">Confirmer</button>
       </form>
     );
   }
 }
 
-export default reduxForm<IUserFormValues, TUserManagerFormProps>({
+export default reduxForm({
   form: USER_FORM_NAME,
 })(UserManagerForm);
