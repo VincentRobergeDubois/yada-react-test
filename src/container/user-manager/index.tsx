@@ -12,6 +12,7 @@ import { getUserList } from "selector/user";
 import UserManagerDetail from "./component/user-manager-detail";
 import UserManagerDisplay from "./component/user-manager-display";
 import UserManagerForm from "./component/user-manager-form";
+import { USER_FORM_NAME } from "./constant";
 
 interface IUserManagerStateProps {
   userList: IUser[];
@@ -35,6 +36,8 @@ class UserDetail extends React.PureComponent<TUserDetailProps, {}> {
           detail={UserManagerDetail}
           display={UserManagerDisplay}
           form={UserManagerForm}
+          formName={USER_FORM_NAME}
+          identifier="id"
           itemList={this.props.userList}
           title="Liste des utilisateurs"
           update={this.props.updateUser}

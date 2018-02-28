@@ -1,10 +1,4 @@
-import { IMenuItem, IMenuItemFormValues } from "model/menu-item";
-import { IPost, IPostFormValues } from "model/post";
-import { IService, IServiceFormValues } from "model/service";
-import { IUser, IUserFormValues } from "model/user";
-
-export type TManagerItem = IMenuItem | IPost | IService | IUser;
-export type TManagerFormValues = IMenuItemFormValues | IPostFormValues | IServiceFormValues | IUserFormValues;
+import { ConfigProps } from "redux-form";
 
 export interface IManagerDetail<T> {
   item: T;
@@ -15,7 +9,9 @@ export interface IManagerDisplay<T> {
   item: T;
 }
 
-export interface IManagerForm<T, FV> {
-  handleForm: () => (formValues: FV) => void;
-  initialValues?: Partial<T>;
+interface IManagerForm<V> {
+  handleCancel: () => void;
+  handleForm: () => (formValues: V) => void;
 }
+
+export type TManagerForm<V, P> = IManagerForm<V> & Partial<ConfigProps<V, P>>;

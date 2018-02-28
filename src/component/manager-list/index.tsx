@@ -1,28 +1,30 @@
 import * as React from "react";
 
-import { IManagerDetail, IManagerDisplay, IManagerForm, TManagerFormValues, TManagerItem } from "./model";
+import { IManagerDetail, IManagerDisplay, TManagerForm } from "./model";
 
-interface IManagerListOwnProps {
-  create: (formValues: TManagerFormValues) => void;
+interface IManagerListOwnProps<T, V, P> {
+  create: (data: V) => void;
   delete: (id: number) => void;
-  detail: React.ComponentType<IManagerDetail<TManagerItem>>;
-  display: React.ComponentType<IManagerDisplay<TManagerItem>>;
-  form: React.ComponentType<IManagerForm<TManagerItem, TManagerFormValues>>;
-  itemList: TManagerItem[];
+  detail: React.ComponentType<IManagerDetail<T>>;
+  display: React.ComponentType<IManagerDisplay<T>>;
+  form: React.ComponentType<TManagerForm<V, P>>;
+  formName: string;
+  identifier: string;
+  itemList: T[];
   title: string;
-  update: (formValues: TManagerFormValues, id: number) => void;
+  update: (data: V, id: number) => void;
 }
 
-type TManagerListProps = IManagerListOwnProps;
+type TManagerListProps<T, V, P> = IManagerListOwnProps<T, V, P>;
 
-interface IManagerListState {
+interface IManagerListState<T> {
   isEdit: boolean;
   isForm: boolean;
-  selectedItem: TManagerItem;
+  selectedItem: T;
 }
 
-class ManagerList extends React.PureComponent<TManagerListProps, IManagerListState> {
-  constructor(props: TManagerListProps) {
+class ManagerList<T, V, P> extends React.PureComponent<TManagerListProps<T, V, P>, IManagerListState<T>> {
+  constructor(props: TManagerListProps<T, V, P>) {
     super(props);
     this.state = {
       isEdit: false,
@@ -43,30 +45,34 @@ class ManagerList extends React.PureComponent<TManagerListProps, IManagerListSta
     this.setState({ ...this.state, isForm: true, isEdit: false });
   }
 
-  private handleCreate = () => (formValues: TManagerFormValues): void => {
-    this.props.create(formValues);
+  private handleCreate = () => (data: V): void => {
+    this.props.create(data);
   }
 
   private handleUpdateButton = (): void => {
     this.setState({ ...this.state, isForm: true, isEdit: true });
   }
 
-  private handleUpdate = () => (formValues: TManagerFormValues): void => {
-    this.props.update(formValues, this.state.selectedItem.id);
+  private handleUpdate = () => (data: V): void => {
+    this.props.update(data, this.state.selectedItem[this.props.identifier]);
   }
 
   private handleDeleteButton = (): void => {
-    this.props.delete(this.state.selectedItem.id);
+    this.props.delete(this.state.selectedItem[this.props.identifier]);
   }
 
-  private handleSelect = (item: TManagerItem) => (): void => {
+  private handleSelect = (item: T) => (): void => {
     this.setState({ ...this.state, selectedItem: item });
   }
 
+  private handleCancel = () => {
+    this.setState({ ...this.state, isForm: false, isEdit: false });
+  }
+
   private renderList = (): JSX.Element => {
-    const itemList: JSX.Element[] = this.props.itemList.map((item: TManagerItem): JSX.Element => {
+    const itemList: JSX.Element[] = this.props.itemList.map((item: T): JSX.Element => {
       return (
-        <this.props.display key={item.id} item={item} onClick={this.handleSelect(item)} />
+        <this.props.display key={item[this.props.identifier]} item={item} onClick={this.handleSelect(item)} />
       );
     });
     return (
@@ -86,9 +92,16 @@ class ManagerList extends React.PureComponent<TManagerListProps, IManagerListSta
 
   private renderForm = (): JSX.Element => {
     if (this.state.isEdit) {
-      return <this.props.form handleForm={this.handleCreate} initialValues={this.state.selectedItem} />;
+      return (
+        <this.props.form
+          form={this.props.formName}
+          handleCancel={this.handleCancel}
+          handleForm={this.handleCreate}
+          initialValues={this.state.selectedItem}
+        />
+      );
     }
-    return <this.props.form handleForm={this.handleUpdate} />;
+    return <this.props.form form="" handleCancel={this.handleCancel} handleForm={this.handleUpdate} />;
   }
 }
 

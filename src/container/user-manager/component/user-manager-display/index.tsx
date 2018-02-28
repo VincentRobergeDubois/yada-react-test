@@ -10,7 +10,7 @@ type TUserManagerDisplayProps = IUserManagerDisplayOwnProps;
 class UserManagerDisplay extends React.PureComponent<TUserManagerDisplayProps, {}> {
   public render(): JSX.Element {
     return (
-      <div>
+      <div onClick={this.props.onClick}>
         {this.props.item.username}
       </div>
     );
