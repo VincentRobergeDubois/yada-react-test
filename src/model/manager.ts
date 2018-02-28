@@ -4,10 +4,15 @@ export interface IManagerDetail<T> {
   item: T;
 }
 
-export interface IMangerDisplay<T> {
+export interface IManagerDisplay<T> {
   item: T;
+  isSelected: boolean;
+  onClick: (event: React.FormEvent<HTMLElement>) => void;
 }
 
-export interface IManagerForm<T, V> extends ConfigProps<T> {
+interface IManagerForm<V> {
+  handleCancel: () => void;
   handleForm: () => (formValues: V) => void;
 }
+
+export type TManagerForm<V, P = {}> = IManagerForm<V> & ConfigProps<V, P>;

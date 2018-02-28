@@ -3,14 +3,12 @@ import * as React from "react";
 import { Field, InjectedFormProps, reduxForm } from "redux-form";
 
 import Input from "component/input";
-import { TManagerForm } from "component/manager-list/model";
 import RadioGroup from "component/radio-group";
+import { TManagerForm } from "model/manager";
 import { IUserFormValues } from "model/user";
 import { required } from "service/form-validator";
 
-import { USER_FORM_NAME } from "../../constant";
-
-interface IUserManagerFormOwnProps extends TManagerForm<IUserFormValues, IUserManagerFormOwnProps> { }
+interface IUserManagerFormOwnProps extends TManagerForm<IUserFormValues> { }
 
 type TUserManagerFormProps = IUserManagerFormOwnProps;
 type InjectedProps = InjectedFormProps<IUserFormValues, TUserManagerFormProps>;
@@ -80,5 +78,4 @@ class UserManagerForm extends React.PureComponent<TUserManagerFormProps & Inject
 }
 
 export default reduxForm<IUserFormValues, TUserManagerFormProps>({
-  form: USER_FORM_NAME,
 })(UserManagerForm);

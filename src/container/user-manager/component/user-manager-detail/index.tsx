@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { IManagerDetail } from "component/manager-list/model";
+import { IManagerDetail } from "model/manager";
 import { IUser } from "model/user";
 
 interface IUserManagerDetailOwnProps extends IManagerDetail<IUser> { }

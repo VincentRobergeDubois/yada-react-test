@@ -1,0 +1,11 @@
+.user-manager {
+  .user-manager-display {
+    @include xy-grid();
+    >div:first-child {
+      @include xy-cell(30%);
+    }
+    >div {
+      @include xy-cell(70%);
+    }
+  }
+}

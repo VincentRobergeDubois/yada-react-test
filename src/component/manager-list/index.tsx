@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { IManagerDetail, IManagerDisplay, TManagerForm } from "./model";
+import { IManagerDetail, IManagerDisplay, TManagerForm } from "model/manager";
 
 interface IManagerListOwnProps<T, V, P> {
   create: (data: V) => void;
@@ -72,7 +72,12 @@ class ManagerList<T, V, P> extends React.PureComponent<TManagerListProps<T, V, P
   private renderList = (): JSX.Element => {
     const itemList: JSX.Element[] = this.props.itemList.map((item: T): JSX.Element => {
       return (
-        <this.props.display key={item[this.props.identifier]} item={item} onClick={this.handleSelect(item)} />
+        <this.props.display
+          key={item[this.props.identifier]}
+          item={item}
+          isSelected={this.state.selectedItem === item}
+          onClick={this.handleSelect(item)}
+        />
       );
     });
     return (
@@ -101,7 +106,13 @@ class ManagerList<T, V, P> extends React.PureComponent<TManagerListProps<T, V, P
         />
       );
     }
-    return <this.props.form form="" handleCancel={this.handleCancel} handleForm={this.handleUpdate} />;
+    return (
+      <this.props.form
+        form={this.props.formName}
+        handleCancel={this.handleCancel}
+        handleForm={this.handleUpdate}
+      />
+    );
   }
 }
 
