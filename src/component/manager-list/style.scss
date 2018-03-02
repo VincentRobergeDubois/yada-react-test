@@ -1,0 +1,29 @@
+.manager-list {
+  .header-buttons {
+    .create-button {
+      background-color: $yada-success;
+    }
+    .update-button {
+      background-color: $yada-info;
+    }
+    .delete-button {
+      background-color: $yada-danger;
+    }
+  }
+  .manager-display:first {
+    margin-top: 0rem;
+  }
+  .manager-display {
+    border: solid 1px $yada-red;
+    margin-top: 0.4rem;
+    padding-left: 1rem;
+    height: 2.4rem;
+    line-height: 2.4rem;
+    &:hover {
+      border: solid 2px $yada-black;
+    }
+  }
+  .selected {
+    border: solid 2px purple;
+  }
+}

@@ -49,14 +49,21 @@ module.exports = {
     }, {
       test: /\.png$/,
       use: [{
-        loader: 'url-loade',
+        loader: 'url-loader',
         options: {
           limit: 100000
         }
+      }, {
+        loader: 'file-loader',
       }]
     }, {
       test: /\.jpg$/,
       use: [{
+        loader: 'url-loader',
+        options: {
+          limit: 100000
+        }
+      }, {
         loader: 'file-loader'
       }]
     }, {

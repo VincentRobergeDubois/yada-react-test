@@ -1,49 +1,49 @@
 import * as React from "react";
 
-import { Button } from "react-foundation";
-import { connect } from "react-redux";
+import { connect, Dispatch } from "react-redux";
+import { bindActionCreators } from "redux";
 
+import { createOrganisation, deleteOrganisation, updateOrganisation } from "action/organisation-action";
+import ManagerList from "component/manager-list";
 import { IOrganisation } from "model/organisation";
 import { IState } from "model/state";
 import { getOrganisationList } from "selector/organisation";
+
+import OrganisationManagerDetail from "./component/organisation-manager-detail";
+import OrganisationManagerDisplay from "./component/organisation-manager-display";
+import OrganisationManagerForm from "./component/organisation-manager-form";
+import { ORGANISATION_FORM_NAME } from "./constant";
 
 interface IOrganisationManagerStateProps {
   organisationList: IOrganisation[];
 }
 
-type TOrganisationDetailProps = IOrganisationManagerStateProps;
+interface IOrganisationManagerDispatchProps {
+  createOrganisation: typeof createOrganisation;
+  deleteOrganisation: typeof deleteOrganisation;
+  updateOrganisation: typeof updateOrganisation;
+}
+
+type TOrganisationDetailProps = IOrganisationManagerStateProps & IOrganisationManagerDispatchProps;
 
 class OrganisationDetail extends React.PureComponent<TOrganisationDetailProps, {}> {
   public render(): JSX.Element {
     return (
-      <div className="organisation-detail">
-        {this.renderHeader()}
-        {this.renderList()}
+      <div className="organisation-manager">
+        <ManagerList
+          create={this.props.createOrganisation}
+          delete={this.props.deleteOrganisation}
+          detail={OrganisationManagerDetail}
+          display={OrganisationManagerDisplay}
+          form={OrganisationManagerForm}
+          formName={ORGANISATION_FORM_NAME}
+          identifier="id"
+          itemList={this.props.organisationList}
+          title="Liste des utilisateurs"
+          update={this.props.updateOrganisation}
+        />
       </div>
     );
-  }
-
-  private renderHeader = (): JSX.Element => (
-    <div>
-      <h1>Liste des organisations</h1>
-      <Button color="primary">Ajouter</Button>
-      <Button color="warning">Modifier</Button>
-      <Button color="alert">Supprimer</Button>
-    </div>
-  )
-
-  private renderList = (): JSX.Element[] => {
-    return this.props.organisationList.map((organisation: IOrganisation, key: number) => (
-      <div key={key}>
-        <div>{organisation.id}</div>
-        <div>{organisation.abreviation}</div>
-        <div>{organisation.name}</div>
-        <div>{organisation.email}</div>
-        <div>{organisation.headOffice}</div>
-        <div>{organisation.phone}</div>
-        <div>{organisation.extension}</div>
-      </div>
-    ));
   }
 }
 
@@ -53,6 +53,15 @@ const mapStateToProps = (state: IState): IOrganisationManagerStateProps => {
   };
 };
 
-export default connect<IOrganisationManagerStateProps, {}, {}>(
+const mapDispatchToProps = (dispatch: Dispatch<IState>): IOrganisationManagerDispatchProps => {
+  return {
+    createOrganisation: bindActionCreators(createOrganisation, dispatch),
+    deleteOrganisation: bindActionCreators(deleteOrganisation, dispatch),
+    updateOrganisation: bindActionCreators(updateOrganisation, dispatch),
+  };
+};
+
+export default connect<IOrganisationManagerStateProps, IOrganisationManagerDispatchProps, {}>(
   mapStateToProps,
+  mapDispatchToProps,
 )(OrganisationDetail);

@@ -62,3 +62,13 @@ export const updateOrganisation = (formData: IOrganisationFormValues, id: number
     );
   };
 };
+
+export const deleteOrganisation = (id: number) => {
+  return (dispatch: Dispatch<IState>): Promise<void> => {
+    return axios.delete(`${END_POINT_URL}${id}`).then(
+      (response: AxiosResponse<IResponse<IOrganisation[]>>) => {
+        dispatch(parseOrganisationList(response.data.data));
+      },
+    );
+  };
+};

@@ -4,11 +4,11 @@ import { Field, InjectedFormProps, reduxForm } from "redux-form";
 
 import Input from "component/input";
 import RadioGroup from "component/radio-group";
-import { TManagerForm } from "model/manager";
+import { IManagerForm } from "model/manager";
 import { IUserFormValues } from "model/user";
 import { required } from "service/form-validator";
 
-interface IUserManagerFormOwnProps extends TManagerForm<IUserFormValues> { }
+interface IUserManagerFormOwnProps extends IManagerForm<IUserFormValues> { }
 
 type TUserManagerFormProps = IUserManagerFormOwnProps;
 type InjectedProps = InjectedFormProps<IUserFormValues, TUserManagerFormProps>;

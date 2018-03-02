@@ -10,7 +10,7 @@ export interface IManagerDisplay<T> {
   onClick: (event: React.FormEvent<HTMLElement>) => void;
 }
 
-interface IManagerForm<V> {
+export interface IManagerForm<V> {
   handleCancel: () => void;
   handleForm: () => (formValues: V) => void;
 }
