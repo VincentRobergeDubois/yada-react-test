@@ -14,8 +14,8 @@ export interface IOrganisation {
   createdBy?: IUser;
   modifiedAt?: Date;
   modifiedBy?: IUser;
-  archivedAt?: Date;
-  archivedBy?: IUser;
+  deletedAt?: Date;
+  deletedBy?: IUser;
 }
 
 export interface IOrganisationState {

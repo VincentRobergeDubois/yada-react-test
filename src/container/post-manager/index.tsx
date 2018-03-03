@@ -1,44 +1,47 @@
 import * as React from "react";
 
-import { connect } from "react-redux";
+import { connect, Dispatch } from "react-redux";
+import { bindActionCreators } from "redux";
 
+import { createPost, deletePost, updatePost } from "action/post-action";
+import ManagerList from "component/manager-list";
 import { IPost } from "model/post";
 import { IState } from "model/state";
 import { getPostList } from "selector/post";
+
+import PostManagerDisplay from "./component/post-manager-display";
+import PostManagerForm from "./component/post-manager-form";
+import { POST_FORM_NAME } from "./constant";
 
 interface IPostManagerStateProps {
   postList: IPost[];
 }
 
-type TPostDetailProps = IPostManagerStateProps;
+interface IPostManagerDispatchProps {
+  createPost: typeof createPost;
+  deletePost: typeof deletePost;
+  updatePost: typeof updatePost;
+}
+
+type TPostDetailProps = IPostManagerStateProps & IPostManagerDispatchProps;
 
 class PostDetail extends React.PureComponent<TPostDetailProps, {}> {
   public render(): JSX.Element {
     return (
-      <div>
-        {this.renderHeader()}
-        {this.renderList()}
+      <div className="post-manager">
+        <ManagerList
+          create={this.props.createPost}
+          delete={this.props.deletePost}
+          display={PostManagerDisplay}
+          form={PostManagerForm}
+          formName={POST_FORM_NAME}
+          identifier="id"
+          itemList={this.props.postList}
+          title="Liste des utilisateurs"
+          update={this.props.updatePost}
+        />
       </div>
     );
-  }
-
-  private renderHeader = (): JSX.Element => (
-    <div>
-      <h1>Liste des articles</h1>
-      <button>Ajouter</button>
-      <button>Modifier</button>
-      <button>Supprimer</button>
-    </div>
-  )
-
-  private renderList = (): JSX.Element[] => {
-    return this.props.postList.map((post: IPost, key: number) => (
-      <div key={key}>
-        <div>{post.id}</div>
-        <div>{post.title}</div>
-        <div>{post.content}</div>
-      </div>
-    ));
   }
 }
 
@@ -48,6 +51,15 @@ const mapStateToProps = (state: IState): IPostManagerStateProps => {
   };
 };
 
+const mapDispatchToProps = (dispatch: Dispatch<IState>): IPostManagerDispatchProps => {
+  return {
+    createPost: bindActionCreators(createPost, dispatch),
+    deletePost: bindActionCreators(deletePost, dispatch),
+    updatePost: bindActionCreators(updatePost, dispatch),
+  };
+};
+
 export default connect<IPostManagerStateProps, {}, {}>(
   mapStateToProps,
+  mapDispatchToProps,
 )(PostDetail);

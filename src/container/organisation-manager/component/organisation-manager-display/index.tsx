@@ -26,6 +26,7 @@ class OrganisationManagerDisplay extends React.PureComponent<TOrganisationManage
       <div className="detail-display">
         <div>{this.props.item.email}</div>
         <div>{formatPhone(this.props.item.phone)} / {this.props.item.extension}</div>
+        <div>{this.props.item.headOffice}</div>
       </div>
     );
   }

@@ -84,9 +84,9 @@ class ManagerList<T, V, P> extends React.PureComponent<TManagerListProps<T, V, P
         <div className="header">
           <h1>{this.props.title}</h1>
           <div className="header-buttons">
-            <button className="create-button" onClick={this.handleCreateButton}>Create</button>
-            <button className="update-button" onClick={this.handleUpdateButton}>Update</button>
-            <button className="delete-button" onClick={this.handleDeleteButton}>Delete</button>
+            <button className="button create-button" onClick={this.handleCreateButton}>Create</button>
+            <button className="button update-button" onClick={this.handleUpdateButton}>Update</button>
+            <button className="button delete-button" onClick={this.handleDeleteButton}>Delete</button>
           </div>
         </div>
         {itemList}

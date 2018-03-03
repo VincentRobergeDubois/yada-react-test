@@ -1,26 +1,18 @@
-.organisation-manager {
+.post-manager {
   .manager-display {
     @include xy-cell();
     .default-display {
       @include xy-grid();
       height: 2.4rem;
       line-height: 2.4rem;
-      >div:first-child {
-        @include xy-cell(30%);
-      }
-      >div {
-        @include xy-cell(70%);
-      }
     }
     .detail-display {
       @include xy-grid();
-      height: 2.4rem;
-      line-height: 2.4rem;
       >div:first-child {
-        @include xy-cell(30%);
+        @include xy-cell(10%);
       }
       >div {
-        @include xy-cell(35%);
+        @include xy-cell(90%);
       }
     }
   }

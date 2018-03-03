@@ -62,3 +62,13 @@ export const updatePost = (formData: IPostFormValues, id: number) => {
     );
   };
 };
+
+export const deletePost = (id: number) => {
+  return (dispatch: Dispatch<IState>): Promise<void> => {
+    return axios.delete(`${END_POINT_URL}${id}`).then(
+      (response: AxiosResponse<IResponse<IPost[]>>) => {
+        dispatch(parsePostList(response.data.data));
+      },
+    );
+  };
+};

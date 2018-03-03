@@ -15,14 +15,18 @@
   }
   .manager-display {
     border: solid 1px $yada-red;
+    color: $yada-red;
     margin-top: 0.4rem;
     padding-left: 1rem;
+    cursor: pointer;
     &:hover {
-      border: solid 2px $yada-black;
+      border: solid 2px $yada-red;
     }
   }
   .selected {
-    background-color: $yada-red;
-    color: $yada-white;
+    background-color: $yada-white;
+    border: solid 2px $yada-red;
+    color: $yada-red;
+    font-weight: 600;
   }
 }
