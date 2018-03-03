@@ -15,7 +15,7 @@ const INITIAL_STATE: IOrganisationState = {
     headOffice: "",
     id: 0,
     name: "",
-    phone: 0,
+    phone: "",
   },
   isForm: false,
   list: [],

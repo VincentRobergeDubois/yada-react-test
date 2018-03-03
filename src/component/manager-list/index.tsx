@@ -1,11 +1,10 @@
 import * as React from "react";
 
-import { IManagerDetail, IManagerDisplay, TManagerForm } from "model/manager";
+import { IManagerDisplay, TManagerForm } from "model/manager";
 
 interface IManagerListOwnProps<T, V, P> {
   create: (data: V) => void;
   delete: (id: number) => void;
-  detail: React.ComponentType<IManagerDetail<T>>;
   display: React.ComponentType<IManagerDisplay<T>>;
   form: React.ComponentType<TManagerForm<V, P>>;
   formName: string;

@@ -13,7 +13,8 @@ class OrganisationManagerForm extends React.PureComponent<TOrganisationManagerfo
   public render(): JSX.Element {
     return (
       <form onSubmit={this.props.handleSubmit(this.props.handleForm())}>
-        Form
+        <button type="submit">Confirmer</button>
+        <button type="button" onClick={this.props.handleCancel}>Annuler</button>
       </form>
     );
   }

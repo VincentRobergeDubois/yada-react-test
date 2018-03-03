@@ -17,13 +17,12 @@
     border: solid 1px $yada-red;
     margin-top: 0.4rem;
     padding-left: 1rem;
-    height: 2.4rem;
-    line-height: 2.4rem;
     &:hover {
       border: solid 2px $yada-black;
     }
   }
   .selected {
-    border: solid 2px purple;
+    background-color: $yada-red;
+    color: $yada-white;
   }
 }

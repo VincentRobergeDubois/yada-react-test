@@ -1,9 +1,5 @@
 import { ConfigProps } from "redux-form";
 
-export interface IManagerDetail<T> {
-  item: T;
-}
-
 export interface IManagerDisplay<T> {
   item: T;
   isSelected: boolean;

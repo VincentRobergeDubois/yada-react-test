@@ -62,3 +62,13 @@ export const updateService = (formData: IServiceFormValues, id: number) => {
     );
   };
 };
+
+export const deleteService = (id: number) => {
+  return (dispatch: Dispatch<IState>): Promise<void> => {
+    return axios.delete(`${END_POINT_URL}${id}`).then(
+      (response: AxiosResponse<IResponse<IService[]>>) => {
+        dispatch(parseServiceList(response.data.data));
+      },
+    );
+  };
+};

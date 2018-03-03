@@ -9,7 +9,6 @@ import { IOrganisation } from "model/organisation";
 import { IState } from "model/state";
 import { getOrganisationList } from "selector/organisation";
 
-import OrganisationManagerDetail from "./component/organisation-manager-detail";
 import OrganisationManagerDisplay from "./component/organisation-manager-display";
 import OrganisationManagerForm from "./component/organisation-manager-form";
 import { ORGANISATION_FORM_NAME } from "./constant";
@@ -33,7 +32,6 @@ class OrganisationDetail extends React.PureComponent<TOrganisationDetailProps, {
         <ManagerList
           create={this.props.createOrganisation}
           delete={this.props.deleteOrganisation}
-          detail={OrganisationManagerDetail}
           display={OrganisationManagerDisplay}
           form={OrganisationManagerForm}
           formName={ORGANISATION_FORM_NAME}

@@ -9,7 +9,6 @@ import { IState } from "model/state";
 import { IUser } from "model/user";
 import { getUserList } from "selector/user";
 
-import UserManagerDetail from "./component/user-manager-detail";
 import UserManagerDisplay from "./component/user-manager-display";
 import UserManagerForm from "./component/user-manager-form";
 import { USER_FORM_NAME } from "./constant";
@@ -33,7 +32,6 @@ class UserDetail extends React.PureComponent<TUserDetailProps, {}> {
         <ManagerList
           create={this.props.createUser}
           delete={this.props.deleteUser}
-          detail={UserManagerDetail}
           display={UserManagerDisplay}
           form={UserManagerForm}
           formName={USER_FORM_NAME}

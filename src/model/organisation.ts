@@ -8,7 +8,7 @@ export interface IOrganisation {
   abreviation: string;
   headOffice: string;
   email: string;
-  phone: number;
+  phone: string;
   extension: number;
   createdAt?: Date;
   createdBy?: IUser;

@@ -1,0 +1,13 @@
+.service-manager {
+  .manager-display {
+    @include xy-grid();
+    height: 2.4rem;
+    line-height: 2.4rem;
+    >div:first-child {
+      @include xy-cell(30%);
+    }
+    >div {
+      @include xy-cell(70%);
+    }
+  }
+}
