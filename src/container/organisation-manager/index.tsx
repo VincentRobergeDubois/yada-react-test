@@ -37,7 +37,7 @@ class OrganisationDetail extends React.PureComponent<TOrganisationDetailProps, {
           formName={ORGANISATION_FORM_NAME}
           identifier="id"
           itemList={this.props.organisationList}
-          title="Liste des utilisateurs"
+          title="Liste des organisation"
           update={this.props.updateOrganisation}
         />
       </div>

@@ -1,13 +1,10 @@
 .manager-list {
   .header-buttons {
-    .create-button {
-      background-color: $yada-success;
+    .yada-button {
+      margin-left: 1rem;
     }
-    .update-button {
-      background-color: $yada-info;
-    }
-    .delete-button {
-      background-color: $yada-danger;
+    .yada-button:first-child {
+      margin-left: 0rem;
     }
   }
   .manager-display:first {

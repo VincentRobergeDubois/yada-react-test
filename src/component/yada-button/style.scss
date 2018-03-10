@@ -1,0 +1,4 @@
+.yada-button {
+  @include button(false, $yada-red, $yada-pink, $yada-red, hollow);
+  width: 10rem;
+}

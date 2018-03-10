@@ -37,7 +37,7 @@ class ServiceDetail extends React.PureComponent<TServiceDetailProps, {}> {
           formName={SERVICE_FORM_NAME}
           identifier="id"
           itemList={this.props.serviceList}
-          title="Liste des utilisateurs"
+          title="Liste des services"
           update={this.props.updateService}
         />
       </div>

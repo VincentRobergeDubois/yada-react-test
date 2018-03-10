@@ -1,5 +1,6 @@
 import * as React from "react";
 
+import YadaButton from "component/yada-button";
 import { IManagerDisplay, TManagerForm } from "model/manager";
 
 interface IManagerListOwnProps<T, V, P> {
@@ -84,9 +85,9 @@ class ManagerList<T, V, P> extends React.PureComponent<TManagerListProps<T, V, P
         <div className="header">
           <h1>{this.props.title}</h1>
           <div className="header-buttons">
-            <button className="button create-button" onClick={this.handleCreateButton}>Create</button>
-            <button className="button update-button" onClick={this.handleUpdateButton}>Update</button>
-            <button className="button delete-button" onClick={this.handleDeleteButton}>Delete</button>
+            <YadaButton label="Ajouter" onClick={this.handleCreateButton} type="button" />
+            <YadaButton label="Modifier" onClick={this.handleUpdateButton} type="button" />
+            <YadaButton label="Supprimer" onClick={this.handleDeleteButton} type="button" />
           </div>
         </div>
         {itemList}

@@ -37,7 +37,7 @@ class PostDetail extends React.PureComponent<TPostDetailProps, {}> {
           formName={POST_FORM_NAME}
           identifier="id"
           itemList={this.props.postList}
-          title="Liste des utilisateurs"
+          title="Liste des articles"
           update={this.props.updatePost}
         />
       </div>
