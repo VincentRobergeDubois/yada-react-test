@@ -6,22 +6,13 @@ import { IUser, IUserConn, IUserState } from "model/user";
 export const getUser = (state: IState): IUserState => state.user;
 
 export const getCurrentUser = createSelector(
-  getUser,
-  (user: IUserState): IUserConn => {
-    return user.current;
-  },
+  getUser, ({ current }: IUserState): IUserConn => current,
 );
 
 export const getUserList = createSelector(
-  getUser,
-  (user: IUserState): IUser[] => {
-    return user.list;
-  },
+  getUser, ({ list }: IUserState): IUser[] => list,
 );
 
 export const getIsUserForm = createSelector(
-  getUser,
-  (user: IUserState): boolean => {
-    return user.isForm;
-  },
+  getUser, ({ isForm }: IUserState): boolean => isForm,
 );

@@ -6,22 +6,13 @@ import { IState } from "model/state";
 export const getOrganisation = (state: IState): IOrganisationState => state.organisation;
 
 export const getCurrentOrganisation = createSelector(
-  getOrganisation,
-  (organisation: IOrganisationState): IOrganisation => {
-    return organisation.current;
-  },
+  getOrganisation, ({ current }: IOrganisationState): IOrganisation => current,
 );
 
 export const getOrganisationList = createSelector(
-  getOrganisation,
-  (organisation: IOrganisationState): IOrganisation[] => {
-    return organisation.list;
-  },
+  getOrganisation, ({ list }: IOrganisationState): IOrganisation[] => list,
 );
 
 export const getIsOrganisationForm = createSelector(
-  getOrganisation,
-  (organisation: IOrganisationState): boolean => {
-    return organisation.isForm;
-  },
+  getOrganisation, ({ isForm }: IOrganisationState): boolean => isForm,
 );

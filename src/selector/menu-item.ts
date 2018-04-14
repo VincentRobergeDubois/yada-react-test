@@ -6,22 +6,13 @@ import { IState } from "model/state";
 export const getMenuItem = (state: IState): IMenuItemState => state.menuItem;
 
 export const getCurrentMenuItem = createSelector(
-  getMenuItem,
-  (menuItem: IMenuItemState): IMenuItem => {
-    return menuItem.current;
-  },
+  getMenuItem, ({ current }: IMenuItemState): IMenuItem => current,
 );
 
 export const getMainMenuItemList = createSelector(
-  getMenuItem,
-  (menuItem: IMenuItemState): IMenuItem[] => {
-    return menuItem.mainMenuList;
-  },
+  getMenuItem, ({ mainMenuList }: IMenuItemState): IMenuItem[] => mainMenuList,
 );
 
 export const getAdminMenuItemList = createSelector(
-  getMenuItem,
-  (menuItem: IMenuItemState): IMenuItem[] => {
-    return menuItem.adminMenuList;
-  },
+  getMenuItem, ({ adminMenuList }: IMenuItemState): IMenuItem[] => adminMenuList,
 );
