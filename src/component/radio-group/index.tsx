@@ -9,7 +9,7 @@ interface IRadioGroupOwnProps {
 
 type TRadioGroupProps = IRadioGroupOwnProps & WrappedFieldProps;
 
-class Input extends React.PureComponent<TRadioGroupProps, {}> {
+class RadioGroup extends React.PureComponent<TRadioGroupProps, {}> {
   public render() {
     const { name, label, input, meta } = this.props;
     return (
@@ -24,4 +24,4 @@ class Input extends React.PureComponent<TRadioGroupProps, {}> {
   }
 }
 
-export default Input;
+export default RadioGroup;

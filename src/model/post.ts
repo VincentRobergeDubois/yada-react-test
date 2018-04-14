@@ -22,13 +22,19 @@ export interface IPostState {
 }
 
 export interface IPostForm {
-  field: RegisteredFieldState;
+  title: RegisteredFieldState;
+  content: RegisteredFieldState;
+  image: RegisteredFieldState;
 }
 
 export interface IPostFormFields {
-  field: FieldState;
+  title: FieldState;
+  content: FieldState;
+  image: FieldState;
 }
 
 export interface IPostFormValues {
-  field: string;
+  title: string;
+  content: string;
+  image: string;
 }

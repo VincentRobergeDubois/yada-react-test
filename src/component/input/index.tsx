@@ -3,8 +3,9 @@ import * as React from "react";
 import { WrappedFieldProps } from "redux-form";
 
 interface IInputOwnProps {
-  name: string;
   label?: string;
+  name: string;
+  placeholder?: string;
   type: string;
 }
 
@@ -12,15 +13,43 @@ type TInputProps = IInputOwnProps & WrappedFieldProps;
 
 class Input extends React.PureComponent<TInputProps, {}> {
   public render() {
-    const { name, label, type, input, meta } = this.props;
     return (
-      <div className="input">
-        <label>{label}</label>
+      <div className="form-input">
+        {this.props.label && <label>{this.props.label}</label>}
         <div>
-          <input name={name} type={type} {...input} />
-          {meta.touched && ((meta.error && <span>{meta.error}</span>) || (meta.warning && <span>{meta.warning}</span>))}
+          <input
+            name={this.props.name}
+            type={this.props.type}
+            placeholder={this.props.placeholder}
+            {...this.props.input}
+          />
+          {this.props.meta.touched && this.renderMessage()}
         </div>
       </div>
+    );
+  }
+
+  private renderMessage = (): JSX.Element | void => {
+    if (this.props.meta.error) {
+      return this.renderError();
+    } else if (this.props.meta.warning) {
+      return this.renderWarning();
+    }
+  }
+
+  private renderError = (): JSX.Element => {
+    return (
+      <span className="error-msg">
+        {this.props.meta.error}
+      </span>
+    );
+  }
+
+  private renderWarning = (): JSX.Element => {
+    return (
+      <span className="warning-msg">
+        {this.props.meta.warning}
+      </span>
     );
   }
 }

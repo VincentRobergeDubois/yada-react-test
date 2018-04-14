@@ -1,6 +1,5 @@
 import * as React from "react";
 
-import { Cell } from "react-foundation";
 import { connect } from "react-redux";
 import { bindActionCreators, Dispatch } from "redux";
 
@@ -30,9 +29,18 @@ class NewsSection extends React.Component<TNewsSectionProps, {}> {
 
   public render(): JSX.Element {
     return (
-      <Cell id="news-section">
+      <div id="news-section">
+        {this.renderBroadcast()}
         {this.renderList()}
-      </Cell>
+      </div>
+    );
+  }
+
+  private renderBroadcast = (): JSX.Element => {
+    return (
+      <div className="broadcast">
+        d
+      </div>
     );
   }
 

@@ -3,7 +3,6 @@ import * as React from "react";
 import { Field, InjectedFormProps, reduxForm } from "redux-form";
 
 import Input from "component/input";
-import RadioGroup from "component/radio-group";
 import YadaButton from "component/yada-button";
 import { IManagerForm } from "model/manager";
 import { IUserFormValues } from "model/user";
@@ -51,12 +50,6 @@ class UserManagerForm extends React.PureComponent<TUserManagerFormProps & Inject
           label="Numéro de téléphone"
           type="text"
           component={Input}
-          validate={[ required ]}
-        />
-        <Field
-          name="admin"
-          label="Droit administrateur"
-          component={RadioGroup}
           validate={[ required ]}
         />
         <YadaButton label="Confirmer" type="submit" />

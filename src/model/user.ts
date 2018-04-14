@@ -42,13 +42,33 @@ export interface IUserState {
 }
 
 export interface IUserForm {
-  field: RegisteredFieldState;
+  username: RegisteredFieldState;
+  lastname: RegisteredFieldState;
+  firstname: RegisteredFieldState;
+  email: RegisteredFieldState;
+  phone: RegisteredFieldState;
 }
 
 export interface IUserFormFields {
-  field: FieldState;
+  username: FieldState;
+  lastname: FieldState;
+  firstname: FieldState;
+  email: FieldState;
+  phone: FieldState;
 }
 
 export interface IUserFormValues {
-  field: string;
+  username: string;
+  lastname: string;
+  firstname: string;
+  email: string;
+  phone: string;
+}
+
+export interface IPassword {
+  hash: string;
+  salt: string;
+  keyLength: number;
+  hashMethod: string;
+  iterations: number;
 }

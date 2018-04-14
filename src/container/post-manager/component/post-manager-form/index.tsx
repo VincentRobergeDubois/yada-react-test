@@ -1,9 +1,12 @@
 import * as React from "react";
 
-import { InjectedFormProps, reduxForm } from "redux-form";
+import { Field, InjectedFormProps, reduxForm } from "redux-form";
 
+import Input from "component/input";
+import YadaButton from "component/yada-button";
 import { IManagerForm } from "model/manager";
 import { IPostFormValues } from "model/post";
+import { required } from "service/form-validator";
 
 interface IPostManagerFormOwnProps extends IManagerForm<IPostFormValues> { }
 
@@ -14,8 +17,22 @@ class PostManagerForm extends React.PureComponent<TPostManagerFormProps & TInjec
   public render(): JSX.Element {
     return (
       <form onSubmit={this.props.handleSubmit(this.props.handleForm())}>
-        <button type="submit">Confirmer</button>
-        <button type="button" onClick={this.props.handleCancel}>Annuler</button>
+        <Field
+          component={Input}
+          label="Titre"
+          name="title"
+          type="text"
+          validate={required}
+        />
+        <Field
+          component={Input}
+          label="Contenu"
+          name="content"
+          type="textarea"
+          validate={required}
+        />
+        <YadaButton label="Confirmer" type="submit" />
+        <YadaButton label="Annuler" onClick={this.props.handleCancel} type="button" />
       </form>
     );
   }

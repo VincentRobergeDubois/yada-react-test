@@ -101,7 +101,7 @@ class ManagerList<T, V, P> extends React.PureComponent<TManagerListProps<T, V, P
         <this.props.form
           form={this.props.formName}
           handleCancel={this.handleCancel}
-          handleForm={this.handleCreate}
+          handleForm={this.handleUpdate}
           initialValues={this.state.selectedItem}
         />
       );
@@ -110,7 +110,7 @@ class ManagerList<T, V, P> extends React.PureComponent<TManagerListProps<T, V, P
       <this.props.form
         form={this.props.formName}
         handleCancel={this.handleCancel}
-        handleForm={this.handleUpdate}
+        handleForm={this.handleCreate}
       />
     );
   }

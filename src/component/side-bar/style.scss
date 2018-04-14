@@ -1,3 +1,7 @@
 .sidebar {
   background-color: $yada-black;
+  text-align: center;
+  img {
+    @include vertical-align();
+  }
 }

@@ -1,9 +1,11 @@
 import * as React from "react";
-import { InjectedFormProps, reduxForm } from "redux-form";
+import { Field, InjectedFormProps, reduxForm } from "redux-form";
 
+import Input from "component/input";
 import YadaButton from "component/yada-button";
 import { IManagerForm } from "model/manager";
 import { IOrganisationFormValues } from "model/organisation";
+import { required } from "service/form-validator";
 
 interface IOrganisationManagerFormOwnProps extends IManagerForm<IOrganisationFormValues> { }
 
@@ -14,6 +16,48 @@ class OrganisationManagerForm extends React.PureComponent<TOrganisationManagerfo
   public render(): JSX.Element {
     return (
       <form onSubmit={this.props.handleSubmit(this.props.handleForm())}>
+        <Field
+          component={Input}
+          label="Nom"
+          name="name"
+          type="text"
+          validate={[required]}
+        />
+        <Field
+          component={Input}
+          label="Abréviation"
+          name="abreviation"
+          type="text"
+          validate={[required]}
+        />
+        <Field
+          component={Input}
+          label="Siège social"
+          name="headOffice"
+          type="text"
+          validate={[required]}
+        />
+        <Field
+          component={Input}
+          label="Courriel"
+          name="email"
+          type="text"
+          validate={[required]}
+        />
+        <Field
+          component={Input}
+          label="Numéro de téléphone"
+          name="phone"
+          type="text"
+          validate={[required]}
+        />
+        <Field
+          component={Input}
+          label="Extension"
+          name="extension"
+          type="text"
+          validate={[required]}
+        />
         <YadaButton label="Confirmer" type="submit" />
         <YadaButton label="Annuler" onClick={this.props.handleCancel} type="button" />
       </form>

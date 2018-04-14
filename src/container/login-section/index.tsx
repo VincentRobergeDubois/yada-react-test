@@ -26,7 +26,7 @@ type TLoginSectionProps = ILoginSectionOwnProps & ILoginSectionDispatchProps;
 class LoginSection extends React.PureComponent<TLoginSectionProps, {}> {
   public render() {
     return (
-      <div>
+      <div className="login-section">
         <LoginForm
           handleLogin={this.handleLogin}
         />

@@ -31,3 +31,19 @@ body {
   background-color: $yada-white;
   color: $yada-black;
 }
+
+[type=password], [type=text] {
+  margin-bottom: 0.2rem;
+}
+
+.form-input {
+  margin-bottom: 1rem;
+}
+
+.error-msg {
+  color: $yada-danger;
+}
+
+.warning-msg {
+  color: $yada-warning;
+}

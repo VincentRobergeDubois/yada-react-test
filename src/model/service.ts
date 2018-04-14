@@ -21,13 +21,16 @@ export interface IServiceState {
 }
 
 export interface IServiceForm {
-  field: RegisteredFieldState;
+  name: RegisteredFieldState;
+  description: RegisteredFieldState;
 }
 
 export interface IServiceFormFields {
-  field: FieldState;
+  name: FieldState;
+  description: FieldState;
 }
 
 export interface IServiceFormValues {
-  field: string;
+  name: string;
+  description: string;
 }

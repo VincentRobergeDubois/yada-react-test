@@ -1,3 +1,9 @@
-.cred-fail label {
-  color: $yada-red;
+.login-section {
+  margin: 0 4rem;
+  @include vertical-align();
+  form {
+    .yada-button {
+      @include button(true, $yada-red, $yada-pink, $yada-white, solid);
+    }
+  }
 }

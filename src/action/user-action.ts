@@ -1,12 +1,12 @@
 import axios, { AxiosResponse } from "axios";
-// import credential = require("credential");
+import credential = require("credential");
 import { Dispatch } from "redux";
 
 import { loadMenuItemList, parseAdminMenuItemList, parseMainMenuItemList } from "action/menu-item-action";
 import { loadStructureAdmin } from "action/structure-admin";
 import { IAction, IResponse } from "model/action";
 import { IState } from "model/state";
-import { IUser, IUserConn, IUserFormValues } from "model/user";
+import { IPassword, IUser, IUserConn, IUserFormValues } from "model/user";
 
 export const LOGOUT = "LOGOUT";
 
@@ -48,13 +48,25 @@ export const loadUserList = () => {
 };
 
 export const createUser = (formValues: IUserFormValues) => {
-  return (dispatch: Dispatch<IState>): Promise<void> => {
-    return axios.post(`${END_POINT_URL}`, formValues).then(
-      (response: AxiosResponse<IResponse<IUser[]>>) => {
-        dispatch(parseUserList(response.data.data));
-      },
-    );
-  };
+  const pw = credential();
+  pw.hash(generate(), (error: Error, hash: IPassword) => {
+    const body = {
+      admin: 1,
+      email: formValues.email,
+      firstname: formValues.firstname,
+      lastname: formValues.lastname,
+      phone: formValues.phone,
+      username: formValues.username,
+      ...hash,
+    };
+    return (dispatch: Dispatch<IState>): Promise<void> => {
+      return axios.post(`${END_POINT_URL}`, body).then(
+        (response: AxiosResponse<IResponse<IUser[]>>) => {
+          dispatch(parseUserList(response.data.data));
+        },
+      );
+    };
+  });
 };
 
 export const updateUser = (formValues: IUserFormValues, id: number) => {

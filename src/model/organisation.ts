@@ -25,13 +25,28 @@ export interface IOrganisationState {
 }
 
 export interface IOrganisationForm {
-  field: RegisteredFieldState;
+  name: RegisteredFieldState;
+  abreviation: RegisteredFieldState;
+  headOffice: RegisteredFieldState;
+  email: RegisteredFieldState;
+  phone: RegisteredFieldState;
+  extension: RegisteredFieldState;
 }
 
 export interface IOrganisationFormFields {
-  field: FieldState;
+  name: FieldState;
+  abreviation: FieldState;
+  headOffice: FieldState;
+  email: FieldState;
+  phone: FieldState;
+  extension: FieldState;
 }
 
 export interface IOrganisationFormValues {
-  field: string;
+  name: string;
+  abreviation: string;
+  headOffice: string;
+  email: string;
+  phone: string;
+  extension: string;
 }
