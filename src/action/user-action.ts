@@ -31,9 +31,12 @@ export const parseUserList = (list: IUser[]): IAction<IUser[]> => {
 export const loadUser = (userId: number) => {
   return (dispatch: Dispatch<IState>): Promise<void> => {
     return axios.get(`${END_POINT_URL}${userId}`).then((response: AxiosResponse<IResponse<IUserConn>>) => {
+      const admin = response.data.data.admin ? 1 : 0;
       dispatch(parseCurrentUser(response.data.data));
-      if (response.data.data.admin === 1) {
+      dispatch(loadMenuItemList(1, 1, admin, parseMainMenuItemList));
+      if (response.data.data.admin) {
         dispatch(loadStructureAdmin());
+        dispatch(loadMenuItemList(4, 1, admin, parseAdminMenuItemList));
       }
     });
   };
@@ -93,8 +96,6 @@ export const login = (username: string, password: string) => {
   return (dispatch: Dispatch<IState>): Promise<void> => {
     return axios.get(`${END_POINT_URL}username/${username}`).then((response: AxiosResponse<IResponse<IUser>>) => {
       dispatch(loadUser(response.data.data.id));
-      dispatch(loadMenuItemList(1, 1, 1, parseMainMenuItemList));
-      dispatch(loadMenuItemList(4, 1, 1, parseAdminMenuItemList));
     });
   };
 };
@@ -102,6 +103,6 @@ export const login = (username: string, password: string) => {
 export const logout = () => {
   return (dispatch: Dispatch<IState>): void => {
     dispatch({ type: LOGOUT });
-    dispatch(loadMenuItemList(1, 6, 1, parseMainMenuItemList));
+    dispatch(loadMenuItemList(1, 6, 0, parseMainMenuItemList));
   };
 };

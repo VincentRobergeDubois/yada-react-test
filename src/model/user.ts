@@ -9,7 +9,7 @@ export interface IUser {
   firstname: string;
   email: string;
   phone: string;
-  admin: number;
+  admin: boolean;
   hash?: string;
   salt?: string;
   keyLength: number;
@@ -32,7 +32,7 @@ export interface IUserConn {
   email: string;
   organisationList: IOrganisation[];
   abreviation: string;
-  admin: number;
+  admin: boolean;
 }
 
 export interface IUserState {

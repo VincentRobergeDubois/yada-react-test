@@ -39,7 +39,7 @@ class NewsSection extends React.Component<TNewsSectionProps, {}> {
   private renderBroadcast = (): JSX.Element => {
     return (
       <div className="broadcast">
-        d
+        Annonces à venir
       </div>
     );
   }

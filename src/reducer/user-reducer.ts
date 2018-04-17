@@ -10,7 +10,7 @@ import { IUserState  } from "model/user";
 const INITIAL_STATE: IUserState = {
   current: {
     abreviation: "",
-    admin: 0,
+    admin: false,
     email: "",
     firstname: "",
     id: 0,

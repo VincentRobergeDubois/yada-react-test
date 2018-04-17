@@ -16,3 +16,7 @@ export const getUserList = createSelector(
 export const getIsUserForm = createSelector(
   getUser, ({ isForm }: IUserState): boolean => isForm,
 );
+
+export const getAdminUserList = createSelector(
+  getUserList, (userList: IUser[]): IUser[] => userList.filter((user: IUser) => user.admin),
+);

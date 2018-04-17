@@ -4,8 +4,7 @@ import * as H from "history";
 import { connect } from "react-redux";
 import { bindActionCreators, Dispatch } from "redux";
 
-import { loadMenuItemList } from "action/menu-item-action";
-import { loadUser, login } from "action/user-action";
+import { login } from "action/user-action";
 import { IState } from "model/state";
 import { ILoginFormValues } from "./model";
 
@@ -16,8 +15,6 @@ interface ILoginSectionOwnProps {
 }
 
 interface ILoginSectionDispatchProps {
-  loadMenuItemList: typeof loadMenuItemList;
-  loadUser: typeof loadUser;
   login: typeof login;
 }
 
@@ -42,8 +39,6 @@ class LoginSection extends React.PureComponent<TLoginSectionProps, {}> {
 
 const mapDispatchToProps = (dispatch: Dispatch<IState>): ILoginSectionDispatchProps => {
   return {
-    loadMenuItemList: bindActionCreators(loadMenuItemList, dispatch),
-    loadUser: bindActionCreators(loadUser, dispatch),
     login: bindActionCreators(login, dispatch),
   };
 };
