@@ -18,12 +18,18 @@ class Post extends React.Component<IPostProps, {}> {
     );
   }
 
+  private renderImage = (): JSX.Element => {
+    return (
+      <MediaObjectSection>
+        <Thumbnail src={this.props.image}/>
+      </MediaObjectSection>
+    );
+  }
+
   private renderRight = (): JSX.Element => {
     return (
       <MediaObject>
-        <MediaObjectSection>
-          <Thumbnail src={this.props.image}/>
-        </MediaObjectSection>
+        {this.props.image && this.renderImage()}
         <MediaObjectSection isMain={true}>
           <h4>{this.props.title}</h4>
           <div dangerouslySetInnerHTML={{ __html: this.props.content }} />
@@ -39,9 +45,7 @@ class Post extends React.Component<IPostProps, {}> {
           <h4>{this.props.title}</h4>
           <div dangerouslySetInnerHTML={{ __html: this.props.content }} />
         </MediaObjectSection>
-        <MediaObjectSection>
-          <Thumbnail src={this.props.image}/>
-        </MediaObjectSection>
+        {this.props.image && this.renderImage()}
       </MediaObject>
     );
   }

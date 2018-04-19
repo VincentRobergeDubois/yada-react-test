@@ -54,17 +54,13 @@ class Admin extends React.PureComponent<TAdminProps & RouteComponentProps<TAdmin
   }
 }
 
-const mapStateToProps = (state: IState): IAdminStateProps => {
-  return {
-    adminMenuList: getAdminMenuItemList(state),
-  };
-};
+const mapStateToProps = (state: IState): IAdminStateProps => ({
+  adminMenuList: getAdminMenuItemList(state),
+});
 
-const mapDispatchToProps = (dispatch: Dispatch<IState>): IAdminDispatchProps => {
-  return {
-    loadMenuItemList: bindActionCreators(loadMenuItemList, dispatch),
-  };
-};
+const mapDispatchToProps = (dispatch: Dispatch<IState>): IAdminDispatchProps => ({
+  loadMenuItemList: bindActionCreators(loadMenuItemList, dispatch),
+});
 
 export default connect<IAdminStateProps, IAdminDispatchProps, {}>(
   mapStateToProps,

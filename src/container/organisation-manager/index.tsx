@@ -45,19 +45,15 @@ class OrganisationDetail extends React.PureComponent<TOrganisationDetailProps, {
   }
 }
 
-const mapStateToProps = (state: IState): IOrganisationManagerStateProps => {
-  return {
-    organisationList: getOrganisationList(state),
-  };
-};
+const mapStateToProps = (state: IState): IOrganisationManagerStateProps => ({
+  organisationList: getOrganisationList(state),
+});
 
-const mapDispatchToProps = (dispatch: Dispatch<IState>): IOrganisationManagerDispatchProps => {
-  return {
-    createOrganisation: bindActionCreators(createOrganisation, dispatch),
-    deleteOrganisation: bindActionCreators(deleteOrganisation, dispatch),
-    updateOrganisation: bindActionCreators(updateOrganisation, dispatch),
-  };
-};
+const mapDispatchToProps = (dispatch: Dispatch<IState>): IOrganisationManagerDispatchProps => ({
+  createOrganisation: bindActionCreators(createOrganisation, dispatch),
+  deleteOrganisation: bindActionCreators(deleteOrganisation, dispatch),
+  updateOrganisation: bindActionCreators(updateOrganisation, dispatch),
+});
 
 export default connect<IOrganisationManagerStateProps, IOrganisationManagerDispatchProps, {}>(
   mapStateToProps,

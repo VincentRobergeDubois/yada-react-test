@@ -60,19 +60,15 @@ class TopBar extends React.PureComponent<TTopBarProps, {}> {
   }
 }
 
-const mapStateToProps = (state: IState): ITopBarStateProps => {
-  return {
-    mainMenuItemList: getMainMenuItemList(state),
-    user: getCurrentUser(state),
-  };
-};
+const mapStateToProps = (state: IState): ITopBarStateProps => ({
+  mainMenuItemList: getMainMenuItemList(state),
+  user: getCurrentUser(state),
+});
 
-const mapDispatchToProps = (dispatch: Dispatch<IState>): ITopBarDispatchProps => {
-  return {
-    loadMenuItemList: bindActionCreators(loadMenuItemList, dispatch),
-    logout: bindActionCreators(logout, dispatch),
-  };
-};
+const mapDispatchToProps = (dispatch: Dispatch<IState>): ITopBarDispatchProps => ({
+  loadMenuItemList: bindActionCreators(loadMenuItemList, dispatch),
+  logout: bindActionCreators(logout, dispatch),
+});
 
 export default connect<ITopBarStateProps, ITopBarDispatchProps, ITopBarOwnProps>(
   mapStateToProps,

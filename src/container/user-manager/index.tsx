@@ -45,19 +45,15 @@ class UserDetail extends React.PureComponent<TUserDetailProps, {}> {
   }
 }
 
-const mapStateToProps = (state: IState): IUserManagerStateProps => {
-  return {
-    userList: getUserList(state),
-  };
-};
+const mapStateToProps = (state: IState): IUserManagerStateProps => ({
+  userList: getUserList(state),
+});
 
-const mapDispatchToProps = (dispatch: Dispatch<IState>): IUserManagerDispatchProps => {
-  return {
-    createUser: bindActionCreators(createUser, dispatch),
-    deleteUser: bindActionCreators(deleteUser, dispatch),
-    updateUser: bindActionCreators(updateUser, dispatch),
-  };
-};
+const mapDispatchToProps = (dispatch: Dispatch<IState>): IUserManagerDispatchProps => ({
+  createUser: bindActionCreators(createUser, dispatch),
+  deleteUser: bindActionCreators(deleteUser, dispatch),
+  updateUser: bindActionCreators(updateUser, dispatch),
+});
 
 export default connect<IUserManagerStateProps, IUserManagerDispatchProps, {}>(
   mapStateToProps,

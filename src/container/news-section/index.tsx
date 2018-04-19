@@ -59,17 +59,13 @@ class NewsSection extends React.Component<TNewsSectionProps, {}> {
   }
 }
 
-const mapStateToProps = (state: IState): INewsSectionStateProps => {
-  return {
-    postList: getPostList(state),
-  };
-};
+const mapStateToProps = (state: IState): INewsSectionStateProps => ({
+  postList: getPostList(state),
+});
 
-const mapDispatchToProps = (dispatch: Dispatch<IState>): INewsSectionDispatchProps => {
-  return {
-    loadPostList: bindActionCreators(loadPostList, dispatch),
-  };
-};
+const mapDispatchToProps = (dispatch: Dispatch<IState>): INewsSectionDispatchProps => ({
+  loadPostList: bindActionCreators(loadPostList, dispatch),
+});
 
 export default connect<INewsSectionStateProps, INewsSectionDispatchProps, {}>(
   mapStateToProps,

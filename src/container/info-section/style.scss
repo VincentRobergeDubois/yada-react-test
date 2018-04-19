@@ -1,8 +1,9 @@
 .info-section {
+  @include xy-cell();
   .general-info {
     @include xy-grid();
   }
   .info-card-list {
-    @include xy-grid();
+    @include xy-cell();
   }
 }

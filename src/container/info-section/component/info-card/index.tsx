@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { Callout, Cell, Grid } from "react-foundation";
+import { Callout } from "react-foundation";
 
 interface IInfoCardProps {
   name: string;
@@ -11,12 +11,10 @@ interface IInfoCardProps {
 class InfoCard extends React.Component<IInfoCardProps> {
   public render(): JSX.Element {
     return(
-      <Callout className="columns">
-        <Cell>
-          <Grid>{this.props.name}</Grid>
-          <Grid>{this.props.title}</Grid>
-          <Grid>{this.props.email}</Grid>
-        </Cell>
+      <Callout className="info-card">
+        <div>{this.props.name}</div>
+        <div>{this.props.title}</div>
+        <div>{this.props.email}</div>
       </Callout>
     );
   }

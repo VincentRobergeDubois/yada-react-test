@@ -35,6 +35,12 @@ export interface IUserConn {
   admin: boolean;
 }
 
+export interface IUserAdmin {
+  name: string;
+  title: string;
+  email: string;
+}
+
 export interface IUserState {
   current: IUserConn;
   isForm: boolean;

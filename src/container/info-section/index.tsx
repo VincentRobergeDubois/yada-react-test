@@ -2,13 +2,13 @@ import * as React from "react";
 import { connect } from "react-redux";
 
 import { IState } from "model/state";
-import { IUser } from "model/user";
+import { IUserAdmin } from "model/user";
 import { getAdminUserList } from "selector/user";
 
 import InfoCard from "./component/info-card";
 
 interface IInfoSectionStateProps {
-  adminUserList: IUser[];
+  adminUserList: IUserAdmin[];
 }
 
 type TInfoSectionProps = IInfoSectionStateProps;
@@ -28,12 +28,12 @@ class InfoSection extends React.PureComponent<TInfoSectionProps, {}> {
   }
 
   private renderInfoCardList = (): JSX.Element[] => {
-    return this.props.adminUserList.map((user: IUser, key: number) => {
+    return this.props.adminUserList.map((user: IUserAdmin, key: number) => {
       return (
         <InfoCard
           key={key}
-          name={user.firstname + " " + user.lastname}
-          title="Consultant"
+          name={user.name}
+          title={user.title}
           email={user.email}
         />
       );
@@ -42,11 +42,9 @@ class InfoSection extends React.PureComponent<TInfoSectionProps, {}> {
 
 }
 
-const mapStateToProps = (state: IState): IInfoSectionStateProps => {
-  return {
-    adminUserList: getAdminUserList(state),
-  };
-};
+const mapStateToProps = (state: IState): IInfoSectionStateProps => ({
+  adminUserList: getAdminUserList(state),
+});
 
 export default connect<IInfoSectionStateProps, {}, {}>(
   mapStateToProps,

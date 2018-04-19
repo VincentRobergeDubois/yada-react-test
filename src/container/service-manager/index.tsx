@@ -45,19 +45,15 @@ class ServiceDetail extends React.PureComponent<TServiceDetailProps, {}> {
   }
 }
 
-const mapStateToProps = (state: IState): IServiceManagerStateProps => {
-  return {
-    serviceList: getServiceList(state),
-  };
-};
+const mapStateToProps = (state: IState): IServiceManagerStateProps => ({
+  serviceList: getServiceList(state),
+});
 
-const mapDispatchToProps = (dispatch: Dispatch<IState>): IServiceManagerDispatchProps => {
-  return {
-    createService: bindActionCreators(createService, dispatch),
-    deleteService: bindActionCreators(deleteService, dispatch),
-    updateService: bindActionCreators(updateService, dispatch),
-  };
-};
+const mapDispatchToProps = (dispatch: Dispatch<IState>): IServiceManagerDispatchProps => ({
+  createService: bindActionCreators(createService, dispatch),
+  deleteService: bindActionCreators(deleteService, dispatch),
+  updateService: bindActionCreators(updateService, dispatch),
+});
 
 export default connect<IServiceManagerStateProps, {}, {}>(
   mapStateToProps,

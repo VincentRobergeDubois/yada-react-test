@@ -45,19 +45,15 @@ class PostDetail extends React.PureComponent<TPostDetailProps, {}> {
   }
 }
 
-const mapStateToProps = (state: IState): IPostManagerStateProps => {
-  return {
-    postList: getPostList(state),
-  };
-};
+const mapStateToProps = (state: IState): IPostManagerStateProps => ({
+  postList: getPostList(state),
+});
 
-const mapDispatchToProps = (dispatch: Dispatch<IState>): IPostManagerDispatchProps => {
-  return {
-    createPost: bindActionCreators(createPost, dispatch),
-    deletePost: bindActionCreators(deletePost, dispatch),
-    updatePost: bindActionCreators(updatePost, dispatch),
-  };
-};
+const mapDispatchToProps = (dispatch: Dispatch<IState>): IPostManagerDispatchProps => ({
+  createPost: bindActionCreators(createPost, dispatch),
+  deletePost: bindActionCreators(deletePost, dispatch),
+  updatePost: bindActionCreators(updatePost, dispatch),
+});
 
 export default connect<IPostManagerStateProps, {}, {}>(
   mapStateToProps,

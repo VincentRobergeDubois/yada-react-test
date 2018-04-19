@@ -37,11 +37,9 @@ class LoginSection extends React.PureComponent<TLoginSectionProps, {}> {
   }
 }
 
-const mapDispatchToProps = (dispatch: Dispatch<IState>): ILoginSectionDispatchProps => {
-  return {
-    login: bindActionCreators(login, dispatch),
-  };
-};
+const mapDispatchToProps = (dispatch: Dispatch<IState>): ILoginSectionDispatchProps => ({
+  login: bindActionCreators(login, dispatch),
+});
 
 export default connect<{}, ILoginSectionDispatchProps, ILoginSectionOwnProps>(
   null,
