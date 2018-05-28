@@ -49,6 +49,7 @@ export interface IUserState {
 
 export interface IUserForm {
   username: RegisteredFieldState;
+  password: RegisteredFieldState;
   lastname: RegisteredFieldState;
   firstname: RegisteredFieldState;
   email: RegisteredFieldState;
@@ -57,6 +58,7 @@ export interface IUserForm {
 
 export interface IUserFormFields {
   username: FieldState;
+  password: FieldState;
   lastname: FieldState;
   firstname: FieldState;
   email: FieldState;
@@ -65,16 +67,9 @@ export interface IUserFormFields {
 
 export interface IUserFormValues {
   username: string;
+  password: string;
   lastname: string;
   firstname: string;
   email: string;
   phone: string;
-}
-
-export interface IPassword {
-  hash: string;
-  salt: string;
-  keyLength: number;
-  hashMethod: string;
-  iterations: number;
 }

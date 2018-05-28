@@ -69,51 +69,39 @@ class ManagerList<T, V, P> extends React.PureComponent<TManagerListProps<T, V, P
     this.setState({ ...this.state, isForm: false, isEdit: false });
   }
 
-  private renderList = (): JSX.Element => {
-    const itemList: JSX.Element[] = this.props.itemList.map((item: T): JSX.Element => {
-      return (
-        <this.props.display
-          key={item[this.props.identifier]}
-          item={item}
-          isSelected={this.state.selectedItem === item}
-          onClick={this.handleSelect(item)}
-        />
-      );
-    });
-    return (
-      <div className="list">
-        <div className="header">
-          <h1>{this.props.title}</h1>
-          <div className="header-buttons">
-            <YadaButton label="Ajouter" onClick={this.handleCreateButton} type="button" />
-            <YadaButton label="Modifier" onClick={this.handleUpdateButton} type="button" />
-            <YadaButton label="Supprimer" onClick={this.handleDeleteButton} type="button" />
-          </div>
-        </div>
-        {itemList}
-      </div>
-    );
-  }
-
-  private renderForm = (): JSX.Element => {
-    if (this.state.isEdit) {
-      return (
-        <this.props.form
-          form={this.props.formName}
-          handleCancel={this.handleCancel}
-          handleForm={this.handleUpdate}
-          initialValues={this.state.selectedItem}
-        />
-      );
-    }
-    return (
-      <this.props.form
-        form={this.props.formName}
-        handleCancel={this.handleCancel}
-        handleForm={this.handleCreate}
+  private renderItemList = (): JSX.Element[] => (
+    this.props.itemList.map((item: T): JSX.Element => (
+      <this.props.display
+        key={item[this.props.identifier]}
+        item={item}
+        isSelected={this.state.selectedItem === item}
+        onClick={this.handleSelect(item)}
       />
-    );
-  }
+    ))
+  )
+
+  private renderList = (): JSX.Element => (
+    <div className="list">
+      <div className="header">
+        <h1>{this.props.title}</h1>
+        <div className="header-buttons">
+          <YadaButton label="Ajouter" onClick={this.handleCreateButton} type="button" />
+          <YadaButton label="Modifier" onClick={this.handleUpdateButton} type="button" />
+          <YadaButton label="Supprimer" onClick={this.handleDeleteButton} type="button" />
+        </div>
+      </div>
+      {this.renderItemList()}
+    </div>
+  )
+
+  private renderForm = (): JSX.Element => (
+    <this.props.form
+      form={this.props.formName}
+      handleCancel={this.handleCancel}
+      handleForm={this.state.isEdit ? this.handleUpdate : this.handleCreate}
+      initialValues={this.state.isEdit ? this.state.selectedItem : undefined}
+    />
+  )
 }
 
 export default ManagerList;

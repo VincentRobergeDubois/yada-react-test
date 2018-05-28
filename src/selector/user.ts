@@ -9,6 +9,10 @@ export const getCurrentUser = createSelector(
   getUser, ({ current }: IUserState): IUserConn => current,
 );
 
+export const getCurrentUserAdmin = createSelector(
+  getCurrentUser, ({ admin }: IUserConn): boolean => admin,
+);
+
 export const getUserList = createSelector(
   getUser, ({ list }: IUserState): IUser[] => list,
 );

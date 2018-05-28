@@ -11,17 +11,17 @@ export const ORGANISATION_LIST_PARSE = "ORGANISATION_LIST_PARSE";
 
 const END_POINT_URL = "http://localhost:3000/organisations/";
 
-export const parseCurrentOrganisation = (organisation: IOrganisation): IAction<IOrganisation> => {
-  return { type: CURRENT_ORGANISATION_PARSE, payload: organisation };
-};
+export const parseCurrentOrganisation = (organisation: IOrganisation): IAction<IOrganisation> => (
+  { type: CURRENT_ORGANISATION_PARSE, payload: organisation }
+);
 
-export const parseIsOrganisationForm = (isForm: boolean): IAction<boolean> => {
-  return { type: IS_ORGANISATION_FORM_PARSE, payload: isForm};
-};
+export const parseIsOrganisationForm = (isForm: boolean): IAction<boolean> => (
+  { type: IS_ORGANISATION_FORM_PARSE, payload: isForm}
+);
 
-export const parseOrganisationList = (list: IOrganisation[]): IAction<IOrganisation[]> => {
-  return { type: ORGANISATION_LIST_PARSE, payload: list };
-};
+export const parseOrganisationList = (list: IOrganisation[]): IAction<IOrganisation[]> => (
+  { type: ORGANISATION_LIST_PARSE, payload: list }
+);
 
 export const loadOrganisation = (organisationId: number) => {
   return (dispatch: Dispatch<IState>): Promise<void> => {

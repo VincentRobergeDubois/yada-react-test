@@ -11,17 +11,17 @@ export const MENU_ITEM_PARSE = "MENU_ITEM_PARSE";
 
 const END_POINT_URL = "http://localhost:3000/menuItems/";
 
-export const parseMenuItem = (item: IMenuItem): IAction<IMenuItem> => {
-  return { type: MENU_ITEM_PARSE, payload: item };
-};
+export const parseMenuItem = (item: IMenuItem): IAction<IMenuItem> => (
+  { type: MENU_ITEM_PARSE, payload: item }
+);
 
-export const parseMainMenuItemList = (list: IMenuItem[]): IAction<IMenuItem[]> => {
-  return { type: MAIN_MENU_ITEM_LIST_PARSE, payload: list };
-};
+export const parseMainMenuItemList = (list: IMenuItem[]): IAction<IMenuItem[]> => (
+  { type: MAIN_MENU_ITEM_LIST_PARSE, payload: list }
+);
 
-export const parseAdminMenuItemList = (list: IMenuItem[]): IAction<IMenuItem[]> => {
-  return { type: ADMIN_MENU_ITEM_LIST_PARSE, payload: list };
-};
+export const parseAdminMenuItemList = (list: IMenuItem[]): IAction<IMenuItem[]> => (
+  { type: ADMIN_MENU_ITEM_LIST_PARSE, payload: list }
+);
 
 export const loadMenuItem = (menuItemId: number) => {
   return (dispatch: Dispatch<IState>): Promise<void> => {

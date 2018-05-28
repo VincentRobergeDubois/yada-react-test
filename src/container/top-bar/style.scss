@@ -4,16 +4,16 @@
     border-top: solid 0.125rem $yada-red;
     border-bottom: solid 0.125rem $yada-red;
     .item {
-      min-width: 6rem;
       &:hover {
         background-color: $yada-red;
         color: $yada-white;
       }
       a {
+        min-width: 6rem;
         font-weight: 800;
         color: $yada-red;
         text-align: center;
-        i {
+        span:first-child {
           font-size: 1.75rem;
         }
         &:hover {
@@ -23,15 +23,6 @@
           color: $yada-pink;
         }
       }
-    }
-    .sub-item {
-      font-size: 0.75rem;
-    }
-    .submenu a:hover, .active-item > a {
-      color: $yada-white;
-    }
-    .menicon {
-      font-size: 2.375rem;
     }
   }
 

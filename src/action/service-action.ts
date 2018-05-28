@@ -11,17 +11,17 @@ export const SERVICE_LIST_PARSE = "SERVICE_LIST_PARSE";
 
 const END_POINT_URL = "http://localhost:3000/services/";
 
-export const parseCurrentService = (service: IService): IAction<IService> => {
-  return { type: CURRENT_SERVICE_PARSE, payload: service };
-};
+export const parseCurrentService = (service: IService): IAction<IService> => (
+  { type: CURRENT_SERVICE_PARSE, payload: service }
+);
 
-export const parseIsServiceForm = (isForm: boolean): IAction<boolean> => {
-  return { type: IS_SERVICE_FORM_PARSE, payload: isForm };
-};
+export const parseIsServiceForm = (isForm: boolean): IAction<boolean> => (
+  { type: IS_SERVICE_FORM_PARSE, payload: isForm }
+);
 
-export const parseServiceList = (list: IService[]): IAction<IService[]> => {
-  return { type: SERVICE_LIST_PARSE, payload: list };
-};
+export const parseServiceList = (list: IService[]): IAction<IService[]> => (
+  { type: SERVICE_LIST_PARSE, payload: list }
+);
 
 export const loadService = (serviceId: number) => {
   return (dispatch: Dispatch<IState>): Promise<void> => {

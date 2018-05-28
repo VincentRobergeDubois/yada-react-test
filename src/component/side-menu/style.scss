@@ -1,23 +1,23 @@
-#side-menu {
+.side-menu {
   border-right: solid 2px $yada-red;
   padding: 0px;
   .item {
     &:hover {
-        background-color: $yada-red;
-        color: $yada-white;
+      background-color: $yada-red;
+      color: $yada-white;
     }
     a {
-        font-weight: 800;
-        color: $yada-red;
-        i {
-            font-size: 28px;
-        }
-        &:hover {
-            color: $yada-white;
-        }
-        &:focus {
-            color: $yada-pink;
-        }
+      font-weight: 800;
+      color: $yada-red;
+      &:hover {
+        color: $yada-white;
+      }
+      &:focus {
+        color: $yada-pink;
+      }
+      span:first-child {
+        margin-right: 10px;
+      }
     }
   }
 }
