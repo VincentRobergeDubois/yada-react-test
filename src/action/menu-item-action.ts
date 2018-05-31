@@ -4,6 +4,7 @@ import { Dispatch } from "redux";
 import { IAction, IResponse } from "model/action";
 import { IMenuItem, IMenuItemFormValues, TMenuItemListParse } from "model/menu-item";
 import { IState } from "model/state";
+import { getCurrentUserAdmin } from "selector/user";
 
 export const ADMIN_MENU_ITEM_LIST_PARSE = "ADMIN_MENU_ITEM_LIST_PARSE";
 export const MAIN_MENU_ITEM_LIST_PARSE = "MAIN_MENU_ITEM_LIST_PARSE";
@@ -33,8 +34,9 @@ export const loadMenuItem = (menuItemId: number) => {
   };
 };
 
-export const loadMenuItemList = (menuId: number, userRight: number, admin: number, parse: TMenuItemListParse) => {
-  return (dispatch: Dispatch<IState>): Promise<void> => {
+export const loadMenuItemList = (menuId: number, userRight: number, parse: TMenuItemListParse) => {
+  return (dispatch: Dispatch<IState>, getState: () => IState): Promise<void> => {
+    const admin = getCurrentUserAdmin(getState());
     return axios.get(`${END_POINT_URL}${menuId}/${userRight}/${admin}`).then(
       (response: AxiosResponse<IResponse<IMenuItem[]>>) => {
         dispatch(parse(response.data.data));

@@ -34,8 +34,7 @@ class TopBar extends React.PureComponent<TTopBarProps, {}> {
   public componentWillMount(): void {
     if ( this.props.mainMenuItemList.length === 0 ) {
       const userRight = this.props.user.id === 0 ? 6 : 1;
-      const admin = this.props.user.admin ? 1 : 0;
-      this.props.loadMenuItemList(1, userRight, admin, parseMainMenuItemList);
+      this.props.loadMenuItemList(1, userRight, parseMainMenuItemList);
     }
   }
 

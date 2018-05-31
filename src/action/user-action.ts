@@ -30,12 +30,11 @@ export const parseUserList = (list: IUser[]): IAction<IUser[]> => (
 export const loadUser = (userId: number) => {
   return (dispatch: Dispatch<IState>): Promise<void> => {
     return axios.get(`${END_POINT_URL}${userId}`).then((response: AxiosResponse<IResponse<IUserConn>>) => {
-      const admin = response.data.data.admin ? 1 : 0;
       dispatch(parseCurrentUser(response.data.data));
-      dispatch(loadMenuItemList(1, 1, admin, parseMainMenuItemList));
+      dispatch(loadMenuItemList(1, 1, parseMainMenuItemList));
       if (response.data.data.admin) {
         dispatch(loadStructureAdmin());
-        dispatch(loadMenuItemList(4, 1, admin, parseAdminMenuItemList));
+        dispatch(loadMenuItemList(4, 1, parseAdminMenuItemList));
       }
     });
   };
@@ -80,16 +79,14 @@ export const deleteUser = (id: number) => {
 };
 
 export const login = (username: string, password: string) => {
-  const body = { username, password };
   return (dispatch: Dispatch<IState>): Promise<void> => {
-    return axios.patch(`${END_POINT_URL}login`, body).then(
+    return axios.patch(`${END_POINT_URL}login`, { username, password }).then(
       (response: AxiosResponse<IResponse<IUserConn>>) => {
-        const admin = response.data.data.admin ? 1 : 0;
         dispatch(parseCurrentUser(response.data.data));
-        dispatch(loadMenuItemList(1, 1, admin, parseMainMenuItemList));
+        dispatch(loadMenuItemList(1, 1, parseMainMenuItemList));
         if (response.data.data.admin) {
           dispatch(loadStructureAdmin());
-          dispatch(loadMenuItemList(4, 1, admin, parseAdminMenuItemList));
+          dispatch(loadMenuItemList(4, 1, parseAdminMenuItemList));
         }
       },
     );
@@ -99,6 +96,6 @@ export const login = (username: string, password: string) => {
 export const logout = () => {
   return (dispatch: Dispatch<IState>): void => {
     dispatch({ type: LOGOUT });
-    dispatch(loadMenuItemList(1, 6, 0, parseMainMenuItemList));
+    dispatch(loadMenuItemList(1, 6, parseMainMenuItemList));
   };
 };
