@@ -1,9 +1,4 @@
-import {
-  CURRENT_USER_PARSE,
-  IS_USER_FORM_PARSE,
-  LOGOUT,
-  USER_LIST_PARSE,
-} from "action/user-action";
+import { CURRENT_USER_PARSE, LOGOUT, USER_LIST_PARSE } from "action/user-action";
 import { IAction, TUserAction } from "model/action";
 import { IUserState  } from "model/user";
 
@@ -19,7 +14,6 @@ const INITIAL_STATE: IUserState = {
     title: "",
     username: "",
   },
-  isForm: false,
   list: [],
 };
 
@@ -27,8 +21,6 @@ export default (state: IUserState = INITIAL_STATE, action: IAction<TUserAction>)
   switch (action.type) {
     case CURRENT_USER_PARSE:
       return { ...state, current: action.payload };
-    case IS_USER_FORM_PARSE:
-      return { ...state, isForm: action.payload };
     case USER_LIST_PARSE:
       return { ...state, list: action.payload };
     case LOGOUT:

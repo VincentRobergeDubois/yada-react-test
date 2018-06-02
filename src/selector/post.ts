@@ -12,7 +12,3 @@ export const getCurrentPost = createSelector(
 export const getPostList = createSelector(
   getPost, ({ list }: IPostState): IPost[] => list,
 );
-
-export const getIsPostForm = createSelector(
-  getPost, ({ isForm }: IPostState): boolean => isForm,
-);

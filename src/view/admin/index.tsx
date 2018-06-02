@@ -7,6 +7,7 @@ import { bindActionCreators } from "redux";
 import { loadMenuItemList, parseAdminMenuItemList } from "action/menu-item-action";
 import SideMenu from "component/side-menu";
 import AdminSection from "container/admin-section";
+import BookManager from "container/book-manager";
 import OrganisationManager from "container/organisation-manager";
 import PostManager from "container/post-manager";
 import ServiceManager from "container/service-manager";
@@ -45,6 +46,7 @@ class Admin extends React.PureComponent<TAdminProps & RouteComponentProps<TAdmin
                 <Route path={this.props.match.path + "/organisations"} component={OrganisationManager} />
                 <Route path={this.props.match.path + "/services"} component={ServiceManager} />
                 <Route path={this.props.match.path + "/posts"} component={PostManager} />
+                <Route path={this.props.match.path + "/books"} component={BookManager} />
               </Switch>
             </div>
           </div>

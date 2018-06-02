@@ -12,7 +12,3 @@ export const getCurrentService = createSelector(
 export const getServiceList = createSelector(
   getService, ({ list }: IServiceState): IService[] => list,
 );
-
-export const getIsServiceForm = createSelector(
-  getService, ({ isForm }: IServiceState): boolean => isForm,
-);

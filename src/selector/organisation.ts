@@ -12,7 +12,3 @@ export const getCurrentOrganisation = createSelector(
 export const getOrganisationList = createSelector(
   getOrganisation, ({ list }: IOrganisationState): IOrganisation[] => list,
 );
-
-export const getIsOrganisationForm = createSelector(
-  getOrganisation, ({ isForm }: IOrganisationState): boolean => isForm,
-);

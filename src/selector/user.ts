@@ -17,10 +17,6 @@ export const getUserList = createSelector(
   getUser, ({ list }: IUserState): IUser[] => list,
 );
 
-export const getIsUserForm = createSelector(
-  getUser, ({ isForm }: IUserState): boolean => isForm,
-);
-
 export const getAdminUserList = createSelector(
   getUserList, (userList: IUser[]): IUserAdmin[] => {
     return userList.filter((user: IUser) => user.admin).map((user: IUser): IUserAdmin => {

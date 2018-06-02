@@ -1,5 +1,6 @@
 import { AxiosError } from "axios";
 
+import { IBook } from "model/book";
 import { IMenuItem } from "model/menu-item";
 import { IOrganisation } from "model/organisation";
 import { IPost } from "model/post";
@@ -7,10 +8,11 @@ import { IService } from "model/service";
 import { IUser, IUserConn } from "model/user";
 
 export type TMenuItemAction = IMenuItem | IMenuItem[];
-export type TOrganisationAction = boolean | IOrganisation | IOrganisation[];
-export type TPostAction = boolean | IPost | IPost[];
-export type TServiceAction = boolean | IService | IService[];
-export type TUserAction = boolean | IUserConn | IUser[];
+export type TOrganisationAction = IOrganisation | IOrganisation[];
+export type TPostAction = IPost | IPost[];
+export type TServiceAction = IService | IService[];
+export type TUserAction = IUserConn | IUser[];
+export type TBookAction = IBook | IBook[];
 
 export interface IAction<I> {
   type: string;

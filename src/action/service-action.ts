@@ -1,22 +1,18 @@
 import axios, { AxiosResponse } from "axios";
 import { Dispatch } from "redux";
 
+import { BASE_URL } from "action";
 import { IAction, IResponse } from "model/action";
 import { IService, IServiceFormValues } from "model/service";
 import { IState } from "model/state";
 
 export const CURRENT_SERVICE_PARSE = "CURRENT_SERVICE_PARSE";
-export const IS_SERVICE_FORM_PARSE = "IS_SERVICE_FORM_PARSE";
 export const SERVICE_LIST_PARSE = "SERVICE_LIST_PARSE";
 
-const END_POINT_URL = "http://localhost:3000/services/";
+const END_POINT_URL = "services/";
 
 export const parseCurrentService = (service: IService): IAction<IService> => (
   { type: CURRENT_SERVICE_PARSE, payload: service }
-);
-
-export const parseIsServiceForm = (isForm: boolean): IAction<boolean> => (
-  { type: IS_SERVICE_FORM_PARSE, payload: isForm }
 );
 
 export const parseServiceList = (list: IService[]): IAction<IService[]> => (
@@ -25,7 +21,7 @@ export const parseServiceList = (list: IService[]): IAction<IService[]> => (
 
 export const loadService = (serviceId: number) => {
   return (dispatch: Dispatch<IState>): Promise<void> => {
-    return axios.get(`${END_POINT_URL}${serviceId}`).then(
+    return axios.get(`${BASE_URL}${END_POINT_URL}${serviceId}`).then(
       (response: AxiosResponse<IResponse<IService>>) => {
         dispatch(parseCurrentService(response.data.data));
       },
@@ -35,7 +31,7 @@ export const loadService = (serviceId: number) => {
 
 export const loadServiceList = () => {
   return (dispatch: Dispatch<IState>): Promise<void> => {
-    return axios.get(`${END_POINT_URL}`).then(
+    return axios.get(`${BASE_URL}${END_POINT_URL}`).then(
       (response: AxiosResponse<IResponse<IService[]>>) => {
         dispatch(parseServiceList(response.data.data));
       },
@@ -45,7 +41,7 @@ export const loadServiceList = () => {
 
 export const createService = (formData: IServiceFormValues) => {
   return (dispatch: Dispatch<IState>): Promise<void> => {
-    return axios.post(`${END_POINT_URL}`, formData).then(
+    return axios.post(`${BASE_URL}${END_POINT_URL}`, formData).then(
       (response: AxiosResponse<IResponse<IService[]>>) => {
         dispatch(parseServiceList(response.data.data));
       },
@@ -55,7 +51,7 @@ export const createService = (formData: IServiceFormValues) => {
 
 export const updateService = (formData: IServiceFormValues, id: number) => {
   return (dispatch: Dispatch<IState>): Promise<void> => {
-    return axios.patch(`${END_POINT_URL}${id}`, formData).then(
+    return axios.patch(`${BASE_URL}${END_POINT_URL}${id}`, formData).then(
       (response: AxiosResponse<IResponse<IService[]>>) => {
         dispatch(parseServiceList(response.data.data));
       },
@@ -65,7 +61,7 @@ export const updateService = (formData: IServiceFormValues, id: number) => {
 
 export const deleteService = (id: number) => {
   return (dispatch: Dispatch<IState>): Promise<void> => {
-    return axios.delete(`${END_POINT_URL}${id}`).then(
+    return axios.delete(`${BASE_URL}${END_POINT_URL}${id}`).then(
       (response: AxiosResponse<IResponse<IService[]>>) => {
         dispatch(parseServiceList(response.data.data));
       },

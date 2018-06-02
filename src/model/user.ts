@@ -43,7 +43,6 @@ export interface IUserAdmin {
 
 export interface IUserState {
   current: IUserConn;
-  isForm: boolean;
   list: IUser[];
 }
 

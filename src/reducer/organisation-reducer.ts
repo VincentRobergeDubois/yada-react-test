@@ -1,8 +1,4 @@
-import {
-  CURRENT_ORGANISATION_PARSE,
-  IS_ORGANISATION_FORM_PARSE,
-  ORGANISATION_LIST_PARSE,
-} from "action/organisation-action";
+import { CURRENT_ORGANISATION_PARSE, ORGANISATION_LIST_PARSE } from "action/organisation-action";
 import { LOGOUT } from "action/user-action";
 import { IAction, TOrganisationAction } from "model/action";
 import { IOrganisationState } from "model/organisation";
@@ -17,7 +13,6 @@ const INITIAL_STATE: IOrganisationState = {
     name: "",
     phone: "",
   },
-  isForm: false,
   list: [],
 };
 
@@ -25,8 +20,6 @@ export default (state: IOrganisationState = INITIAL_STATE, action: IAction<TOrga
   switch (action.type) {
     case CURRENT_ORGANISATION_PARSE:
       return { ...state, current: action.payload };
-    case IS_ORGANISATION_FORM_PARSE:
-      return { ...state, isForm: action.payload };
     case ORGANISATION_LIST_PARSE:
       return { ...state, list: action.payload };
     case LOGOUT:

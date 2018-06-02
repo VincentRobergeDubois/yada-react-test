@@ -20,7 +20,6 @@ export interface IOrganisation {
 
 export interface IOrganisationState {
   current: IOrganisation;
-  isForm: boolean;
   list: IOrganisation[];
 }
 
