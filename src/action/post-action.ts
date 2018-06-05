@@ -5,6 +5,7 @@ import { BASE_URL } from "action";
 import { IAction, IResponse } from "model/action";
 import { IPost, IPostFormValues } from "model/post";
 import { IState } from "model/state";
+import { getCurrentUserId } from "selector/user";
 
 export const CURRENT_POST_PARSE = "CURRENT_POST_PARSE";
 export const POST_LIST_PARSE = "POST_LIST_PARSE";
@@ -40,30 +41,33 @@ export const loadPostList = () => {
 };
 
 export const createPost = (formData: IPostFormValues) => {
-  return (dispatch: Dispatch<IState>): Promise<void> => {
-    return axios.post(`${BASE_URL}${END_POINT_URL}`, formData).then(
+  return (dispatch: Dispatch<IState>, getState: () => IState): Promise<void> => {
+    const userId = getCurrentUserId(getState());
+    return axios.post(`${BASE_URL}${END_POINT_URL}`, { ...formData, userId }).then(
       (response: AxiosResponse<IResponse<IPost[]>>) => {
-        dispatch(parsePostList(response.data.data));
+        dispatch(loadPostList());
       },
     );
   };
 };
 
 export const updatePost = (formData: IPostFormValues, id: number) => {
-  return (dispatch: Dispatch<IState>): Promise<void> => {
-    return axios.patch(`${BASE_URL}${END_POINT_URL}${id}`, formData).then(
+  return (dispatch: Dispatch<IState>, getState: () => IState): Promise<void> => {
+    const userId = getCurrentUserId(getState());
+    return axios.patch(`${BASE_URL}${END_POINT_URL}${id}`, { ...formData, userId }).then(
       (response: AxiosResponse<IResponse<IPost[]>>) => {
-        dispatch(parsePostList(response.data.data));
+        dispatch(loadPostList());
       },
     );
   };
 };
 
 export const deletePost = (id: number) => {
-  return (dispatch: Dispatch<IState>): Promise<void> => {
-    return axios.delete(`${BASE_URL}${END_POINT_URL}${id}`).then(
+  return (dispatch: Dispatch<IState>, getState: () => IState): Promise<void> => {
+    const userId = getCurrentUserId(getState());
+    return axios.put(`${BASE_URL}${END_POINT_URL}${id}`, { userId }).then(
       (response: AxiosResponse<IResponse<IPost[]>>) => {
-        dispatch(parsePostList(response.data.data));
+        dispatch(loadPostList());
       },
     );
   };

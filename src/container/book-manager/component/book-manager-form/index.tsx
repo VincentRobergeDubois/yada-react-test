@@ -1,10 +1,12 @@
 import * as React from "react";
 
-import { InjectedFormProps, reduxForm } from "redux-form";
+import { Field, InjectedFormProps, reduxForm } from "redux-form";
 
+import Input from "component/input";
 import YadaButton from "component/yada-button";
 import { IBookFormValues } from "model/book";
 import { IManagerForm } from "model/manager";
+import { required } from "service/form-validator";
 
 interface IBookManagerFormOwnProps extends IManagerForm<IBookFormValues> { }
 
@@ -15,7 +17,20 @@ class BookManagerForm extends React.PureComponent<TBookManagerFormProps & TInjec
   public render(): JSX.Element {
     return (
       <form onSubmit={this.props.handleSubmit(this.props.handleForm())}>
-        FORM
+        <Field
+          component={Input}
+          label="Titre"
+          name="title"
+          type="text"
+          validate={required}
+        />
+        <Field
+          component={Input}
+          label="Description"
+          name="description"
+          type="text"
+          validate={required}
+        />
         <YadaButton label="Confirmer" type="submit" />
         <YadaButton label="Annuler" onClick={this.props.handleCancel} type="button" />
       </form>

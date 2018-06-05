@@ -7,6 +7,7 @@ import { loadStructureAdmin } from "action/structure-admin";
 import { IAction, IResponse } from "model/action";
 import { IState } from "model/state";
 import { IUser, IUserConn, IUserFormValues } from "model/user";
+import { getCurrentUserId } from "selector/user";
 
 export const LOGOUT = "LOGOUT";
 
@@ -49,30 +50,33 @@ export const loadUserList = () => {
 };
 
 export const createUser = (formValues: IUserFormValues) => {
-  return (dispatch: Dispatch<IState>): Promise<void> => {
-    return axios.post(BASE_URL + END_POINT_URL, { ...formValues, admin: 1 }).then(
+  return (dispatch: Dispatch<IState>, getState: () => IState): Promise<void> => {
+    const userId = getCurrentUserId(getState());
+    return axios.post(BASE_URL + END_POINT_URL, { ...formValues, userId }).then(
       (response: AxiosResponse<IResponse<IUser[]>>) => {
-        dispatch(parseUserList(response.data.data));
+        dispatch(loadUserList());
       },
     );
   };
 };
 
 export const updateUser = (formValues: IUserFormValues, id: number) => {
-  return (dispatch: Dispatch<IState>): Promise<void> => {
-    return axios.patch(`${BASE_URL}${END_POINT_URL}${id}`, formValues).then(
+  return (dispatch: Dispatch<IState>, getState: () => IState): Promise<void> => {
+    const userId = getCurrentUserId(getState());
+    return axios.patch(`${BASE_URL}${END_POINT_URL}${id}`, { ...formValues, userId }).then(
       (response: AxiosResponse<IResponse<IUser[]>>) => {
-        dispatch(parseUserList(response.data.data));
+        dispatch(loadUserList());
       },
     );
   };
 };
 
 export const deleteUser = (id: number) => {
-  return (dispatch: Dispatch<IState>): Promise<void> => {
-    return axios.delete(`${BASE_URL}${END_POINT_URL}${id}`).then(
+  return (dispatch: Dispatch<IState>, getState: () => IState): Promise<void> => {
+    const userId = getCurrentUserId(getState());
+    return axios.put(`${BASE_URL}${END_POINT_URL}${id}`, { userId }).then(
       (response: AxiosResponse<IResponse<IUser[]>>) => {
-        dispatch(parseUserList(response.data.data));
+        dispatch(loadUserList());
       },
     );
   };

@@ -13,6 +13,10 @@ export const getCurrentUserAdmin = createSelector(
   getCurrentUser, ({ admin }: IUserConn): boolean => admin,
 );
 
+export const getCurrentUserId = createSelector(
+  getCurrentUser, ({ id }: IUserConn): number => id,
+);
+
 export const getUserList = createSelector(
   getUser, ({ list }: IUserState): IUser[] => list,
 );

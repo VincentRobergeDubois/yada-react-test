@@ -5,7 +5,7 @@ import { BASE_URL } from "action";
 import { IAction, IResponse } from "model/action";
 import { IMenuItem, IMenuItemFormValues, TMenuItemListParse } from "model/menu-item";
 import { IState } from "model/state";
-import { getCurrentUserAdmin } from "selector/user";
+import { getCurrentUserAdmin, getCurrentUserId } from "selector/user";
 
 export const ADMIN_MENU_ITEM_LIST_PARSE = "ADMIN_MENU_ITEM_LIST_PARSE";
 export const MAIN_MENU_ITEM_LIST_PARSE = "MAIN_MENU_ITEM_LIST_PARSE";
@@ -47,8 +47,9 @@ export const loadMenuItemList = (menuId: number, userRight: number, parse: TMenu
 };
 
 export const createMenuItem = (formData: IMenuItemFormValues, parse: TMenuItemListParse) => {
-  return (dispatch: Dispatch<IState>): Promise<void> => {
-    return axios.post(`${BASE_URL}${END_POINT_URL}`, formData).then(
+  return (dispatch: Dispatch<IState>, getState: () => IState): Promise<void> => {
+    const userId = getCurrentUserId(getState());
+    return axios.post(`${BASE_URL}${END_POINT_URL}`, { ...formData, userId }).then(
       (response: AxiosResponse<IResponse<IMenuItem[]>>) => {
         dispatch(parse(response.data.data));
       },
@@ -57,8 +58,9 @@ export const createMenuItem = (formData: IMenuItemFormValues, parse: TMenuItemLi
 };
 
 export const updateMenuItem = (formData: IMenuItemFormValues, id: number, parse: TMenuItemListParse) => {
-  return (dispatch: Dispatch<IState>): Promise<void> => {
-    return axios.patch(`${BASE_URL}${END_POINT_URL}${id}`, formData).then(
+  return (dispatch: Dispatch<IState>, getState: () => IState): Promise<void> => {
+    const userId = getCurrentUserId(getState());
+    return axios.patch(`${BASE_URL}${END_POINT_URL}${id}`, { ...formData, userId }).then(
       (response: AxiosResponse<IResponse<IMenuItem[]>>) => {
         dispatch(parse(response.data.data));
       },

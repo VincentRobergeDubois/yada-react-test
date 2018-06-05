@@ -47,18 +47,24 @@ class ManagerList<T, V, P> extends React.PureComponent<TManagerListProps<T, V, P
 
   private handleCreate = () => (data: V): void => {
     this.props.create(data);
+    this.setState({ ...this.state, isForm: false, isEdit: false });
   }
 
   private handleUpdateButton = (): void => {
-    this.setState({ ...this.state, isForm: true, isEdit: true });
+    if (this.state.selectedItem !== undefined) {
+      this.setState({ ...this.state, isForm: true, isEdit: true });
+    }
   }
 
   private handleUpdate = () => (data: V): void => {
     this.props.update(data, this.state.selectedItem[this.props.identifier]);
+    this.setState({ ...this.state, isForm: false, isEdit: false });
   }
 
   private handleDeleteButton = (): void => {
-    this.props.delete(this.state.selectedItem[this.props.identifier]);
+    if (this.state.selectedItem !== undefined) {
+      this.props.delete(this.state.selectedItem[this.props.identifier]);
+    }
   }
 
   private handleSelect = (item: T) => (): void => {

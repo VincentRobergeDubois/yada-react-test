@@ -5,6 +5,7 @@ import { BASE_URL } from "action";
 import { IAction, IResponse } from "model/action";
 import { IService, IServiceFormValues } from "model/service";
 import { IState } from "model/state";
+import { getCurrentUserId } from "selector/user";
 
 export const CURRENT_SERVICE_PARSE = "CURRENT_SERVICE_PARSE";
 export const SERVICE_LIST_PARSE = "SERVICE_LIST_PARSE";
@@ -40,30 +41,33 @@ export const loadServiceList = () => {
 };
 
 export const createService = (formData: IServiceFormValues) => {
-  return (dispatch: Dispatch<IState>): Promise<void> => {
-    return axios.post(`${BASE_URL}${END_POINT_URL}`, formData).then(
+  return (dispatch: Dispatch<IState>, getState: () => IState): Promise<void> => {
+    const userId = getCurrentUserId(getState());
+    return axios.post(`${BASE_URL}${END_POINT_URL}`, { ...formData, userId }).then(
       (response: AxiosResponse<IResponse<IService[]>>) => {
-        dispatch(parseServiceList(response.data.data));
+        dispatch(loadServiceList());
       },
     );
   };
 };
 
 export const updateService = (formData: IServiceFormValues, id: number) => {
-  return (dispatch: Dispatch<IState>): Promise<void> => {
-    return axios.patch(`${BASE_URL}${END_POINT_URL}${id}`, formData).then(
+  return (dispatch: Dispatch<IState>, getState: () => IState): Promise<void> => {
+    const userId = getCurrentUserId(getState());
+    return axios.patch(`${BASE_URL}${END_POINT_URL}${id}`, { ...formData, userId }).then(
       (response: AxiosResponse<IResponse<IService[]>>) => {
-        dispatch(parseServiceList(response.data.data));
+        dispatch(loadServiceList());
       },
     );
   };
 };
 
 export const deleteService = (id: number) => {
-  return (dispatch: Dispatch<IState>): Promise<void> => {
-    return axios.delete(`${BASE_URL}${END_POINT_URL}${id}`).then(
+  return (dispatch: Dispatch<IState>, getState: () => IState): Promise<void> => {
+    const userId = getCurrentUserId(getState());
+    return axios.put(`${BASE_URL}${END_POINT_URL}${id}`, { userId }).then(
       (response: AxiosResponse<IResponse<IService[]>>) => {
-        dispatch(parseServiceList(response.data.data));
+        dispatch(loadServiceList());
       },
     );
   };

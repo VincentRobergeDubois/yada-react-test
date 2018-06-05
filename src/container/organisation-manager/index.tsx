@@ -23,9 +23,9 @@ interface IOrganisationManagerDispatchProps {
   updateOrganisation: typeof updateOrganisation;
 }
 
-type TOrganisationDetailProps = IOrganisationManagerStateProps & IOrganisationManagerDispatchProps;
+type TOrganisationManagerProps = IOrganisationManagerStateProps & IOrganisationManagerDispatchProps;
 
-class OrganisationDetail extends React.PureComponent<TOrganisationDetailProps, {}> {
+class OrganisationManager extends React.PureComponent<TOrganisationManagerProps, {}> {
   public render(): JSX.Element {
     return (
       <div className="organisation-manager">
@@ -58,4 +58,4 @@ const mapDispatchToProps = (dispatch: Dispatch<IState>): IOrganisationManagerDis
 export default connect<IOrganisationManagerStateProps, IOrganisationManagerDispatchProps, {}>(
   mapStateToProps,
   mapDispatchToProps,
-)(OrganisationDetail);
+)(OrganisationManager);

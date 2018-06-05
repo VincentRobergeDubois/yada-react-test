@@ -5,14 +5,13 @@ import { applyMiddleware, createStore } from "redux";
 import * as Risi from "redux-immutable-state-invariant";
 import ReduxThunk from "redux-thunk";
 
-import { asyncApi } from "middleware/async-api";
 import rootReducer from "reducer";
 import Router from "router";
 
 import "../style/app.scss";
 
-const devMiddleware = [Risi.default(), ReduxThunk, asyncApi];
-const prodMiddleware = [ReduxThunk, asyncApi];
+const devMiddleware = [Risi.default(), ReduxThunk];
+const prodMiddleware = [ReduxThunk];
 
 const middleware = process.env.NODE_ENV !== "production" ? devMiddleware : prodMiddleware;
 const store = createStore(rootReducer, applyMiddleware(...middleware));

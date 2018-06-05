@@ -1,4 +1,5 @@
 import * as React from "react";
+
 import { Field, InjectedFormProps, reduxForm } from "redux-form";
 
 import Input from "component/input";
@@ -10,9 +11,9 @@ import { required } from "service/form-validator";
 interface IOrganisationManagerFormOwnProps extends IManagerForm<IOrganisationFormValues> { }
 
 type TOrganisationManagerformProps = IOrganisationManagerFormOwnProps;
-type InjectedProps = InjectedFormProps<IOrganisationFormValues, TOrganisationManagerformProps>;
+type TInjectedFormProps = InjectedFormProps<IOrganisationFormValues, TOrganisationManagerformProps>;
 
-class OrganisationManagerForm extends React.PureComponent<TOrganisationManagerformProps & InjectedProps, {}> {
+class OrganisationManagerForm extends React.PureComponent<TOrganisationManagerformProps & TInjectedFormProps, {}> {
   public render(): JSX.Element {
     return (
       <form onSubmit={this.props.handleSubmit(this.props.handleForm())}>
