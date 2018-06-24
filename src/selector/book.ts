@@ -1,6 +1,6 @@
 import { createSelector } from "reselect";
 
-import {IBook, IBookState } from "model/book";
+import { IBook, IBookState } from "model/book";
 import { IState } from "model/state";
 
 export const getBook = (state: IState): IBookState => state.book;

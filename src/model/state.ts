@@ -1,3 +1,4 @@
+import { IAuthorState } from "model/author";
 import { IBookState } from "model/book";
 import { IFormState } from "model/form";
 import { IMenuItemState } from "model/menu-item";
@@ -7,6 +8,7 @@ import { IServiceState } from "model/service";
 import { IUserState } from "model/user";
 
 export interface IState {
+  author: IAuthorState;
   book: IBookState;
   form: IFormState;
   menuItem: IMenuItemState;

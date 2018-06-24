@@ -18,12 +18,12 @@ export interface IBook {
   deletedBy?: IUser;
 }
 
-export interface IOrganisationForm {
+export interface IBookForm {
   title: RegisteredFieldState;
   description: RegisteredFieldState;
 }
 
-export interface IOrganisationFormFields {
+export interface IBookFormFields {
   title: FieldState;
   description: FieldState;
 }
