@@ -1,10 +1,11 @@
 import * as React from "react";
 
 import { connect } from "react-redux";
-import { bindActionCreators, Dispatch } from "redux";
+import { bindActionCreators } from "redux";
 
 import { createBook, deleteBook, updateBook } from "action/book-action";
 import ManagerList from "component/manager-list";
+import { TDispatch } from "model/action";
 import { IBook } from "model/book";
 import { IState } from "model/state";
 import { getBookList } from "selector/book";
@@ -49,7 +50,7 @@ const mapStateToProps = (state: IState): IBookManagerStateProps => ({
   bookList: getBookList(state),
 });
 
-const mapDispatchToProps = (dispatch: Dispatch<IState>): IBookManagerDispatchProps => ({
+const mapDispatchToProps = (dispatch: TDispatch<IBook[]>): IBookManagerDispatchProps => ({
   createBook: bindActionCreators(createBook, dispatch),
   deleteBook: bindActionCreators(deleteBook, dispatch),
   updateBook: bindActionCreators(updateBook, dispatch),

@@ -1,10 +1,11 @@
 import * as React from "react";
 
 import { connect } from "react-redux";
-import { bindActionCreators, Dispatch } from "redux";
+import { bindActionCreators } from "redux";
 
 import { createAuthor, deleteAuthor, updateAuthor } from "action/author-action";
 import ManagerList from "component/manager-list";
+import { TDispatch } from "model/action";
 import { IAuthor } from "model/author";
 import { IState } from "model/state";
 import { getAuthorList } from "selector/author";
@@ -49,7 +50,7 @@ const mapStateToProps = (state: IState): IAuthorManagerStateProps => ({
   AuthorList: getAuthorList(state),
 });
 
-const mapDispatchToProps = (dispatch: Dispatch<IState>): IAuthorManagerDispatchProps => ({
+const mapDispatchToProps = (dispatch: TDispatch<IAuthor[]>): IAuthorManagerDispatchProps => ({
   createAuthor: bindActionCreators(createAuthor, dispatch),
   deleteAuthor: bindActionCreators(deleteAuthor, dispatch),
   updateAuthor: bindActionCreators(updateAuthor, dispatch),

@@ -1,8 +1,7 @@
 import axios, { AxiosResponse } from "axios";
-import { Dispatch } from "redux";
 
 import { BASE_URL } from "action";
-import { IAction, IResponse } from "model/action";
+import { IAction, IResponse, TDispatch } from "model/action";
 import { IOrganisation, IOrganisationFormValues } from "model/organisation";
 import { IState } from "model/state";
 import { getCurrentUserId } from "selector/user";
@@ -21,7 +20,7 @@ export const parseOrganisationList = (list: IOrganisation[]): IAction<IOrganisat
 );
 
 export const loadOrganisation = (organisationId: number) => {
-  return (dispatch: Dispatch<IState>): Promise<void> => {
+  return (dispatch: TDispatch<IOrganisation>): Promise<void> => {
     return axios.get(`${BASE_URL}${END_POINT_URL}${organisationId}`).then(
       (response: AxiosResponse<IResponse<IOrganisation>>) => {
         dispatch(parseCurrentOrganisation(response.data.data));
@@ -31,7 +30,7 @@ export const loadOrganisation = (organisationId: number) => {
 };
 
 export const loadOrganisationList = () => {
-  return (dispatch: Dispatch<IState>): Promise<void> => {
+  return (dispatch: TDispatch<IOrganisation[]>): Promise<void> => {
     return axios.get(`${BASE_URL}${END_POINT_URL}`).then(
       (response: AxiosResponse<IResponse<IOrganisation[]>>) => {
         dispatch(parseOrganisationList(response.data.data));
@@ -41,33 +40,33 @@ export const loadOrganisationList = () => {
 };
 
 export const createOrganisation = (formData: IOrganisationFormValues) => {
-  return (dispatch: Dispatch<IState>, getState: () => IState): Promise<void> => {
+  return (dispatch: TDispatch<IOrganisation[]>, getState: () => IState): Promise<void> => {
     const userId = getCurrentUserId(getState());
     return axios.post(`${BASE_URL}${END_POINT_URL}`, { ...formData, userId }).then(
       (response: AxiosResponse<IResponse<IOrganisation[]>>) => {
-        dispatch(loadOrganisationList());
+        dispatch(parseOrganisationList(response.data.data));
       },
     );
   };
 };
 
 export const updateOrganisation = (formData: IOrganisationFormValues, id: number) => {
-  return (dispatch: Dispatch<IState>, getState: () => IState): Promise<void> => {
+  return (dispatch: TDispatch<IOrganisation[]>, getState: () => IState): Promise<void> => {
     const userId = getCurrentUserId(getState());
     return axios.patch(`${BASE_URL}${END_POINT_URL}${id}`, { ...formData, userId }).then(
       (response: AxiosResponse<IResponse<IOrganisation[]>>) => {
-        dispatch(loadOrganisationList());
+        dispatch(parseOrganisationList(response.data.data));
       },
     );
   };
 };
 
 export const deleteOrganisation = (id: number) => {
-  return (dispatch: Dispatch<IState>, getState: () => IState): Promise<void> => {
+  return (dispatch: TDispatch<IOrganisation[]>, getState: () => IState): Promise<void> => {
     const userId = getCurrentUserId(getState());
     return axios.put(`${BASE_URL}${END_POINT_URL}${id}`, { userId }).then(
       (response: AxiosResponse<IResponse<IOrganisation[]>>) => {
-        dispatch(loadOrganisationList());
+        dispatch(parseOrganisationList(response.data.data));
       },
     );
   };

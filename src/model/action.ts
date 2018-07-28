@@ -1,4 +1,5 @@
 import { AxiosError } from "axios";
+import { ThunkDispatch } from "redux-thunk";
 
 import { IBook } from "model/book";
 import { IMenuItem } from "model/menu-item";
@@ -7,6 +8,7 @@ import { IPost } from "model/post";
 import { IService } from "model/service";
 import { IUser, IUserConn } from "model/user";
 import { IAuthor } from "./author";
+import { IState } from "./state";
 
 export type TMenuItemAction = IMenuItem | IMenuItem[];
 export type TOrganisationAction = IOrganisation | IOrganisation[];
@@ -26,3 +28,5 @@ export interface IResponse<I> {
   error: AxiosError;
   status: number;
 }
+
+export type TDispatch<T> = ThunkDispatch<IState, void, IAction<T>>;
