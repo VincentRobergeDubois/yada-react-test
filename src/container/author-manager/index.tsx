@@ -15,7 +15,7 @@ import AuthorManagerForm from "./component/author-manager-form";
 import { AUTHOR_FORM_NAME } from "./constant";
 
 interface IAuthorManagerStateProps {
-  AuthorList: IAuthor[];
+  authorList: IAuthor[];
 }
 
 interface IAuthorManagerDispatchProps {
@@ -37,7 +37,7 @@ class AuthorManager extends React.PureComponent<TAuthorManagerProps, {}> {
           form={AuthorManagerForm}
           formName={AUTHOR_FORM_NAME}
           identifier="id"
-          itemList={this.props.AuthorList}
+          itemList={this.props.authorList}
           title="Liste des Auteurs"
           update={this.props.updateAuthor}
         />
@@ -47,7 +47,7 @@ class AuthorManager extends React.PureComponent<TAuthorManagerProps, {}> {
 }
 
 const mapStateToProps = (state: IState): IAuthorManagerStateProps => ({
-  AuthorList: getAuthorList(state),
+  authorList: getAuthorList(state),
 });
 
 const mapDispatchToProps = (dispatch: TDispatch<IAuthor[]>): IAuthorManagerDispatchProps => ({

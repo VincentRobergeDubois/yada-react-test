@@ -1,22 +1,24 @@
 import { AxiosError } from "axios";
 import { ThunkDispatch } from "redux-thunk";
 
+import { IAuthor } from "model/author";
 import { IBook } from "model/book";
+import { IEditor } from "model/editor";
 import { IMenuItem } from "model/menu-item";
 import { IOrganisation } from "model/organisation";
 import { IPost } from "model/post";
 import { IService } from "model/service";
+import { IState } from "model/state";
 import { IUser, IUserConn } from "model/user";
-import { IAuthor } from "./author";
-import { IState } from "./state";
 
+export type TAuthorAction = IAuthor | IAuthor[];
+export type TBookAction = IBook | IBook[];
+export type TEditorAction = IEditor | IEditor[];
 export type TMenuItemAction = IMenuItem | IMenuItem[];
 export type TOrganisationAction = IOrganisation | IOrganisation[];
 export type TPostAction = IPost | IPost[];
 export type TServiceAction = IService | IService[];
 export type TUserAction = IUserConn | IUser[];
-export type TBookAction = IBook | IBook[];
-export type TAuthorAction = IAuthor | IAuthor[];
 
 export interface IAction<I> {
   type: string;
