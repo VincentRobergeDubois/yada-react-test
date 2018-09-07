@@ -3,7 +3,7 @@ import { createSelector } from "reselect";
 import { IState } from "model/state";
 import { IUser, IUserAdmin, IUserConn, IUserState } from "model/user";
 
-export const getUser = (state: IState): IUserState => state.user;
+export const getUser = ({ user }: IState): IUserState => user;
 
 export const getCurrentUser = createSelector(
   getUser, ({ current }: IUserState): IUserConn => current,

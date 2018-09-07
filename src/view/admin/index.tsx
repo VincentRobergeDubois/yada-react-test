@@ -28,7 +28,7 @@ interface IAdminDispatchProps {
 type TAdminProps = IAdminStateProps & IAdminDispatchProps;
 
 class Admin extends React.PureComponent<TAdminProps & RouteComponentProps<TAdminProps>, {}> {
-  public componentWillMount(): void {
+  public componentDidMount(): void {
     this.props.loadMenuItemList(4, 1, parseAdminMenuItemList);
   }
 

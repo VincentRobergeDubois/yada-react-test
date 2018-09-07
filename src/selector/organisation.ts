@@ -3,7 +3,7 @@ import { createSelector } from "reselect";
 import { IOrganisation, IOrganisationState } from "model/organisation";
 import { IState } from "model/state";
 
-export const getOrganisation = (state: IState): IOrganisationState => state.organisation;
+export const getOrganisation = ({ organisation }: IState): IOrganisationState => organisation;
 
 export const getCurrentOrganisation = createSelector(
   getOrganisation, ({ current }: IOrganisationState): IOrganisation => current,

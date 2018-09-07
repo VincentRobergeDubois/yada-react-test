@@ -3,7 +3,7 @@ import { createSelector } from "reselect";
 import { IPost, IPostState } from "model/post";
 import { IState } from "model/state";
 
-export const getPost = (state: IState): IPostState => state.post;
+export const getPost = ({ post }: IState): IPostState => post;
 
 export const getCurrentPost = createSelector(
   getPost, ({ current }: IPostState): IPost => current,

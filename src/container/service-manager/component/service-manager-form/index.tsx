@@ -6,7 +6,7 @@ import Input from "component/input";
 import YadaButton from "component/yada-button";
 import { IManagerForm } from "model/manager";
 import { IServiceFormValues } from "model/service";
-import { required } from "service/form-validator";
+import { required } from "service/field-validator";
 
 interface IServiceManagerFormOwnProps extends IManagerForm<IServiceFormValues> { }
 

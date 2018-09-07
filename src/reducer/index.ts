@@ -2,11 +2,11 @@ import { combineReducers } from "redux";
 import { reducer as reduxFormReducer } from "redux-form";
 
 import BookReducer from "reducer/book";
-import MenuItemReducer from "reducer/menu-item-reducer";
-import OrganisationReducer from "reducer/organisation-reducer";
-import PostReducer from "reducer/post-reducer";
-import ServiceReducer from "reducer/service-reducer";
-import UserReducer from "reducer/user-reducer";
+import MenuItemReducer from "reducer/menu-item";
+import OrganisationReducer from "reducer/organisation";
+import PostReducer from "reducer/post";
+import ServiceReducer from "reducer/service";
+import UserReducer from "reducer/user";
 
 const rootReducer = combineReducers({
   book: BookReducer,

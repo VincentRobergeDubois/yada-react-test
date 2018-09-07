@@ -4,7 +4,7 @@ import { Field, InjectedFormProps, reduxForm } from "redux-form";
 
 import Input from "component/input";
 import YadaButton from "component/yada-button";
-import { required } from "service/form-validator";
+import { required } from "service/field-validator";
 
 import { LOGIN_SECTION_FORM_NAME } from "../../constant";
 import { ILoginFormValues } from "../../model";

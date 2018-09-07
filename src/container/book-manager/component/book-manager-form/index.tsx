@@ -6,7 +6,7 @@ import Input from "component/input";
 import YadaButton from "component/yada-button";
 import { IBookFormValues } from "model/book";
 import { IManagerForm } from "model/manager";
-import { required } from "service/form-validator";
+import { required } from "service/field-validator";
 
 interface IBookManagerFormOwnProps extends IManagerForm<IBookFormValues> { }
 

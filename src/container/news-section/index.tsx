@@ -21,7 +21,7 @@ interface INewsSectionDispatchProps {
 type TNewsSectionProps = INewsSectionStateProps & INewsSectionDispatchProps;
 
 class NewsSection extends React.Component<TNewsSectionProps, {}> {
-  public componentWillMount(): void {
+  public componentDidMount(): void {
     if ( this.props.postList.length === 0 ) {
       this.props.loadPostList();
     }

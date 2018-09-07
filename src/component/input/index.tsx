@@ -37,21 +37,17 @@ class Input extends React.PureComponent<TInputProps, {}> {
     }
   }
 
-  private renderError = (): JSX.Element => {
-    return (
-      <span className="error-msg">
-        {this.props.meta.error}
-      </span>
-    );
-  }
+  private renderError = (): JSX.Element => (
+    <span className="error-msg">
+      {this.props.meta.error}
+    </span>
+  )
 
-  private renderWarning = (): JSX.Element => {
-    return (
-      <span className="warning-msg">
-        {this.props.meta.warning}
-      </span>
-    );
-  }
+  private renderWarning = (): JSX.Element => (
+    <span className="warning-msg">
+      {this.props.meta.warning}
+    </span>
+  )
 }
 
 export default Input;
