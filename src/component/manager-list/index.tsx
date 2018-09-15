@@ -75,15 +75,13 @@ class ManagerList<T, V, P> extends React.PureComponent<TManagerListProps<T, V, P
     this.setState({ ...this.state, isForm: false, isEdit: false });
   }
 
-  private renderItemList = (): JSX.Element[] => (
-    this.props.itemList.map((item: T): JSX.Element => (
-      <this.props.display
-        key={item[this.props.identifier]}
-        item={item}
-        isSelected={this.state.selectedItem === item}
-        onClick={this.handleSelect(item)}
-      />
-    ))
+  private renderItem = (item: T): JSX.Element => (
+    <this.props.display
+      key={item[this.props.identifier]}
+      item={item}
+      isSelected={this.state.selectedItem === item}
+      onClick={this.handleSelect(item)}
+    />
   )
 
   private renderList = (): JSX.Element => (
@@ -96,7 +94,7 @@ class ManagerList<T, V, P> extends React.PureComponent<TManagerListProps<T, V, P
           <YadaButton label="Supprimer" onClick={this.handleDeleteButton} type="button" />
         </div>
       </div>
-      {this.renderItemList()}
+      {this.props.itemList.map(this.renderItem)}
     </div>
   )
 

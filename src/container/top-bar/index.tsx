@@ -50,13 +50,11 @@ class TopBar extends React.PureComponent<TTopBarProps, {}> {
     );
   }
 
-  private renderMenuBar = (): JSX.Element => {
-    return (
-      <MenuBar
-        menuItemList={this.props.mainMenuItemList}
-      />
-    );
-  }
+  private renderMenuBar = (): JSX.Element => (
+    <MenuBar
+      menuItemList={this.props.mainMenuItemList}
+    />
+  )
 }
 
 const mapStateToProps = (state: IState): ITopBarStateProps => ({

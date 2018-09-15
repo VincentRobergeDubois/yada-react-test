@@ -21,25 +21,20 @@ class InfoSection extends React.PureComponent<TInfoSectionProps, {}> {
           <p>Text Example</p>
         </div>
         <div className="info-card-list">
-          {this.renderInfoCardList()}
+          {this.props.adminUserList.map(this.renderInfoCard)}
         </div>
       </div>
     );
   }
 
-  private renderInfoCardList = (): JSX.Element[] => {
-    return this.props.adminUserList.map((user: IUserAdmin, key: number) => {
-      return (
-        <InfoCard
-          key={key}
-          name={user.name}
-          title={user.title}
-          email={user.email}
-        />
-      );
-    });
-  }
-
+  private renderInfoCard = (user: IUserAdmin, key: number): JSX.Element => (
+    <InfoCard
+      key={key}
+      name={user.name}
+      title={user.title}
+      email={user.email}
+    />
+  )
 }
 
 const mapStateToProps = (state: IState): IInfoSectionStateProps => ({

@@ -31,32 +31,26 @@ class NewsSection extends React.Component<TNewsSectionProps, {}> {
     return (
       <div id="news-section">
         {this.renderBroadcast()}
-        {this.renderList()}
+        {this.props.postList.map(this.renderPost)}
       </div>
     );
   }
 
-  private renderBroadcast = (): JSX.Element => {
-    return (
-      <div className="broadcast">
-        Annonces à venir
-      </div>
-    );
-  }
+  private renderBroadcast = (): JSX.Element => (
+    <div className="broadcast">
+      Annonces à venir
+    </div>
+  )
 
-  private renderList(): JSX.Element[] {
-    return this.props.postList.map((post: IPost, key: number) => {
-      return (
-        <Post
-          key={post.id}
-          side={key}
-          title={post.title}
-          content={post.content}
-          image={post.image}
-        />
-      );
-    });
-  }
+  private renderPost = (post: IPost, key: number): JSX.Element => (
+    <Post
+      key={post.id}
+      side={key}
+      title={post.title}
+      content={post.content}
+      image={post.image}
+    />
+  )
 }
 
 const mapStateToProps = (state: IState): INewsSectionStateProps => ({

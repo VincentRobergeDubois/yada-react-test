@@ -16,23 +16,19 @@ class SideMenu extends React.PureComponent<TSideMenuProps, {}> {
   public render(): JSX.Element {
     return (
       <Menu className="side-menu" isVertical={true}>
-        {this.renderMenuItemList()}
+        {this.props.menuItemList.map(this.renderMenuItem)}
       </Menu>
     );
   }
 
-  private renderMenuItemList = (): JSX.Element[] => {
-    return this.props.menuItemList.map((item: IMenuItem, key: number) => {
-      return (
-        <MenuItem className="item" key={key}>
-          <Link to={item.link}>
-            <Icon name={item.icon} />
-            <span>{item.name}</span>
-          </Link>
-        </MenuItem>
-      );
-    });
-  }
+  private renderMenuItem = (item: IMenuItem, key: number): JSX.Element => (
+    <MenuItem className="item" key={key}>
+      <Link to={item.link}>
+        <Icon name={item.icon} />
+        <span>{item.name}</span>
+      </Link>
+    </MenuItem>
+  )
 }
 
 export default SideMenu;
