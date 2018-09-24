@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
 import { createEditor, deleteEditor, updateEditor } from "action/editor-action";
-import ManagerList from "component/manager-list";
+import ManagerList from "lib/manager-list";
 import { TDispatch } from "model/action";
 import { IEditor } from "model/editor";
 import { IState } from "model/state";

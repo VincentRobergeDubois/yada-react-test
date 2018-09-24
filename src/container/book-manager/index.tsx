@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
 import { createBook, deleteBook, updateBook } from "action/book-action";
-import ManagerList from "component/manager-list";
+import ManagerList from "lib/manager-list";
 import { TDispatch } from "model/action";
 import { IBook } from "model/book";
 import { IState } from "model/state";

@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { bindActionCreators, Dispatch } from "redux";
 
 import { createService, deleteService, updateService } from "action/service-action";
-import ManagerList from "component/manager-list";
+import ManagerList from "lib/manager-list";
 import { IService } from "model/service";
 import { IState } from "model/state";
 import { getServiceList } from "selector/service";

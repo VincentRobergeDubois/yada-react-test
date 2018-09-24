@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { bindActionCreators, Dispatch } from "redux";
 
 import { createPost, deletePost, updatePost } from "action/post-action";
-import ManagerList from "component/manager-list";
+import ManagerList from "lib/manager-list";
 import { IPost } from "model/post";
 import { IState } from "model/state";
 import { getPostList } from "selector/post";

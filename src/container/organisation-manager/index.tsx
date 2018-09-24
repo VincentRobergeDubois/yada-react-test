@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { bindActionCreators, Dispatch } from "redux";
 
 import { createOrganisation, deleteOrganisation, updateOrganisation } from "action/organisation-action";
-import ManagerList from "component/manager-list";
+import ManagerList from "lib/manager-list";
 import { IOrganisation } from "model/organisation";
 import { IState } from "model/state";
 import { getOrganisationList } from "selector/organisation";

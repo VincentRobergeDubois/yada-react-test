@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { bindActionCreators, Dispatch } from "redux";
 
 import { createUser, deleteUser, updateUser } from "action/user-action";
-import ManagerList from "component/manager-list";
+import ManagerList from "lib/manager-list";
 import { IState } from "model/state";
 import { IUser } from "model/user";
 import { getUserList } from "selector/user";

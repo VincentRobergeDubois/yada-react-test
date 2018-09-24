@@ -4,7 +4,6 @@
 @import "mixin";
 @import "default";
 
-@import "../src/component/manager-list/style";
 @import "../src/component/side-bar/style";
 @import "../src/component/side-menu/style";
 @import "../src/component/yada-button/style";
@@ -18,6 +17,8 @@
 @import "../src/container/top-bar/style";
 @import "../src/container/user-manager/style";
 @import "../src/container/book-manager/style";
+
+@import "../src/lib/manager-list/style";
 
 @import "../src/view/admin/style";
 @import "../src/view/contact/style";

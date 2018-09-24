@@ -2,8 +2,8 @@ import * as React from "react";
 
 import { Field, InjectedFormProps, reduxForm } from "redux-form";
 
-import Input from "component/input";
 import YadaButton from "component/yada-button";
+import Input from "lib/form/input";
 import { required } from "service/field-validator";
 
 import { LOGIN_SECTION_FORM_NAME } from "../../constant";

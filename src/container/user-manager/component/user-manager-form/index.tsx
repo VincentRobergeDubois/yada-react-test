@@ -2,8 +2,8 @@ import * as React from "react";
 
 import { Field, InjectedFormProps, reduxForm } from "redux-form";
 
-import Input from "component/input";
 import YadaButton from "component/yada-button";
+import Input from "lib/form/input";
 import { IManagerForm } from "model/manager";
 import { IUserFormValues } from "model/user";
 import { required } from "service/field-validator";
